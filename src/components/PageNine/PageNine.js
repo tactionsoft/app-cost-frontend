@@ -113,7 +113,7 @@ const PageNine = ({ onButtonClick }) => {
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[8] = index8value; // Store at index 3 (4th position)
+    costData[7] = index8value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      console.log('costData is:-',costData);
      onButtonClick("pageten")
@@ -135,6 +135,10 @@ const PageNine = ({ onButtonClick }) => {
     return `$${formatToK(min)} - $${formatToK(max)}`;
   };
 
+  // Get the total cost range
+  // const { totalMin, totalMax } = calculateTotalCostRange();
+
+  // Determine if the "Next" button should be enabled
   const isNextButtonEnabled = singleUser || multiUser || thirdUser;
 
   return (

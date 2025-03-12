@@ -46,7 +46,7 @@ const PageThirteen = ({ onButtonClick }) => {
       return newValue;
     });
   };
-  console.log('index 12 is:-',index12value)
+  console.log('index 11 is:-',index12value)
   const onClickMultiUser = (label) => {
     setMultiUser((prev) => {
       const newValue = !prev;
@@ -136,7 +136,7 @@ const calculateTotalCost = () => {
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
 
   // Ensure we update the existing index (11) instead of pushing new entries
-  costData[12] = { 
+  costData[11] = { 
     index: index12value.index || 0, 
     title1: index12value.title1 || "", 
     title2: index12value.title2 || "", 

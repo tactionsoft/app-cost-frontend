@@ -110,7 +110,7 @@ const updateCost = (single, multi) => {
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[2] = index2value; // Store at index 3 (4th position)
+    costData[1] = index2value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      console.log('costData is:-',costData);
      onButtonClick("pagefour");

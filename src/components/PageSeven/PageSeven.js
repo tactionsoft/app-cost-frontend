@@ -92,7 +92,7 @@ const calculateTotalCost = () => {
   }
 
   // Preserve existing values in costData[5] and update only necessary fields
-  costData[6] = { ...costData[5], ...index6value };
+  costData[5] = { ...costData[5], ...index6value };
 
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));

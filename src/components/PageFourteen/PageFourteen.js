@@ -84,7 +84,7 @@ const calculateTotalCost = () => {
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `${formattedMin}K - ${formattedMax}K`;
 
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  costData[13] = index13value; // Ensure correct index
+  costData[12] = index13value; // Ensure correct index
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
 
   console.log("Updated costData:", costData);

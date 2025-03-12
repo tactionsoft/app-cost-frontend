@@ -120,12 +120,12 @@ const calculateTotalCost = () => {
   costData = [...costData];
 
   // Only update index 5 if it hasn't been set already
-  if (!costData[9]) {
-    costData[9] = {}; // Initialize index 5 if it's undefined
+  if (!costData[8]) {
+    costData[8] = {}; // Initialize index 5 if it's undefined
   }
 
   // Preserve existing values in costData[5] and update only necessary fields
-  costData[9] = { ...costData[9], ...index9value };
+  costData[8] = { ...costData[8], ...index9value };
 
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));

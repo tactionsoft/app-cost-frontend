@@ -77,10 +77,12 @@ const calculateTotalCost = () => {
     totalMax += thirdUserCost.max;
   }
 
-
+  const formattedMin = (totalMin / 1000).toFixed(2);
+  const formattedMax = (totalMax / 1000).toFixed(2);
+  const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `$${formattedMin}K - $${formattedMax}K`;
 
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  costData[7] = index7value; // Store in session storage
+  costData[6] = index7value; // Store in session storage
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
 
   console.log('Updated costData:', costData);

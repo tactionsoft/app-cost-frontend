@@ -121,7 +121,7 @@ console.log('index4 update is:-',index4value)
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[4] = index4value; // Store at index 3 (4th position)
+    costData[3] = index4value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      console.log('costData is:-',costData);
     return finalCost;

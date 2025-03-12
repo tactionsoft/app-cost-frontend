@@ -96,7 +96,7 @@ const calculateTotalCost = () => {
 
   // Store final cost in session storage under a unique index
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  costData[3] = index3value; // Store at index 3 (4th position)
+  costData[2] = index3value; // Store at index 3 (4th position)
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
 
   console.log("costData is:", costData);

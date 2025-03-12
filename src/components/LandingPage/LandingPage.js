@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     try {
       // ✅ Send Data to Strapi API
-      const apiResponse = await fetch("http://localhost:1337/api/login", {
+      const apiResponse = await fetch("https://api.app-cost.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

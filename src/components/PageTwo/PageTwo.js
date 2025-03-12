@@ -8,7 +8,6 @@ const PageTwo = ({ onButtonClick}) => {
   // const [selectedUserType, setSelectedUserType] = useState(null);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
-
   const [totalCost, setTotalCost] = useState("$0K");
   const singleUserCost = { min: 13750, max: 33000 };
   const multiUserCost = { min: 27500, max: 55000 };
@@ -111,7 +110,7 @@ const updateCost = (single, multi) => {
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[1] = index1value; // Store at index 3 (4th position)
+    costData[0] = index1value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      console.log('costData is:-',costData);
      onButtonClick("pagethree");

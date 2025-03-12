@@ -90,6 +90,24 @@ const onClickMultiUser = () => {
     return `$${(cost / 1000).toFixed(1)}K`;
   };
 
+  // const calculateTotalCost = () => {
+  //   let totalMin = 0;
+  //   let totalMax = 0;
+
+  //   if (singleUser) {
+  //     totalMin += singleUserCost.min;
+  //     totalMax += singleUserCost.max;
+  //   }
+  //   if (multiUser) {
+  //     totalMin += multiUserCost.min;
+  //     totalMax += multiUserCost.max;
+  //   }
+  //   if (totalMin === 0 && totalMax === 0) {
+  //     return "$0K";
+  //   }
+
+  //   return `${formatCost(totalMin)} - ${formatCost(totalMax)}`;
+  // };
 
   const calculateTotalCost = () => {
     
@@ -133,7 +151,7 @@ const onClickMultiUser = () => {
 
   const onClickContinue = () => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[5] = index5value; // Store at index 4 (5th position)
+    costData[4] = index5value; // Store at index 4 (5th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
     console.log('Updated session storage:', costData);
   
