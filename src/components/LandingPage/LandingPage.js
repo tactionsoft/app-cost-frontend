@@ -17,6 +17,7 @@ import costCalculator from "./images/cost-calculator.jpg";
 import estimate from "./images/Estimate.jpg";
 import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+import about_us from './images/about-us.jpg'
 import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jpg'
 console.log('emailjs',emailjs);
 // import axios from axios;
@@ -593,7 +594,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               <p><strong>Scalability & Innovation</strong> – We build <strong>future-ready</strong> apps that scale with your business needs.</p>
                             </div>
                             <div class="col-lg-6 col-12">
-                              <img src={aboutUs} className="img-fluid choose-us-image" alt="" />
+                              <img src={about_us} className="img-fluid choose-us-image" alt="" />
                             </div>
                           </div>
                         </div>
