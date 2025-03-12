@@ -1,4 +1,4 @@
-name: Revive-frontend
+name: app-cost-frontend
 
 on:
   push:
