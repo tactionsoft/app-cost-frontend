@@ -12,7 +12,7 @@ import avatar2 from "./images/avatar/dummy-profile1.jpg";
 import avatar3 from "./images/avatar/dummy-profile2.jpg";
 import avatar4 from "./images/avatar/dummy-profile3.jpg";
 import calculation from "./images/calculation.jpg";
-import aboutUs from "./images/5834f7ff-eadf-4dd8-bb90-9a2bd7578bf4.jpg";
+import aboutUs from "./images/contact image.jpg";
 import costCalculator from "./images/cost-calculator.jpg";
 import estimate from "./images/Estimate.jpg";
 import { useNavigate } from 'react-router-dom';
@@ -752,7 +752,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
               </form> */}
 
-             <img style={{width:"400px",height:"400px"}} src={admin}/>
+             <img style={{width:"400px",height:"auto",boxShadow:"5px 10px 18px #888888",borderRadius:"8px"}} src={aboutUs}/>
             
             </div>
 
