@@ -208,7 +208,7 @@ const handleSubmit = async (e) => {
       from_name: formData.name.trim(),
       name: "Admin",
       // to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
-      to_email:"gurvinder@felicitastechnologies.com,alok.aman@techesperto.com",
+      to_email:"info@tactionsoft.com,marketing@tactionsoft.com",
       total_cost: generateTableHTML(costData),
       total_costs: totalCost,
       selectedIndustry:selectedIndustry,
