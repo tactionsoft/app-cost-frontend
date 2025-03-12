@@ -162,6 +162,7 @@ const handleSubmit = async (e) => {
   }
 
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
   const totalCost = calculateTotalCost(costData);
 
   try {
@@ -170,6 +171,7 @@ const handleSubmit = async (e) => {
       email: formData.email,
       phone: formData.phone,
       totalCost,
+      selectedIndustry,
     });
 
     // ✅ Send data to Strapi API
@@ -181,6 +183,7 @@ const handleSubmit = async (e) => {
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         totalCost,
+        selectedIndustry:selectedIndustry, 
       }),
     });
 
@@ -205,12 +208,13 @@ const handleSubmit = async (e) => {
       from_name: formData.name.trim(),
       name: "Admin",
       // to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
-      to_email:"info@tactionsoft.com,marketing@tactionsoft.com",
+      to_email:"gurvinder@felicitastechnologies.com,alok.aman@techesperto.com",
       total_cost: generateTableHTML(costData),
       total_costs: totalCost,
+      selectedIndustry:selectedIndustry,
       // reply_to: formData.email.trim(),
     };
-
+console.log('template params is:-',templateParams)
     emailjs.send(serviceID, templateID, templateParams, publicKey)
       .then((response) => {
         console.log("📩 Email sent successfully!", response.status, response.text);

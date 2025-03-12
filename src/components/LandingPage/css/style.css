@@ -1727,15 +1727,32 @@ strong {
   margin-left: 110px;
 }
 
+@media (max-width: 1760px) {
+  .banner-form {
+      top: 71px;
+      left: 78px;
+      right: 79px;
+      padding: 110px 18px 0 18px;
+  }
+}
+
 @media (max-width: 1399px) {
   .banner-form {
     top: 59px;
     left: 74px;
     right: 78px;
-    padding: 19px 18px 0 18px;
+    padding: 31px 18px 0 18px;
   }
   .ebook-download-form .mb-5 {
     margin-bottom: 1.8rem !important;
+  }
+}
+@media (max-width: 1211px) {
+  .banner-form {
+      top: 59px;
+      left: 74px;
+      right: 78px;
+      padding: 31px 18px 0 18px;
   }
 }
 
@@ -1744,7 +1761,7 @@ strong {
     top: 49px;
     left: 63px;
     right: 65px;
-    padding: 14px 13px 0 14px;
+    padding: 2px 13px 0 14px;
   }
   .ebook-download-form .mb-5 {
     margin-bottom: 1rem !important;
@@ -1760,6 +1777,26 @@ strong {
   }
 }
 
+@media (max-width: 1087px) {
+  .banner-form {
+    top: 49px;
+    left: 63px;
+    right: 65px;
+    padding: 31px 13px 0 14px;
+  }
+  .ebook-download-form .mb-5 {
+    margin-bottom: 1rem !important;
+  }
+  .ebook-download-form .banner-tab-form .mb-4 {
+    margin-bottom: 5px !important;
+  }
+  .banner-tab-form .mx-auto {
+    width: 80%;
+  }
+  .container-faq {
+    width: unset;
+  }
+}
 @media (max-width: 991px) {
   .app-calculator,
   .choose-us {
@@ -1784,10 +1821,10 @@ strong {
     line-height: 1.2;
   }
   .banner-form {
-    top: 42px;
-    left: 55px;
-    right: 57px;
-    padding: 16px;
+    top: 40px;
+    left: 58px;
+    right: 58px;
+    padding: 17px;
   }
   .ebook-download-form .mb-5 h3 {
     font-size: 20px;
@@ -1840,19 +1877,26 @@ strong {
     margin-bottom: 0;
   }
   .banner-form {
-    top: 36px;
-    left: 51px;
-    right: 54px;
+    top: 57px;
+    left: 67px;
+    right: 67px;
     padding: 6px 11px 0 11px;
   }
   .ebook-download-form h3 {
     font-size: 19px;
   }
+
+  
+    .ebook-download-form .mb-5 h3 {
+        margin-bottom: 2rem !important;
+        padding-top: 39px
+    }
+
   .ebook-download-form .mb-5 {
     margin-bottom: 5px !important;
   }
   .ebook-download-form .banner-tab-form .mb-4 {
-    margin-bottom: 0 !important;
+    margin-bottom: 31px !important;
   }
   .custom-form .form-control {
     padding-top: 8px;

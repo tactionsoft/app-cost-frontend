@@ -24,12 +24,46 @@ import "./PageOne.css";
 const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
   
   const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedIndustries, setSelectedIndustries] = useState([]);
+  const industryTitles = [
+    "Banking",
+    "Engineering & Construction",
+    "Healthcare",
+    "Retail",
+    "Education",
+    "Manufacturing",
+    "Telecommunications",
+    "Transportation & Logistics",
+    "Media & Entertainment",
+    "Real Estate",
+    "Energy",
+    "Government",
+    "Insurance",
+    "Technology",
+    "Automotive",
+    "Hospitality",
+    "Pharmaceutical",
+    "Agriculture",
+    "Food & Beverage",
+    "Sports & Recreation",
+  ];
 
-
+  const handleSubmit = () => {
+    if (selectedUser) {
+      const selectedIndustryTitle = industryTitles.find((title) =>
+        selectedUser.toLowerCase().includes(title.toLowerCase().split(" ")[0])
+      );
+  
+      sessionStorage.setItem("selectedIndustry", selectedIndustryTitle || "");
+      onButtonClick("pagetwo");
+    }
+  };
   const handleClick = (userType) => {
+    sessionStorage.setItem("selectedIndustry", industryTitles);
     sessionStorage.setItem("finalCostPrice", JSON.stringify([]));
     if (selectedUser === userType) {
       setSelectedUser(null);
+    sessionStorage.removeItem('selectedIndustry')
     } else {
       setSelectedUser(userType);
     }
@@ -224,7 +258,7 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
         }}
         type="submit"
         value="Continue"
-        onClick={() => onButtonClick("pagetwo")}
+        onClick={handleSubmit}
         disabled={!isContinueButtonEnabled}
       />
     </main>
