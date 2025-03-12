@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  padding: 20px;
+}

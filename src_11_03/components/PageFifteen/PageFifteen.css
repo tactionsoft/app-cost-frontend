@@ -1,0 +1,245 @@
+.clicked{
+  border-color: #EAEEF5;
+  cursor: pointer;
+  text-align: center;
+}
+
+.clicked:hover{
+  border-color: #664DE5
+}
+
+.clicked:active{
+  border-color: #664DE5
+}
+
+@media screen and (max-width: 1228px){
+
+  .selectionDiv{
+      flex-wrap: wrap;
+  }
+
+  .clicked{
+      min-width:200px;
+  }
+}
+
+/* @media screen and (max-width: 800px){
+
+ .submitButton{
+  min-width: 100%;
+ }
+} */
+
+.mw5 {
+  max-width: 100% !important;
+  width: 460px;
+}
+
+.page-two {
+  height: 365px;
+}
+
+.ph4 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.w2 {
+  width: 6rem !important;
+  height: 6rem !important;
+}
+
+.bg-white {
+  box-shadow: none;
+}
+
+.bg-white:hover {
+  box-shadow: none;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+.divider {
+  margin-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-top: 20px;
+  width: 100%;
+  display: block;
+  height: 100px;
+  left: 20px;
+  bottom: 0;
+}
+
+.divider label {
+  color: #999;
+  /* color: #08354e; */
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+/* .submitButton {
+  margin-top: 40px;
+} */
+
+.backButton {
+  margin-top: 40px;
+  margin-right: 20px;
+}
+
+.f6 {
+  font-size: 12px !important;
+  font-weight: 500;
+}
+
+.total-cost-form {
+  color: #000;
+  font-size: 35px;
+}
+
+.total-est-cost {
+  position: relative;
+  margin-top: 0;
+  padding: 40px 80px;
+  background-color: #00D5ED;
+  text-align: left;
+  border-radius: 7px 0 0 7px;
+  box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.1);
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+}
+
+.total-cost-title {
+  color: #fff;
+  font-size: 37px;
+  margin: 0;
+}
+
+.measure {
+  border-radius: 0 7px 7px 0;
+}
+
+/* .disclaimer-form {
+  position: absolute;
+  max-width: 511px;
+  width: 100%;
+  bottom: 30px;
+  color: #08354E;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+} */
+
+.disclaimer-form {
+  max-width: 511px;
+  width: 100%;
+  margin-top: 20px; /* Adds spacing */
+  color: #08354E;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.form-content {
+  margin-top: 80px;
+}
+.form-title{
+  font-size: 25px;
+}
+@media screen and (max-width: 800px) {
+  .disclaimer-form {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    padding: 0px 5px;
+  }
+}
+/* chatgpt */
+
+.submitButton {
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  text-align: center;
+  min-width: 150px;
+  outline: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  background-color: #F0F0F0;
+  transition: background 0.3s ease-in-out;
+
+
+  margin-top: 20px; /* Adds space to prevent overlap */
+}
+
+/* Hover Effect */
+.submitButton:hover {
+  background-color: #0099cc;
+  color: white;
+}
+
+/* Responsive: Full width button */
+@media screen and (max-width: 800px) {
+  .submitButton {
+    width: 100%;
+    max-width: none; /* Allows it to adjust dynamically */
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .total-est-cost {
+    position: relative; /* Prevents overlap */
+    padding: 20px; /* Reduces padding to avoid pushing form */
+    text-align: center; /* Centers text on small screens */
+  }
+
+  .disclaimer-form {
+    position: static; /* Removes absolute positioning */
+    margin-top: 10px; /* Adds spacing */
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .submitButton {
+    width: 100%; /* Full width */
+    max-width: 350px; /* Prevents it from being too large */
+    margin: 20px auto 0; /* Ensures spacing */
+    display: block; /* Centers it properly */
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .measure {
+    width: 100%;
+    max-width: 350px; /* Ensures it fits inside 375px width */
+    padding: 10px;
+    /* margin: auto; */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .total-est-cost {
+    position: relative; /* Prevents overlap */
+    padding: 20px; /* Reduces padding to avoid pushing form */
+    text-align: center; /* Centers text on small screens */
+  }
+
+  .disclaimer-form {
+    position: static; /* Removes absolute positioning */
+    margin-top: 10px; /* Adds spacing */
+    text-align: center;
+  }
+}

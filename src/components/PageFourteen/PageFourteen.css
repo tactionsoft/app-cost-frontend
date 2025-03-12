@@ -1,0 +1,49 @@
+.clicked {
+  border-color: #eaeef5;
+  cursor: pointer;
+  text-align: center;
+}
+
+.clicked:hover {
+  border-color: #664de5;
+}
+
+.clicked:active {
+  border-color: #664de5;
+}
+
+@media screen and (max-width: 1228px) {
+  .selectionDiv {
+    flex-wrap: wrap;
+  }
+
+  .clicked {
+    min-width: 200px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .submitButton {
+    min-width: 100%;
+  }
+}
+h1 {
+  font-weight: 500;
+  color: #fff;
+}
+.measure {
+  max-width: 40em !important;
+  width: 75%;
+}
+
+.submitButton {
+  margin-top: 40px;
+}
+
+.mb2 {
+  margin-bottom: 0 !important;
+}
+
+.input-font {
+  font-size: 15px !important;
+}
