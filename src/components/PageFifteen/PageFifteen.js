@@ -17,6 +17,20 @@ const PageFifteen = ({ onButtonClick }) => {
     email: '',
     phone: ''
   });
+
+  useEffect(() => {
+    const savedFormData = sessionStorage.getItem("formData");
+    if (savedFormData) {
+      const parsedData = JSON.parse(savedFormData);
+  
+      // Map stored keys to Page 15 form keys
+      setFormData({
+        name: parsedData["ebook-form-name"] || "",
+        email: parsedData["ebook-email"] || "",
+        phone: parsedData["ebook-contact"] || "",
+      });
+    }
+  }, []);
   const handleChange=(e)=>{
     const {name,value}=e.target;
     setFormData((prevValue)=>({
@@ -152,10 +166,95 @@ const generateTableHTML = (costData) => {
 
 
 
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   // ✅ Ensure formData has values
+//   if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
+//     alert("Please enter your Name, Email, and Phone.");
+//     return;
+//   }
+
+//   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+//   const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
+//   const totalCost = calculateTotalCost(costData);
+
+//   try {
+//     console.log("🚀 Sending API Request with Data:", {
+//       name: formData.name,
+//       email: formData.email,
+//       phone: formData.phone,
+//       totalCost,
+//       selectedIndustry,
+//     });
+
+//     // ✅ Send data to Strapi API
+//     const response = await fetch('http://localhost:1337/api/user-info/submit', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({
+//         name: formData.name.trim(),
+//         email: formData.email.trim(),
+//         phone: formData.phone.trim(),
+//         totalCost,
+//         selectedIndustry:selectedIndustry, 
+//       }),
+//     });
+
+//     const result = await response.json();
+
+//     if (!response.ok) {
+//       console.error("❌ API Error:", result);
+//       alert(result.error.message || "Failed to submit form.");
+//       return;
+//     }
+
+
+//     console.log("✅ API Success:", result);
+
+//     // ✅ Proceed with EmailJS
+//     const serviceID = "service_r4mrnbp";
+//     const templateID = "template_6t7euqq";
+//     const publicKey = "kCTmCH5S7cwmPxSVR";
+
+//     const templateParams = {
+//       email: formData.email.trim(),
+//       phone: formData.phone.trim(),
+//       from_name: formData.name.trim(),
+//       name: "Admin",
+//       // to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
+//       to_email:"gurvinder@felicitastechnologies.com,coolkohligaurav1826.gk@gmail.com",
+//       total_cost: generateTableHTML(costData),
+//       total_costs: totalCost,
+//       selectedIndustry:selectedIndustry,
+//       // reply_to: formData.email.trim(),
+//     };
+// console.log('template params is:-',templateParams)
+//     emailjs.send(serviceID, templateID, templateParams, publicKey)
+//       .then((response) => {
+//         console.log("📩 Email sent successfully!", response.status, response.text);
+//         alert("Thank you! Your estimate has been sent.");
+
+//         sessionStorage.removeItem("userProgress");
+//         sessionStorage.removeItem("finalCostPrice");
+
+//         onButtonClick('pagesixteen'); // Redirect user
+//       })
+//       .catch((error) => {
+//         console.error("❌ Email failed:", error);
+//         alert("Failed to send email. Please try again.");
+//       });
+
+//   } catch (error) {
+//     console.error("❌ Error:", error);
+//     alert("Something went wrong. Please try again.");
+//   }
+// };
+
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // ✅ Ensure formData has values
   if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
     alert("Please enter your Name, Email, and Phone.");
     return;
@@ -174,8 +273,19 @@ const handleSubmit = async (e) => {
       selectedIndustry,
     });
 
-    // ✅ Send data to Strapi API
-    const response = await fetch('http://localhost:1337/api/user-info/submit', {
+    // const response = await fetch('http://localhost:1337/api/user-info/submit', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     name: formData.name.trim(),
+    //     email: formData.email.trim(),
+    //     phone: formData.phone.trim(),
+    //     totalCost,
+    //     selectedIndustry,
+    //   }),
+    // });
+
+    const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -183,39 +293,33 @@ const handleSubmit = async (e) => {
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         totalCost,
-        selectedIndustry:selectedIndustry, 
+        selectedIndustry,
       }),
     });
-
     const result = await response.json();
 
     if (!response.ok) {
       console.error("❌ API Error:", result);
-      alert(result.error.message || "Failed to submit form.");
+
+      // ✅ Extract actual error message from `details.error` or fallback to `result.message`
+      const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
+
+      alert(`Error: ${errorMessage}`);
       return;
     }
 
     console.log("✅ API Success:", result);
 
-    // ✅ Proceed with EmailJS
-    const serviceID = "service_r4mrnbp";
-    const templateID = "template_6t7euqq";
-    const publicKey = "kCTmCH5S7cwmPxSVR";
-
-    const templateParams = {
+    emailjs.send("service_r4mrnbp", "template_6t7euqq", {
       email: formData.email.trim(),
       phone: formData.phone.trim(),
       from_name: formData.name.trim(),
       name: "Admin",
-      // to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
-      to_email:"info@tactionsoft.com,marketing@tactionsoft.com",
+      to_email: "gurvinder@felicitastechnologies.com,coolkohligaurav1826.gk@gmail.com",
       total_cost: generateTableHTML(costData),
       total_costs: totalCost,
-      selectedIndustry:selectedIndustry,
-      // reply_to: formData.email.trim(),
-    };
-console.log('template params is:-',templateParams)
-    emailjs.send(serviceID, templateID, templateParams, publicKey)
+      selectedIndustry: selectedIndustry,
+    }, "kCTmCH5S7cwmPxSVR")
       .then((response) => {
         console.log("📩 Email sent successfully!", response.status, response.text);
         alert("Thank you! Your estimate has been sent.");
@@ -232,9 +336,11 @@ console.log('template params is:-',templateParams)
 
   } catch (error) {
     console.error("❌ Error:", error);
-    alert("Something went wrong. Please try again.");
+    alert("An unexpected error occurred. Please try again.");
   }
 };
+
+
 
 
   
