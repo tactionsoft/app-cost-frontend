@@ -28,14 +28,24 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
   const industryTitles = [
     "Banking",
     "Engineering & Construction",
+    "Entertainment",
     "Healthcare",
-    "Retail",
+    "Information technologies",
+    "Retail and wholesale",
     "Education",
     "Manufacturing",
     "Telecommunications",
-    "Transportation & Logistics",
+    "Transportation",
+    "Telecomm",
     "Media & Entertainment",
     "Real Estate",
+    "Public sector",
+    "Investment",
+    "Lending",
+    "Multi-industry",
+    "Oil and gas",
+    "Payments",
+    "Professional services",
     "Energy",
     "Government",
     "Insurance",
@@ -46,12 +56,25 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
     "Agriculture",
     "Food & Beverage",
     "Sports & Recreation",
+    "Utilities",
+
   ];
 
+  // const handleSubmit = () => {
+  //   if (selectedUser) {
+  //     const selectedIndustryTitle = industryTitles.find((title) =>
+  //       selectedUser.toLowerCase().includes(title.toLowerCase().split(" ")[0])
+  //     );
+  
+  //     sessionStorage.setItem("selectedIndustry", selectedIndustryTitle || "");
+  //     onButtonClick("pagetwo");
+  //   }
+  // };
+ 
   const handleSubmit = () => {
     if (selectedUser) {
       const selectedIndustryTitle = industryTitles.find((title) =>
-        selectedUser.toLowerCase().includes(title.toLowerCase().split(" ")[0])
+        selectedUser.toLowerCase().includes(title.toLowerCase()) // Compare the full title
       );
   
       sessionStorage.setItem("selectedIndustry", selectedIndustryTitle || "");
@@ -59,7 +82,7 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
     }
   };
   const handleClick = (userType) => {
-    sessionStorage.setItem("selectedIndustry", industryTitles);
+    // sessionStorage.setItem("selectedIndustry", industryTitles);
     sessionStorage.setItem("finalCostPrice", JSON.stringify([]));
     if (selectedUser === userType) {
       setSelectedUser(null);
@@ -153,13 +176,24 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "manufacturingUser" ? 'selected' : ''}`}>
               Manufacturing</h1>
           </div>
-          <div className="industry-card br3 pa3 mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "multiIndustryUser" ? "#18d2e8" : "#EAEEF5" }}
+          {/* <div className="industry-card br3 pa3 mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "multiIndustryUser" ? "#18d2e8" : "#EAEEF5" }}
             onClick={() => handleClick("multiIndustryUser")}
           >
             <img src={multiIndustryUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "multiIndustryUser" ? 'selected' : ''}`}>
               Multi-industry</h1>
-          </div>
+          </div> */}
+
+<div
+  className="industry-card br3 pa3 mv3 ba dib b--black-10 ma3"
+  style={{ borderColor: selectedUser === "Multi-industry" ? "#18d2e8" : "#EAEEF5" }}
+  onClick={() => handleClick("Multi-industry")} // Use the exact industry title
+>
+  <img src={multiIndustryUser} className="icon-size" title="third user icon" alt="users-icon" />
+  <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "Multi-industry" ? "selected" : ""}`}>
+    Multi-industry
+  </h1>
+</div>
         </div>
 
 

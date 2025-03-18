@@ -39,21 +39,38 @@ console.log('formData is :-',formData)
     setOpenItem(openItem===id? null :id)
 }
 
-const handleChange=(e)=>{
-  const {name,value}=e.target;
-  setFormData((prevFormData)=>({
-  ...prevFormData,
-  [name]:value,
-  }));
-  }
+// const handleChange=(e)=>{
+//   const {name,value}=e.target;
+//   setFormData((prevFormData)=>({
+//   ...prevFormData,
+//   [name]:value,
+//   }));
+//   }
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  
+  setFormData((prevValue) => {
+    const updatedFormData = { ...prevValue, [name]: value };
+    
+    // Save to sessionStorage
+    sessionStorage.setItem("formData", JSON.stringify(updatedFormData));
+
+    return updatedFormData;
+  });
+
+  // setErrors((prevErrors) => {
+  //   let newErrors = { ...prevErrors };
+  //   newErrors[name] = value.trim() ? '' : `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
+  //   return newErrors;
+  // });
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const accordionButtons = document.querySelectorAll(".accordion-item button");
-
   accordionButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const isExpanded = this.getAttribute("aria-expanded") === "true";
-
       // Close all accordions
       accordionButtons.forEach((btn) => {
         btn.setAttribute("aria-expanded", "false");
@@ -72,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  const section=['item-1','item-2','item-3','item-4'];
+  const section=['item-1','item-2','item-3','item-4',"item-5"];
   let currentSection='';
   console.log('section is:-',section);
   const handleScroll=()=>{
@@ -90,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -162,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // ✅ Send Different Emails with Different Subjects
       await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
-      await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
+      await sendEmail("gurvinder@felicitastechnologies.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
   
       alert("Emails Sent Successfully!");
       navigate("/app-cost-calculator");
@@ -265,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div className="hero-image-wrap col-lg-6 col-12 col-md-7 mt-3 mt-lg-0">
             <div className=''> <img src={online} /> </div>
-            <form onSubmit={handleSubmit} className="custom-form ebook-download-form shadow banner-form" action="#" method="post" role="form">
+            <form onSubmit={handleSubmit} className="custom-form ebook-download-form shadow banner-form" action="#" method="post" role="form" id='calculator-form'>
               <div className="text-center mb-5">
                 <h3 className="mb-1">Estimate Your App Budget – Just One Step Away!</h3>
               </div>
@@ -315,17 +333,18 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         </div>
+        <div id="item-1"></div>
       </section>
-
-      <section class="py-lg-5"></section>
+   
+      <section class="py-lg-5" ></section>
 
       <section class="review-section">
-      <div class="container">
+      <div class="container" >
         <div class="row">
           <div class="col-lg-4 col-12 right-review-section">
             <nav id="navbar-example3" class="h-100 flex-column align-items-stretch">
               <nav class="nav nav-pills flex-column">
-                <a className={`nav-link ${activeSection === "item-1" ? "active" : ""}`} href="#item-1"><strong>Why Use Our App Cost Calculator?</strong></a>
+                <a className={`nav-link ${activeSection === "item-1" ? "active" : ""}`} href="#item-1" ><strong>Why Use Our App Cost Calculator?</strong></a>
                 <a className={`nav-link ${activeSection === "item-2" ? "active" : ""}`} href="#item-2"><strong>How the App Cost Calculator Works?</strong></a>
                 <a className={`nav-link ${activeSection === "item-3" ? "active" : ""}`} href="#item-3"><strong> What Factors Influence App Development Costs?</strong></a>
                 <a className={`nav-link ${activeSection === "item-4" ? "active" : ""}`} href="#item-4"><strong>FAQs</strong></a>
@@ -334,31 +353,46 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
           <div class="col-lg-8 col-12">
+      
             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
               class="scrollspy-example-2" tabindex="0">
-              <div class="scrollspy-example-item right-side-content" id="item-1">
+      
+
+              <div class="scrollspy-example-item right-side-content"  >
+             
                 <h2>Why Use Our App Cost Calculator?</h2>
+      
 
                 <p>Developing a mobile app involves multiple cost factors, including UI/UX design, backend development, integrations, security, and compliance. With our mobile app cost estimator, you can:
                 </p>
+              
                 <div class="app-calculator">
+            
                 <div class="col-lg-6 col-12">
+              
                 <img src={calculation} className="img-fluid" alt="" />
+                <div  id='item-2'></div>
                 </div>
                 <div class="col-lg-6 col-12">
                   <div class="app_cost-calculator-right">
                    <p><strong>Get a quick estimate</strong> for your app development budget.</p>
                    <p><strong>Compare costs</strong> for different platforms like iOS, Android, or hybrid apps.</p>
                    <p><strong>Understand pricing</strong> for essential features such as user authentication, payment gateways, push notifications, and real-time chat.</p>
-                   <p><strong>Plan your budget</strong> based on the scope, complexity, and technology stack of your application.
+                  
+                   <p >  <strong>Plan your budget</strong> based on the scope, complexity, and technology stack of your application.
+                 {/* <div id='item-2'></div> */}
                    </p>
+                 
                   </div>
+               
                 </div>
+           
                 </div>
+           
               </div>
 
-              <div class="scrollspy-example-item right-side-content" id="item-2">
-                <h2>How the App Cost Calculator Works</h2>
+              <div class="scrollspy-example-item right-side-content">
+              <h2>How the App Cost Calculator Works</h2>
                 <p>Our calculator simplifies the process by breaking down the app development cost into key components:</p>
                   <div class="card-container">
                     <div class="app-cost-card">
@@ -383,15 +417,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="app-cost-card">
                         <div class="card-icon">💡</div>
                         <div class="card-content">
-                            <p><strong>Estimate Development Timeline</strong> – Get insights on how long it takes to build your app and how it impacts the cost.</p>
+                            <p >
+                           
+                              
+                              <strong>Estimate Development Timeline</strong> – Get insights on how long it takes to build your app and how it impacts the cost.</p>
                         </div>
+                      
                     </div>
-                </div>
 
+                </div>
+                <div id="item-3"></div>
 
               </div>
 
-              <div class="scrollspy-example-item right-side-content" id="item-3">
+              <div class="scrollspy-example-item right-side-content" >
                 <h2>What Factors Influence App Development Costs?</h2>
 
                 <p>Several factors determine how much it costs to build an app. Our app cost estimator considers:</p>
@@ -407,10 +446,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p><strong>UI/UX Design</strong> – Custom graphics and animations require more resources than standard templates.</p>
                     <p><strong>Security & Compliance</strong> – If your app deals with sensitive data, it may require <strong>HIPAA, GDPR, or PCI-DSS compliance.</strong></p>
                   </div>
+                  <div id="item-4"></div>
                 </div>
+            
               </div>
+            
 
-              <div class="scrollspy-example-item right-side-content" id="item-4">
+              <div class="scrollspy-example-item right-side-content" >
                 <h2>Frequently Asked Questions (FAQs) About App Cost Calculator</h2>
 
                 <p>We hope the information below provides you with a clear understanding of how our App Cost Calculator works, helping you estimate your app development budget with transparency and ease.</p>
@@ -711,7 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>Ready to turn your app idea into reality? <strong>Use our App Cost Calculator</strong> to get a detailed estimate tailored to your requirements.</p>
               <p>Whether you need a <strong>startup app, enterprise solution, or an innovative MVP</strong>, we provide a precise cost breakdown to help you make informed decisions</p>
               <div class="col-lg-8 col-md-10 col-8 cta-btn">
-                <a href="#section_2" class="custom-btn smoothscroll me-3"> 👉  Try Our App Cost Calculator Now!</a>
+                <a href="#calculator-form"  className="custom-btn smoothscroll me-3"> 👉  Try Our App Cost Calculator Now!</a>
               </div>
           </div>
         </div>
@@ -761,8 +803,11 @@ document.addEventListener("DOMContentLoaded", () => {
               <h2 className="mb-4">Contact</h2>
 
               <p className="mb-3">
-                <i className="bi-geo-alt me-2"></i>
-                London, United Kingdom
+              1603 Capitol Ave<br/>
+              Suite 310 A124<br/>
+              Cheyenne, WY 82001
+                {/* <i className="bi-geo-alt me-2"></i>
+                London, United Kingdom */}
               </p>
 
               <p className="mb-2">
