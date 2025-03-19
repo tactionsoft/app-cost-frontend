@@ -114,7 +114,7 @@ const storeDataAndContinue = () => {
     <>
         <main
       className="pt5 black-80"
-      style={{ maxWidth: "65%", maxHeight: "25%", margin: "auto" }}
+      style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
     >
       <h2>Payment processing?</h2>
       <div className="center ph4 selectionDiv">
