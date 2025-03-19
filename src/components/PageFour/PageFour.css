@@ -63,7 +63,7 @@
     font-weight: 500;
   }
   
-  .divider {
+  .divider,.page_one .est-hrs  {
     margin-top: 20px;
     border-top: 1px solid rgba(0, 0, 0, .1);
     text-transform: uppercase;
@@ -76,7 +76,7 @@
     bottom: 0;
   }
   
-  .divider label {
+  .divider label,.page_one .est-hrs .three-label {
     color: #999;
     /* color: #08354e; */
     font-weight: 500;
@@ -102,3 +102,11 @@
     font-weight: 500;
   }
   
+.bg-white-four {
+  padding: 45px 20px 15px !important;
+}
+@media (max-width: 472px){
+  .page_one .est-hrs .three-label{
+    font-size: 11px !important;
+  }
+}

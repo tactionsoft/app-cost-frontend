@@ -243,3 +243,21 @@ h2 {
     text-align: center;
   }
 }
+
+.center-fifteen{
+  display: flex;
+  justify-content: center;
+}
+
+@media(max-width:526px){
+  .center-fifteen{
+    display: block;
+    justify-content: center;
+  }
+  .total-est-cost{
+    border-radius: 0px 0px 0px 0px;
+  }
+  .measure{
+    border-radius: 0px 0px 0px 0px;
+  }
+}

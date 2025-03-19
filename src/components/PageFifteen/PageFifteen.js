@@ -345,7 +345,7 @@ const handleSubmit = async (e) => {
 
   
   return (
-    <main className="pt5 black-80 center form-content"
+    <main className="pt5 black-80 center-fifteen form-content"
       style={{ maxWidth: "60%", maxHeight: "30%", margin: "auto" }}>
 
         <div className="total-est-cost well">
@@ -367,7 +367,7 @@ const handleSubmit = async (e) => {
               name="name"
               id="workspace-name"
               value={formData?.name}
-              onChange={ handleChange}
+              onChange={handleChange}
               placeholder="Enter your Name"
               style={{
                 borderStyle: "solid",
@@ -376,9 +376,9 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
+
             {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
           </div>
-
           {/* Email Field */}
           <div className="mv3">
             <input

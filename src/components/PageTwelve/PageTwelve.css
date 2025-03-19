@@ -35,3 +35,12 @@
     margin-right: 20px;
   }
   
+  .bg-white-twelve {
+    padding: 45px 20px 15px !important;
+}
+@media (max-width: 476px) {
+    .page_one .est-hrs .three-label {
+        font-size: 10px !important;
+        /* white-space: nowrap; */
+    }
+  }

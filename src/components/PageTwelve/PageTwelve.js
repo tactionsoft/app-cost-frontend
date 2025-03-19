@@ -141,8 +141,8 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
       <div className="center ph4 selectionDiv">
         {/* Single User */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: singleUser? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-twelve br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: singleUser? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickSingleUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>
@@ -156,16 +156,16 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
    
           <h1 className="f4 pl2 pr2">1</h1>
           <p className="lh-copy f6 black-70 pl2 pr2">Example: Twilio SMS</p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">20 - 30 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$1,100.00 - $1,650.00</div>
             </div>
@@ -174,8 +174,8 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
 
         {/* Multi User */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-twelve br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickMultiUser}
         >
               <div style={{display:"flex",justifyContent:"center"}}>
@@ -189,16 +189,16 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
   
           <h1 className="f4 pl2 pr2">2</h1>
           <p className="lh-copy f6 black-70 pl2 pr2">Example: Twilio SMS, Calendly</p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">40 - 60 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$2,200.00 - $3,300.00</div>
             </div>
@@ -207,8 +207,8 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
 
         {/* Third User */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-twelve br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickThirdUser}
         >
           <div style={{display:"flex",justifyContent:"center"}}>
@@ -222,16 +222,16 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
     
           <h1 className="f4 pl2 pr2">3</h1>
           <p className="lh-copy f6 black-70 pl2 pr2">Example: Twilio SMS, Calendly, Google Map</p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">50 - 80 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$2,750.00 - $4,400.00</div>
             </div>

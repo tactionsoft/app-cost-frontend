@@ -120,15 +120,15 @@ const updateCost = (single, multi) => {
     <>
         <main
       className="pt5 black-80"
-      style={{ maxWidth: "65%", maxHeight: "25%", margin: "auto" }}
+      style={{ margin: "auto" }}
     >
       <h2>Do you have a finished UX/UI design?</h2>
       <div className="center ph4 selectionDiv">
         {/* Single User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
+          className="mw5 bg-white-three br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one page_one"
           style={{
-            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"auto"
+            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"330px"
           }}
           onClick={onClickSingleUser}
         >
@@ -142,16 +142,16 @@ const updateCost = (single, multi) => {
             </div>
     
           <h1 className="f4 pl2 pr2">Yes</h1>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">25 - 40 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$1,375.00 - $2,200.00</div>
             </div>
@@ -159,9 +159,9 @@ const updateCost = (single, multi) => {
         </div>
         {/* Multi User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
+          className="mw5 bg-white-three br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one page_one"
           style={{
-            borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"auto"
+            borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"330px"
           }}
           onClick={onClickMultiUser}
         >
@@ -175,16 +175,16 @@ const updateCost = (single, multi) => {
           </div>
    
           <h1 className="f4 pl2 pr2">No</h1>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">120 - 160 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$6,600.00 - $8,800.00</div>
             </div>

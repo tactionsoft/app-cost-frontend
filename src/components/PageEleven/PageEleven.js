@@ -137,8 +137,8 @@ const calculateTotalCostRange = () => {
       <div className="center ph4 selectionDiv">
         {/* Single User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-eleven br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickSingleUser}
         >
            <div style={{display:"flex",justifyContent:"center"}}>
@@ -147,16 +147,16 @@ const calculateTotalCostRange = () => {
          
           <h1 className="f4 pl2 pr2">Health Data</h1>
           <p className="lh-copy f6 black-70 pl2 pr2">Healthkit or Google Fit integration</p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">40 - 60 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$2,200.00 - $3,300.00</div>
             </div>
@@ -165,8 +165,8 @@ const calculateTotalCostRange = () => {
 
         {/* Multi User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-eleven br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickMultiUser}
         >
               <div style={{display:"flex",justifyContent:"center"}}>
@@ -175,16 +175,16 @@ const calculateTotalCostRange = () => {
         
           <h1 className="f4 pl2 pr2">Device Data</h1>
           <p className="lh-copy f6 black-70 pl2 pr2">Syncing with firmware using Bluetooth low energy</p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">30 - 50 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$1,650.00 - $2,750.00</div>
             </div>
@@ -193,8 +193,8 @@ const calculateTotalCostRange = () => {
 
         {/* Third User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-eleven br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickThirdUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>
