@@ -76,7 +76,7 @@
     bottom: 0;
   }
   
-  .divider label {
+  .divider label,.page_one .est-hrs .three-label {
     color: #999;
     /* color: #08354e; */
     font-weight: 500;
@@ -105,3 +105,13 @@
   .hide-text {
     visibility: hidden;
   }
+
+  .bg-white-nine {
+    padding: 45px 20px 15px !important;
+}
+@media (max-width: 476px) {
+  .page_one .est-hrs .three-label {
+      font-size: 10px !important;
+      /* white-space: nowrap; */
+  }
+}

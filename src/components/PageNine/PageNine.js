@@ -151,8 +151,8 @@ const PageNine = ({ onButtonClick }) => {
       <div className="center ph4 selectionDiv">
         {/* Single User */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-nine br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickSingleUser}
         >
               <div style={{display:"flex",justifyContent:"center"}}>
@@ -165,16 +165,16 @@ const PageNine = ({ onButtonClick }) => {
               </div>
    
           <h1 className="f4 pl2 pr2">Email / Password</h1>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">10 - 25 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$550.00 - $1,375.00</div>
             </div>
@@ -183,8 +183,8 @@ const PageNine = ({ onButtonClick }) => {
 
         {/* Multi User */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-nine br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickMultiUser}
         >
           <div style={{display:"flex",justifyContent:"center"}}>
@@ -197,16 +197,16 @@ const PageNine = ({ onButtonClick }) => {
           </div>
    
           <h1 className="f4 pl2 pr2">Google Auth</h1>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">10 - 25 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$550.00 - $1,375.00</div>
             </div>
@@ -215,8 +215,8 @@ const PageNine = ({ onButtonClick }) => {
 
         {/* Third User */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-nine br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickThirdUser}
         >
              <div style={{display:"flex",justifyContent:"center"}}>
@@ -229,16 +229,16 @@ const PageNine = ({ onButtonClick }) => {
              </div>
  
           <h1 className="f4 pl2 pr2">Facebook</h1>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">10 - 25 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$550.00 - $1,375.00</div>
             </div>

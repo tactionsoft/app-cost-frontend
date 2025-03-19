@@ -102,8 +102,8 @@ const isContinueButtonEnabled = singleUser || thirdUser;
       <div className="center ph4 selectionDiv">
         {/* Single User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
-          style={{ borderColor:  singleUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-eight br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one page_one"
+          style={{ borderColor:  singleUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickSingleUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>
@@ -116,16 +116,16 @@ const isContinueButtonEnabled = singleUser || thirdUser;
             </div>
  
           <h1 className="f4 pl2 pr2">Yes</h1>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">30 - 50 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$1,650.00 - $2,750.00</div>
             </div>
@@ -133,8 +133,8 @@ const isContinueButtonEnabled = singleUser || thirdUser;
         </div>
         {/* Multi User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
-          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-eight br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
+          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickThirdUser}
         >
              <div style={{display:"flex",justifyContent:"center"}}>

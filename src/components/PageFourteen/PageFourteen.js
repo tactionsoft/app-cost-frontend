@@ -103,16 +103,15 @@ const isContinueButtonEnabled = singleUser || thirdUser;
     <>
         <main
       className="pt5 black-80"
-      style={{ maxWidth: "65%", maxHeight: "25%", margin: "auto" }}
+      style={{ maxWidth: "100%", maxHeight: "25%", margin: "auto" }}
     >
       <h2>Do you need EHR Integration?</h2>
       <div className="center ph4 selectionDiv">
         {/* Single User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
+          className="mw5 bg-white-fourteen br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
           style={{
-            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"auto"
-          }}
+            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"350px"}}
           onClick={onClickSingleUser}
         >
            <div style={{display:"flex",justifyContent:"center"}}>
@@ -128,16 +127,16 @@ const isContinueButtonEnabled = singleUser || thirdUser;
           <p className="lh-copy f6 black-70 pl2 pr2">
             Example: EPIC, Cerner, Athena
           </p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">200 - 400 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$11,000.00 - $22,000.00</div>
             </div>
@@ -146,9 +145,9 @@ const isContinueButtonEnabled = singleUser || thirdUser;
 
         {/* Multi User Option */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
+          className="mw5 bg-white-fourteen br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
           style={{
-            borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"auto"}}
+            borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px"}}
           onClick={onClickThirdUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>

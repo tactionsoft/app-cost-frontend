@@ -97,3 +97,23 @@
     font-weight: 500;
   }
   
+  @media (max-width: 729px){
+    .page_one .est-hrs .three-label{
+      font-size: 11px !important;
+    }
+  }
+  @media (max-width: 552px){
+    .page_one .est-hrs .three-label{
+      font-size: 10px !important;
+    }
+  }
+  @media (max-width: 526px) {
+    .page_one .est-hrs .three-label {
+        font-size: 10px !important;
+        /* white-space: nowrap; */
+    }
+}
+
+  .bg-white-seven {
+    padding: 45px 20px 15px !important;
+}

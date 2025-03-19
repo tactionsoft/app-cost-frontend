@@ -125,8 +125,8 @@ const updateCost = (single, multi) => {
       <div className="center ph4 selectionDiv">
         {/* Single User Selection */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-two"
-          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-two br3 pa3 mv3 ba dib b--black-10 ma3 page_two clicked page-two"
+          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"400px" }}
           onClick={onClickSingleUser}>
             <div style={{display:"flex",justifyContent:"center"}}>
             <img
@@ -141,16 +141,16 @@ const updateCost = (single, multi) => {
             the door as quickly as possible with a focus on establishing
             product-market fit with as few features as possible.
           </p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="label-two">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">250 - 600 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="label-two">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$13,750.00 - $33,000.00</div>
             </div>
@@ -159,8 +159,8 @@ const updateCost = (single, multi) => {
 
         {/* Multi User Selection */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-two"
-          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-two br3 pa3 mv3 ba dib b--black-10 ma3 clicked page_two page-two"
+          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"400px"}}
           onClick={onClickMultiUser}
         >
           <div style={{display:"flex",justifyContent:"center"}}>
@@ -179,16 +179,16 @@ const updateCost = (single, multi) => {
             experience. The end product will be engaging, beautiful, and
             scalable.
           </p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="label-two">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">500 - 1000 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="label-two">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$27,500.00 - $55,000.00</div>
             </div>

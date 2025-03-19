@@ -85,67 +85,6 @@ const onClickMultiUser = () => {
     setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
   };
 
-  const formatCost = (cost) => {
-    if (cost === 0) return "$0K";
-    return `$${(cost / 1000).toFixed(1)}K`;
-  };
-
-  // const calculateTotalCost = () => {
-  //   let totalMin = 0;
-  //   let totalMax = 0;
-
-  //   if (singleUser) {
-  //     totalMin += singleUserCost.min;
-  //     totalMax += singleUserCost.max;
-  //   }
-  //   if (multiUser) {
-  //     totalMin += multiUserCost.min;
-  //     totalMax += multiUserCost.max;
-  //   }
-  //   if (totalMin === 0 && totalMax === 0) {
-  //     return "$0K";
-  //   }
-
-  //   return `${formatCost(totalMin)} - ${formatCost(totalMax)}`;
-  // };
-
-  const calculateTotalCost = () => {
-    
-    let totalMin = 0;
-    let totalMax = 0;
-
-    // Add cost ranges for selected options
-    if (singleUser) {
-      totalMin += singleUserCost.min;
-      totalMax += singleUserCost.max;
-    }
-    if (multiUser) {
-      totalMin += multiUserCost.min;
-      totalMax += multiUserCost.max;
-    }
-    if (thirdUser) {
-      totalMin += thirdUserCost.min;
-      totalMax += thirdUserCost.max;
-    }
-
-    // If no user is selected, show $0K
-    if (totalMin === 0 && totalMax === 0) {
-      return "$0K";
-    }
-
-    // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000).toFixed(2);
-    const formattedMax = (totalMax / 1000).toFixed(2);
-
-    const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-
-    // Store final cost in session storage under a unique index
-    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[4] = index5value; // Store at index 3 (4th position)
-    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     console.log('costData is:-',costData);
-    return finalCost;
-};
 
   const isContinueButtonEnabled = singleUser || multiUser || thirdUser;
 
@@ -174,8 +113,8 @@ const onClickMultiUser = () => {
       <div className="center ph4 selectionDiv">
         {/* Single User (Web App) */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5" ,height:"auto"}}
+          className="mw5 bg-white-six br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: singleUser ? "#18d2e8" : "#EAEEF5" ,height:"350px"}}
           onClick={onClickSingleUser}
         >
            <div style={{display:"flex",justifyContent:"center"}}>
@@ -191,16 +130,16 @@ const onClickMultiUser = () => {
           <p className="lh-copy f6 black-70 pl2 pr2">
             A Web App Written in ReactJS
           </p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">150 - 250 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$8,250.00 - $13,750.00</div>
             </div>
@@ -209,8 +148,8 @@ const onClickMultiUser = () => {
 
         {/* Multi User (Backend API) */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-six br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickMultiUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>
@@ -226,16 +165,16 @@ const onClickMultiUser = () => {
           <p className="lh-copy f6 black-70 pl2 pr2">
             A Backend API Written in NodeJS
           </p>
-          <div className="divider">
+          <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Hours</label>
+                <label className="three-label">Estimated Hours</label>
               </div>
               <div className="col-xl-6 col-7">150 - 250 Hours</div>
             </div>
             <div className="row">
               <div className="col-xl-6 col-5">
-                <label>Estimated Cost</label>
+                <label className="three-label">Estimated Cost</label>
               </div>
               <div className="col-xl-6 col-7">$8,250.00 - $13,750.00</div>
             </div>
@@ -244,8 +183,8 @@ const onClickMultiUser = () => {
 
         {/* Third User (None Option) */}
         <div
-          className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"auto" }}
+          className="mw5 bg-white-six br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
+          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
           onClick={onClickThirdUser}
         >
           <div style={{display:"flex",justifyContent:"center"}}>

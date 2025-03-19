@@ -6,7 +6,7 @@ import "./PageThirteen.css";
 
 const UserOption = ({ imgSrc, label, isSelected, onClick,onClickUser }) => (
   <div
-    className="mw5 bg-white br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
+    className="mw5 bg-white-thirteen br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
     style={{ borderColor: isSelected ? "#18d2e8" : "#EAEEF5" }}
     onClick={onClick}
   >

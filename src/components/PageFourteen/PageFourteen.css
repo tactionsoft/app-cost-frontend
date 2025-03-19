@@ -12,6 +12,19 @@
   border-color: #664de5;
 }
 
+.divider, .page_one .est-hrs {
+  margin-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-top: 20px;
+  width: 100%;
+  display: block;
+  height: 100px;
+  left: 20px;
+  bottom: 0;
+}
+
 @media screen and (max-width: 1228px) {
   .selectionDiv {
     flex-wrap: wrap;
@@ -47,3 +60,8 @@ h1 {
 .input-font {
   font-size: 15px !important;
 }
+
+.bg-white-fourteen {
+  padding: 45px 20px 15px !important;
+}
+

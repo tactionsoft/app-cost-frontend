@@ -1,5 +1,4 @@
-/* General styling for the container */
-h1 {
+/* h1 {
   text-align: center;
   color: #333;
   font-size: 38px;
@@ -45,10 +44,6 @@ textarea {
   border-radius: 4px;
   font-size: 16px;
 }
-
-/* textarea {
-  min-height: 100px;
-} */
 
 .checkbox-group label {
   display: block;
@@ -123,10 +118,6 @@ form .form-group .checkbox-group label input {
   background-size: cover;
   background-position: center;
 }
-
-/* .container {
-  margin-top: 20px;
-} */
 
 .footer-copy {
   display: flex;
@@ -235,4 +226,4 @@ h1 span {
 }
 
 
-
+ */

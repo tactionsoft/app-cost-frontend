@@ -63,7 +63,7 @@ h2 {
   font-weight: 500;
 }
 
-.divider {
+.divider, .est-hrs .page_one  {
   margin-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, .1);
   text-transform: uppercase;
@@ -76,7 +76,7 @@ h2 {
   bottom: 0;
 }
 
-.divider label {
+.divider label,.est-hrs .page_one .three-label {
   color: #999;
   /* color: #08354e; */
   font-weight: 500;
@@ -87,6 +87,7 @@ h2 {
 .row {
   display: flex;
   justify-content: space-between;
+
 }
 .submitButton {
   margin-top: 40px;
@@ -100,4 +101,14 @@ h2 {
 .f6 {
   font-size: 12px !important;
   font-weight: 500;
+}
+
+@media (max-width: 526px){
+  .page_one .est-hrs .three-label{
+    font-size: 11px !important;
+  }
+}
+
+.bg-white-six {
+  padding: 45px 20px 15px !important;
 }
