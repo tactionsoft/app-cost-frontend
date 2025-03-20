@@ -249,15 +249,22 @@ h2 {
   justify-content: center;
 }
 
-@media(max-width:526px){
+@media(max-width:767px){
   .center-fifteen{
     display: block;
     justify-content: center;
+    max-width: 85% !important;
   }
   .total-est-cost{
     border-radius: 0px 0px 0px 0px;
   }
   .measure{
     border-radius: 0px 0px 0px 0px;
+  }
+  .total-cost-title{
+    font-size: 26px ;
+  }
+  .total-est-cost-well{
+    max-width: 640px;
   }
 }

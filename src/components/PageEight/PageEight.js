@@ -96,7 +96,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
  <>
     <main
       className="pt5 black-80"
-      style={{ maxWidth: "65%", maxHeight: "25%", margin: "auto" }}
+      style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
     >
       <h2>Will there be recurring subscriptions?</h2>
       <div className="center ph4 selectionDiv">
