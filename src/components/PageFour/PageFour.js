@@ -123,7 +123,7 @@ const calculateTotalCost = () => {
         <div
           className="mw5 bg-white-four br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one page_one"
           style={{
-            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"auto"
+            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"350px"
           }}
           onClick={() => {onClickSingleUser(5500.00, 6875.00)}}
         >

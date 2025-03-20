@@ -108,4 +108,14 @@
       font-size: 11px !important;
     }
   }
+  @media(max-width:450px){
+    .title-header{
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+
+    
+  }
+
+
   
