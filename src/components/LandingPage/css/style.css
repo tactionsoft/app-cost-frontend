@@ -2024,10 +2024,10 @@ strong {
 @media (max-width: 431px) {
   .banner-form {
     top: 41px !important;
-    padding: 38px 14px 0 11px;
+    padding: 38px 14px 26px 11px;
     left: 57px;
-    right:63px;
-  }
+    right: 59px;
+}
   .ebook-download-form h3{
     font-size: 18px !important;
    }
@@ -2048,6 +2048,7 @@ strong {
     top: 36px !important;
     padding: 24px 14px 0 11px;
     right: 55px;
+    padding-bottom: 25px;
   }
   .ebook-download-form .banner-tab-form .mb-4 {
     margin-bottom: 5px !important;

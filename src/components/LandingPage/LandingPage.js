@@ -369,9 +369,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="app-calculator">
             
                 <div class="col-lg-6 col-12">
-              
-                <img src={calculation} className="img-fluid" alt="" />
-                <div  id='item-2'></div>
+             <img src={calculation} className="img-fluid" alt="" />
+                {/* <div  id="item-2"></div> */}
+         
                 </div>
                 <div class="col-lg-6 col-12">
                   <div class="app_cost-calculator-right">
@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
            
                 </div>
-           
+                <div  id="item-2"></div>
               </div>
 
               <div class="scrollspy-example-item right-side-content">
