@@ -386,9 +386,9 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                
                 </div>
-           
-                </div>
                 <div  id="item-2"></div>
+                </div>
+              
               </div>
 
               <div class="scrollspy-example-item right-side-content">

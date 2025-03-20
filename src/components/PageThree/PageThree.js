@@ -122,7 +122,7 @@ const updateCost = (single, multi) => {
       className="pt5 black-80"
       style={{ margin: "auto" }}
     >
-      <h2>Do you have a finished UX/UI design?</h2>
+      <h2 className="title-header">Do you have a finished UX/UI design?</h2>
       <div className="center ph4 selectionDiv">
         {/* Single User Option */}
         <div
