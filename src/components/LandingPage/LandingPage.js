@@ -181,8 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // ✅ Send Different Emails with Different Subjects
       await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
       await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
-  
-      alert("Emails Sent Successfully!");
+      // alert("Emails Sent Successfully!");
       navigate("/app-cost-calculator");
   
     } catch (error) {
@@ -282,8 +281,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           </div>
           <div className="hero-image-wrap col-lg-6 col-12 col-md-7 mt-3 mt-lg-0">
-            <div className=''> <img src={online} /> </div>
-            <form onSubmit={handleSubmit} className="custom-form ebook-download-form shadow banner-form" action="#" method="post" role="form" id='calculator-form'>
+            <div className='' id='calculator-form'> <img src={online} /> </div>
+            <form onSubmit={handleSubmit} className="custom-form ebook-download-form shadow banner-form" action="#" method="post" role="form" >
               <div className="text-center mb-5">
                 <h3 className="mb-1">Estimate Your App Budget – Just One Step Away!</h3>
               </div>
@@ -380,13 +379,11 @@ document.addEventListener("DOMContentLoaded", () => {
                    <p><strong>Understand pricing</strong> for essential features such as user authentication, payment gateways, push notifications, and real-time chat.</p>
                   
                    <p >  <strong>Plan your budget</strong> based on the scope, complexity, and technology stack of your application.
-                 {/* <div id='item-2'></div> */}
+                 <div id='item-2'></div>
                    </p>
                  
                   </div>
-               
                 </div>
-                <div  id="item-2"></div>
                 </div>
               
               </div>
@@ -416,10 +413,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="app-cost-card">
                         <div class="card-icon">💡</div>
-                        <div class="card-content">
-                            <p >
-                           
-                              
+                        <div class="card-content">   
+                            <p>
                               <strong>Estimate Development Timeline</strong> – Get insights on how long it takes to build your app and how it impacts the cost.</p>
                         </div>
                       

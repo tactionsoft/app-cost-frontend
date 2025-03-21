@@ -210,7 +210,7 @@ const storeDataAndContinue = () => {
           cursor: isContinueButtonEnabled ? "pointer" : "not-allowed",
         }}
         type="submit"
-        value="Continue"
+        value="Next"
         onClick={calculateTotalCost}
         // onClick={() => onButtonClick("pageeight")}
         disabled={!isContinueButtonEnabled}

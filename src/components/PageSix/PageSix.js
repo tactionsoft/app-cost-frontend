@@ -240,7 +240,7 @@ const onClickMultiUser = () => {
           cursor: isContinueButtonEnabled ? "pointer" : "not-allowed",
         }}
         type="submit"
-        value="Continue"
+        value="Next"
         onClick={onClickContinue}
         // onClick={() => onButtonClick("pageseven")}
         disabled={!isContinueButtonEnabled}

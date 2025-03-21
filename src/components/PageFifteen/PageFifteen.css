@@ -247,6 +247,7 @@ h2 {
 .center-fifteen{
   display: flex;
   justify-content: center;
+  margin-top: 40px !important;
 }
 
 @media(max-width:767px){

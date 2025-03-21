@@ -322,7 +322,7 @@ const handleSubmit = async (e) => {
     }, "kCTmCH5S7cwmPxSVR")
       .then((response) => {
         console.log("📩 Email sent successfully!", response.status, response.text);
-        alert("Thank you! Your estimate has been sent.");
+        // alert("Thank you! Your estimate has been sent.");
 
         sessionStorage.removeItem("userProgress");
         sessionStorage.removeItem("finalCostPrice");
@@ -345,6 +345,7 @@ const handleSubmit = async (e) => {
 
   
   return (
+
     <main className="pt5 black-80 center-fifteen form-content"
       style={{ maxWidth: "60%", maxHeight: "30%", margin: "auto" }}>
 
@@ -419,7 +420,6 @@ const handleSubmit = async (e) => {
             {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
           </div>
         </fieldset>
-
         {/* Submit Button */}
         <div className="">
           <input
