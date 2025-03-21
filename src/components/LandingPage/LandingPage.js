@@ -180,8 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // ✅ Send Different Emails with Different Subjects
       await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
-      await sendEmail("gurvinder@felicitastechnologies.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
-      alert("Emails Sent Successfully!");
+      await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
+      // alert("Emails Sent Successfully!");
       navigate("/app-cost-calculator");
   
     } catch (error) {

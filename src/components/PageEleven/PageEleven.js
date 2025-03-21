@@ -245,7 +245,7 @@ const calculateTotalCostRange = () => {
           cursor: isContinueButtonEnabled ? "pointer" : "not-allowed",
         }}
         type="submit"
-        value="Continue"
+        value="Next"
         onClick={calculateTotalCostRange}
         disabled={!isContinueButtonEnabled}
       />

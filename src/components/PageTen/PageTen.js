@@ -248,7 +248,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
           cursor: isNextButtonEnabled ? "pointer" : "not-allowed",
         }}
         type="submit"
-        value="Continue"
+        value="Next"
         onClick={calculateTotalCost}
         disabled={!isNextButtonEnabled}
       />
