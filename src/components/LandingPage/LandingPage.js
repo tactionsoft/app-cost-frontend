@@ -255,7 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
       await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
       await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
       // alert("Emails Sent Successfully!");
-      navigate("/app-cost-calculator");
+      // navigate("/app-cost-calculator");
+      navigate("/thank-you")
   
     } catch (error) {
       console.error("Error submitting user data:", error);
@@ -381,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                 ))}
                 <div className="col-lg-8 col-md-10 col-8 mx-auto">
-                  <button type="submit" className="form-control btn btn-success">Estimate your App costs</button>
+                  <button type="submit" className="form-control btn btn-success">Submit</button>
                 </div>
               </div>
             </form>

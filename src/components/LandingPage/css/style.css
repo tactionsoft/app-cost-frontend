@@ -1033,9 +1033,9 @@ strong {
 }
 
 .social-icon-link {
-  background: #08354e;
+  background: #00d5ed;
   border-radius: var(--border-radius-large);
-  color: var(--white-color);
+  color: #000;
   font-size: var(--copyright-font-size);
   display: block;
   margin-right: 10px;
