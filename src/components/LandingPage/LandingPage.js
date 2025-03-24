@@ -18,8 +18,8 @@ import estimate from "./images/Estimate.jpg";
 import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import about_us from './images/about-us.jpg'
-import dmca from './images/dmca.jpg '
-import cmmi3 from './images/cmmi3.jpg'
+import dmca from './images/dmca.jpg'
+import cmmi3 from './images/cmmi.png'
 import iso1 from './images/iso1.png'
 import iso2 from './images/iso2.png'
 import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jpg'
