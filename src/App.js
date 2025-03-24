@@ -38,8 +38,11 @@ function App(){
 function MainApp() {
   const [page, setPage] = useState("pageone");
   const [completedPages, setCompletedPages] = useState({ pageone: true });
+  // const [selectedUser,setSelectedUser]=useState(null);
+  const [pages,setPages]=useState('');
   const location=useLocation();
   const showProgressBar = location.pathname !== "/";
+  const hideProgressBar=location.pathname!=='/thank-you'
 
 
 
@@ -60,11 +63,11 @@ function MainApp() {
      
        {showProgressBar && <Logo /> } 
        
-        {showProgressBar && <MultiStepProgressBar completedPages={completedPages} page={page} onPageNumberClick={nextPage} />}
+        {showProgressBar && hideProgressBar && <MultiStepProgressBar completedPages={completedPages} page={page} onPageNumberClick={nextPage} />}
         <Routes>
           {/* Multi-step form routes */}
           <Route path="/consultation-form" element={<ConsultationForm />} />
-          <Route path="/thank-you" element={<ThankYouPage/>} />
+          <Route onButtonClick={nextPage} path="/thank-you" element={<ThankYouPage/>} />
           <Route path="/" element={<LandingPage setCompletedPages={setCompletedPages} setPage={setPage}/>}/>
           {/* Pages 1 to 15 */}
           <Route path="/app-cost-calculator" element={
@@ -82,7 +85,7 @@ function MainApp() {
                 pageeleven: <PageEleven onButtonClick={nextPage} />,
                 pagetwelve: <PageTwelve onButtonClick={nextPage} />,
                 pagethirteen: <PageThirteen onButtonClick={nextPage} />,
-                pagefourteen: <PageFourteen onButtonClick={nextPage} />,
+                pagefourteen: <PageFourteen  onButtonClick={nextPage} />,
                 pagefifteen: <PageFifteen onButtonClick={nextPage} />,
                 pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress} />,
               }[page]

@@ -29,7 +29,10 @@ const ThankYouPage = ({onButtonClick}) => {
 						</p>
 					</div>
 					<div className="submit-button">
-						<button onClick={()=>onButtonClick('pageone')} data-qa="thank-you-button" tabindex="0" className="thank-you-button">
+						<button onClick={
+							()=>navigate('/')
+							// ()=>onButtonClick('pageone')
+							} data-qa="thank-you-button" tabindex="0" className="thank-you-button">
 							<span className="button-text-wrapper">
 								<span className="text-wrapper">TactionSoft Blog</span>
 							</span>
