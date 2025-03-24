@@ -69,7 +69,7 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
       );
   
       sessionStorage.setItem("selectedIndustry", selectedIndustryTitle || "");
-      onButtonClick("thank-you");
+      onButtonClick("pagetwo");
       
     }
   };
