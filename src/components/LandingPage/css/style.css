@@ -2139,5 +2139,147 @@ strong {
 }
 
 
+/*  */
+
+button[type="submit"] {
+  background: #08354e;
+  border: none;
+  border-radius: 100px;
+  border-radius: var(--border-radius-large);
+  color: #ffffff;
+  color: var(--white-color);
+  font-size: 16px;
+  font-size: var(--p-font-size);
+  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  transition: all 0.3s;
+  margin-bottom: 0;
+}
+
+.form-control-side:hover{
+  background-color:#00d5ed;
+  color: #08354e;
+}
+
+.form-control-side {
+  display: block;
+  width: 80%;
+  padding: .800rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: .375rem;
+  transition: border-color .15sease-in-out, box-shadow .15sease-in-out;
+}
+
+.footer_content-address {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 821px) {
+  .footer_content-address {
+    display: block;
+  }
+  .footer_one {
+    margin-bottom: 50px;
+  }
+}
+
+.lower-footer {
+  text-align: center;
+}
+
+.iso-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08354e;
+  padding: 50px
+}
+
+.iso-content .iso-title {
+  font-size: 16px;
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #08354e;
+}
+
+@media (max-width: 821px) {
+  .footer-bottom {
+    display: block;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .social_media_content {
+    padding-bottom: 20px;
+  }
+}
+.copyright-text a {
+  text-decoration: none;
+}
+
+.privacy-policy a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+}
+.privacy-policy a:hover {
+  opacity: 0.8;
+  color: #fff;
+}
+
+.iso-content-image {
+  width: 92px;
+}
+
+@media (max-width: 1024px) {
+  .iso-content-image {
+    width: 92px;
+    margin-right: 10px;
+  }
+}
+
+
+.iso-content .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 767px) {
+  .iso-content .container {
+    display: block;
+    text-align: center;
+  }
+
+  .iso-content .container .img-fluid {
+    margin-right: 15px;
+  }
+}
+.contact-section {
+  padding-bottom: 0;
+}
+
+
+
+
+
 
 

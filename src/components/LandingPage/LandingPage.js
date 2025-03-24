@@ -18,6 +18,10 @@ import estimate from "./images/Estimate.jpg";
 import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import about_us from './images/about-us.jpg'
+import dmca from './images/dmca.jpg '
+import cmmi3 from './images/cmmi3.jpg'
+import iso1 from './images/iso1.png'
+import iso2 from './images/iso2.png'
 import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jpg'
 console.log('emailjs',emailjs);
 // import axios from axios;
@@ -123,9 +127,78 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
   
+    // try {
+    //   // ✅ Send Data to Strapi API
+    //   const apiResponse = await fetch("http://localhost:1337/api/login",
+    //      {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       name: formData["ebook-form-name"],
+    //       email: formData["ebook-email"],
+    //       phone: formData["ebook-contact"],
+    //       requirement: formData["ebook-requirement"],
+    //     }),
+    //   });
+  
+    //   const apiData = await apiResponse.json();
+  
+    //   if (!apiResponse.ok) {
+    //     throw new Error(apiData.message || "Failed to submit data");
+    //   }
+  
+    //   console.log("User data stored successfully:", apiData);
+  
+    //   // ✅ Function to Send Email using EmailJS
+    //   const sendEmail = (recipientEmail, subject, message, ccEmail = "",senderName = "Taction Software LLC") => {
+    //     const serviceID = "service_r4mrnbp";
+    //     const templateID = "template_kuwkoet"; // Using a single template
+    //     const publicKey = "kCTmCH5S7cwmPxSVR";
+  
+    //     const templateParams = {
+    //       name:senderName,
+    //       to_email: recipientEmail, // Different for user and admin
+    //       cc_email: ccEmail, // Optional CC email for admin
+    //       contact: formData["ebook-contact"],
+    //       requirement: formData["ebook-requirement"],
+    //       email_subject: subject, // Dynamic subject
+    //       email_message: message, // Custom message for client/admin
+    //     };
+  
+    //     return emailjs.send(serviceID, templateID, templateParams, publicKey)
+    //       .then((response) => console.log(`Email sent to ${recipientEmail}:`, response.status))
+    //       .catch((error) => console.error(`Failed to send email to ${recipientEmail}:`, error));
+    //   };
+  
+    //   // ✅ Custom Subjects and Messages
+    //   const clientSubject = "Thank You for Your Inquiry!";
+    //   const adminSubject = "New Inquiry Received! - Follow Up Required";
+  
+    //   const clientMessage = `Dear ${formData["ebook-form-name"]},\n\nThank you for reaching out to us! We have received your inquiry regarding mobile app development, and our team is already reviewing your requirements.
+
+    //                         With 11+ years of expertise in building innovative and scalable mobile applications, we’re excited to help bring your idea to life. One of our experts will get in touch with you shortly to discuss your project in more detail.In the meantime, feel free to explore our services and past projects here: www.tactionsoft.com. If you have any urgent queries.
+
+    //                        Looking forward to collaborating with you!\n\nBest Regards,\nTaction Software LLC `;
+    //   const adminMessage = `New Inquiry Received!\n\nName: ${formData["ebook-form-name"]}\nEmail: ${formData["ebook-email"]}\nContact: ${formData["ebook-contact"]}\nRequirement: ${formData["ebook-requirement"]}\n\nPlease follow up.`;
+  
+    //   // ✅ Send Different Emails with Different Subjects
+    //   await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
+    //   await sendEmail("gurvinder@felicitastechnologies.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
+    //   // alert("Emails Sent Successfully!");
+    //   navigate("/thank-you");
+  
+    // } catch (error) {
+    //   console.error("Error submitting user data:", error);
+    //   alert(error.message);
+    // }
+
+  
     try {
       // ✅ Send Data to Strapi API
-      const apiResponse = await fetch("https://api.app-cost.com/api/login", {
+      const apiResponse = await fetch("https://api.app-cost.com/api/login",
+         {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -188,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error submitting user data:", error);
       alert(error.message);
     }
+
   };
   
   
@@ -278,6 +352,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>
             Use our <strong> App Cost Calculator</strong> to get an instant estimate for your mobile <strong>App development cost</strong>. Customize features, platforms, and design to get a real-time price estimate. Start planning your <strong>App budget today!</strong>
             </p>
+               <div className="col-lg-8 col-md-10 col-8 mx-auto">
+                  <button 
+                  onClick={()=>{navigate('/app-cost-calculator')}} 
+                  type="submit" className="form-control-side  btn-success">Estimate your App costs</button>
+                </div>
 
           </div>
           <div className="hero-image-wrap col-lg-6 col-12 col-md-7 mt-3 mt-lg-0">
@@ -758,7 +837,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <section className="contact-section section-padding" id="section_5">
         <div className="container">
           <div className="row">
-            <div className="col-lg-5 col-12 col-md-5 mx-auto">
+            <div className="col-lg-3 col-12 col-md-5 mx-auto">
               {/* <form className="custom-form ebook-download-form shadow ebook-contact-form" action="#" method="post" role="form">
                 <div className="text-center mb-4">
                   <h2 className="mb-1">Add your details</h2>
@@ -775,7 +854,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
 
                   <div className="input-group mb-4">
-                    <input type="email" name="ebook-email" id="ebook-email" pattern="[^ @]*@[^ @]*" className="form-control"
+                    <input type="email" name="ebook-email" id="ebook-email" pattern="[^ @]@[^ @]" className="form-control"
                       placeholder="Email Address" aria-label="ebook-form-email" aria-describedby="basic-addon2"
                       required />
 
@@ -794,9 +873,11 @@ document.addEventListener("DOMContentLoaded", () => {
             
             </div>
 
-            <div className="col-lg-6 col-12 col-md-7 contact-section-footer">
+            <div className="col-lg-9 col-12 col-md-7 contact-section-footer">
+              
               <h2 className="mb-4">Contact</h2>
-
+              <div className="footer_content-address">
+              <div className="footer_one">
               <p className="mb-3">
               1603 Capitol Ave<br/>
               Suite 310 A124<br/>
@@ -816,8 +897,75 @@ document.addEventListener("DOMContentLoaded", () => {
                   info@tactionsoft.com
                 </a>
               </p>
+            </div>
+            
+            <div className="footer_one">
+              <p className="mb-3">
+              1603 Capitol Ave<br/>
+              Suite 310 A124<br/>
+              Cheyenne, WY 82001
+                {/* <i className="bi-geo-alt me-2"></i>
+                London, United Kingdom */}
+              </p>
 
-              <ul className="social-icon mb-4">
+              <p className="mb-2">
+                <a href="tel: +1 3074590850" className="contact-link">
+                  +1 307 459 0850
+                </a>
+              </p>
+
+              <p>
+                <a href="mailto:info@tactionsoft.com" className="contact-link mail-info">
+                  info@tactionsoft.com
+                </a>
+              </p>
+            </div>
+            <div className="footer_one">
+              <p className="mb-3">
+              1603 Capitol Ave<br/>
+              Suite 310 A124<br/>
+              Cheyenne, WY 82001
+                {/* <i className="bi-geo-alt me-2"></i>
+                London, United Kingdom */}
+              </p>
+
+              <p className="mb-2">
+                <a href="tel: +1 3074590850" className="contact-link">
+                  +1 307 459 0850
+                </a>
+              </p>
+
+              <p>
+                <a href="mailto:info@tactionsoft.com" className="contact-link mail-info">
+                  info@tactionsoft.com
+                </a>
+              </p>
+            </div>
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+        
+
+              <div className="iso-content">
+                <div className="container">
+                <img src={dmca} className="img-fluid iso-content-image" alt="Profile 1" />
+                <img src={cmmi3} className="img-fluid iso-content-image" alt="Profile 2" />
+                <img src={iso1} className="img-fluid iso-content-image" alt="Profile 3" />
+                <img src={iso2} className="img-fluid iso-content-image" alt="Profile 4" />
+                <p className="iso-title">Full stack mobile (iOS, Android) and web app design and development agency</p>
+                </div>
+                </div>
+
+                <div className="footer-bottom">
+                <p className="">Statutory legal information</p>
+                <p className="copyright-text">© 2012~2025 <a rel="nofollow" href="https://www.tactionsoft.com/" target="_blank">Taction Software LLC</a></p>
+                <p className="privacy-policy"><a rel="nofollow" href="https://tactionsoft.com/privacy-policy/?_gl=1*1pyskiy*_gcl_au*MTgyMDU1MTE4Mi4xNzM4MDQzMTUw" target="_blank">Privacy Policy</a></p>
+                
+                <div className="social_media_content">
+                <ul className="social-icon mb-4">
                 <li className="social-icon-item">
                   <a href="https://www.instagram.com/tactionsoftwarellc" className="social-icon-link bi-instagram" target="_blank" rel="noopener noreferrer"></a>
                 </li>
@@ -834,12 +982,22 @@ document.addEventListener("DOMContentLoaded", () => {
                   <a href="https://www.linkedin.com/company/taction-software-llc/" className="social-icon-link bi-linkedin" target="_blank" rel="noopener noreferrer"></a>
                 </li>
               </ul>
+                </div>
+               
+                </div>
 
-              <p className="copyright-text">Copyright © 2012~2025 <a rel="nofollow" href="https://www.tactionsoft.com/" target="_blank"> Taction Software LLC</a></p>
-            </div>
-          </div>
+                
+    </section>
+      {/* <div className='container-fluid'>
+      <div className='row' style={{left:"0px"}}>
+        <div className='col' style={{border:"1px solid red",height:"200px",width:"90%",backgroundColor:"#08354e"}}>
+      <div className='col-8' style={{border:"1px solid orange",height:"200px",left:"0px"}}></div>
         </div>
-    </section>  
+
+      </div>
+        
+      </div> */}
+
 
     </>
   );
