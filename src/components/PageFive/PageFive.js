@@ -36,8 +36,6 @@ const PageFive = ({ onButtonClick }) => {
     });
   };
 
-console.log('index4Value',index4value)
-
 
 
 
@@ -58,7 +56,6 @@ console.log('index4Value',index4value)
       return newValue;
     });
   };
-console.log('index4 update is:-',index4value)
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
       const newValue = !prev;
@@ -123,18 +120,11 @@ console.log('index4 update is:-',index4value)
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[3] = index4value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     console.log('costData is:-',costData);
     return finalCost;
 };
 
   // Enable "Next" button only if at least one option is selected
   const isNextButtonEnabled = singleUser || multiUser || thirdUser;
-
-  // Update the displayed cost whenever selection changes
-  // useEffect(() => {
-
-  //   document.getElementById("total-cost").textContent = calculateTotalCost();
-  // }, [singleUser, multiUser, thirdUser]);  // Recalculate whenever a selection changes
 
   return (
     <>
@@ -303,8 +293,6 @@ console.log('index4 update is:-',index4value)
         
           // Save the updated data back to session storage
           sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-        
-          console.log("Updated Session Storage (index4value):", sessionStorage.getItem("finalCostPrice"));
         
           // Pass data and navigate to the next page
           onButtonClick("pagesix", {

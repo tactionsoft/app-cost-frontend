@@ -3,7 +3,6 @@ import "./ThankYouPage.css";
 import { useNavigate } from 'react-router-dom';
 
 const ThankYouPage = ({onButtonClick}) => {
-	console.log('onButtonClick',onButtonClick)
 	const navigate=useNavigate();
 	return (
 		<div className="thank-you-page">

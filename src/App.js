@@ -38,20 +38,15 @@ function App(){
 function MainApp() {
   const [page, setPage] = useState("pageone");
   const [completedPages, setCompletedPages] = useState({ pageone: true });
-  // const [selectedUser,setSelectedUser]=useState(null);
-  const [pages,setPages]=useState('');
   const location=useLocation();
   const showProgressBar = location.pathname !== "/";
   const hideProgressBar=location.pathname!=='/thank-you'
-
-
 
   const resetProgress = () => {
     setCompletedPages({ pageone: true }); // Reset progress, allowing only Page 1
   };
 
   const nextPage = (nextPageKey) => {
-    console.log('nextpage is:-',nextPageKey)
     setCompletedPages((prev) => ({
       ...prev,
       [nextPageKey]: true, // Mark the page as completed
@@ -61,7 +56,7 @@ function MainApp() {
   return (
       <div className="App">
      
-       {showProgressBar && <Logo /> } 
+       {showProgressBar && <Logo />} 
        
         {showProgressBar && hideProgressBar && <MultiStepProgressBar completedPages={completedPages} page={page} onPageNumberClick={nextPage} />}
         <Routes>

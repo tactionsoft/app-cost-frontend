@@ -19,12 +19,10 @@ const UserOption = ({ imgSrc, label, isSelected, onClick,onClickUser }) => (
 );
 
 const PageThirteen = ({ onButtonClick }) => {
-  const [selectedUser, setSelectedUser] = useState(null);
   const [index12value, setIndex12value] = useState({ title1:"",title2:"",title3:"",answer:"",index:0 });
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
-  console.log('page13 is :-',index12value)
 
   const onClickSingleUser = (label) => {
     setSingleUser((prev) => {
@@ -46,7 +44,6 @@ const PageThirteen = ({ onButtonClick }) => {
       return newValue;
     });
   };
-  console.log('index 11 is:-',index12value)
   const onClickMultiUser = (label) => {
     setMultiUser((prev) => {
       const newValue = !prev;
@@ -69,7 +66,6 @@ const PageThirteen = ({ onButtonClick }) => {
 
   const onClickThirdUser = (label) => {
     setThirdUser((prev) => {
-      console.log('prev value is:-', prev);
       const newValue = !prev;
       if (newValue) {
         setSingleUser(false);
@@ -87,51 +83,6 @@ const PageThirteen = ({ onButtonClick }) => {
     });
   };
 
-  // const updateCost = (single, multi, third) => {
-  //   setSingleUser(single);
-  //   setMultiUser(multi);
-  //   setThirdUser(third);
-  // };
-
-//   const calculateTotalCost = () => {
-    
-//     let totalMin = 0;
-//     let totalMax = 0;
-
-//     // Add cost ranges for selected options
-//     if (singleUser) {
-//       totalMin += singleUserCost.min;
-//       totalMax += singleUserCost.max;
-//     }
-//     if (multiUser) {
-//       totalMin += multiUserCost.min;
-//       totalMax += multiUserCost.max;
-//     }
-//     if (thirdUser) {
-//       totalMin += thirdUserCost.min;
-//       totalMax += thirdUserCost.max;
-//     }
-
-//     // If no user is selected, show $0K
-//     if (totalMin === 0 && totalMax === 0) {
-//       return "$0K";
-//     }
-
-//     // Format the total cost in "K" format with two decimal places
-//     const formattedMin = (totalMin / 1000).toFixed(2);
-//     const formattedMax = (totalMax / 1000).toFixed(2);
-
-//     const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-
-//     // Store final cost in session storage under a unique index
-//     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-//     costData[10] = index11value; // Store at index 3 (4th position)
-//     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-//      console.log('costData is:-',costData);
-//      onButtonClick("psgefourteen");
-//     return finalCost;
-// };
-
 const calculateTotalCost = () => {
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
 
@@ -145,8 +96,6 @@ const calculateTotalCost = () => {
   };
 
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-
-  console.log("Updated costData:", costData);
 
   // Navigate to the next page
   onButtonClick("pagefourteen");

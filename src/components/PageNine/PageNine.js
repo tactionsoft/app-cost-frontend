@@ -115,28 +115,9 @@ const PageNine = ({ onButtonClick }) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[7] = index8value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     console.log('costData is:-',costData);
      onButtonClick("pageten")
     return finalCost;
 };
-
-  // Format the total cost range in K format with decimals
-  const formatCostRange = (min, max) => {
-    // If no users are selected (min and max are both 0), show $0K
-    if (min === 0 && max === 0) {
-      return "$0K";
-    }
-
-    const formatToK = (value) => {
-      // Convert the value to K format with one decimal place
-      return (value / 1000).toFixed(1) + "K";
-    };
-
-    return `$${formatToK(min)} - $${formatToK(max)}`;
-  };
-
-  // Get the total cost range
-  // const { totalMin, totalMax } = calculateTotalCostRange();
 
   // Determine if the "Next" button should be enabled
   const isNextButtonEnabled = singleUser || multiUser || thirdUser;
