@@ -5,7 +5,6 @@ import usersthree from "./connection.png";
 import "./PageTwelve.css";
 
 const PageTwelve = ({ onButtonClick }) => {
-  const [selectedUser, setSelectedUser] = useState(null);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
@@ -59,7 +58,6 @@ const PageTwelve = ({ onButtonClick }) => {
 
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
-      console.log('prev value is:-', prev);
       const newValue = !prev;
       if (newValue) {
         setSingleUser(false);
@@ -79,8 +77,6 @@ const PageTwelve = ({ onButtonClick }) => {
     });
   };
 
-
-console.log('indexValue9 is:-',index11value);
   const updateCost = (single, multi, third) => {
     let totalMin = 0, totalMax = 0;
     if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
@@ -123,7 +119,6 @@ console.log('indexValue9 is:-',index11value);
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[10] = index11value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     console.log('costData is:-',costData);
      onButtonClick("pagethirteen");
     return finalCost;
 };

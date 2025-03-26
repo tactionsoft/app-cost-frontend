@@ -23,7 +23,6 @@ import cmmi3 from './images/cmmi.png'
 import iso1 from './images/iso1.png'
 import iso2 from './images/iso2.png'
 import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jpg'
-console.log('emailjs',emailjs);
 // import axios from axios;
 
 
@@ -37,7 +36,6 @@ const LandingPage = ({setCompletedPages,setPage}) => {
     "ebook-contact": "",
     "ebook-requirement": ""
   });
-console.log('formData is :-',formData)
 
   const togglefunc=(id)=>{
     setOpenItem(openItem===id? null :id)
@@ -95,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const section=['item-1','item-2','item-3','item-4',"item-5"];
   let currentSection='';
-  console.log('section is:-',section);
   const handleScroll=()=>{
     section.forEach((id)=>{
       const section=document.getElementById(id);
@@ -216,8 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!apiResponse.ok) {
         throw new Error(apiData.message || "Failed to submit data");
       }
-  
-      console.log("User data stored successfully:", apiData);
   
       // ✅ Function to Send Email using EmailJS
       const sendEmail = (recipientEmail, subject, message, ccEmail = "",senderName = "Taction Software LLC") => {

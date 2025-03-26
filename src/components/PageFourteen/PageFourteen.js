@@ -11,7 +11,6 @@ const PageFourteen = ({ onButtonClick }) => {
   const singleUserCost = { min: 11000, max:22000 };
   const thirdUserCost = { min: 0, max: 0 };
   const [index13value, setIndex13value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",answer:"" });
-  console.log('index is :-',index13value)
   const [totalCost, setTotalCost] = useState("$0K");
 
   const onClickSingleUser = () => {
@@ -32,8 +31,6 @@ const PageFourteen = ({ onButtonClick }) => {
       return newValue;
     });
   };
-
-  console.log('index6 update is:-',index13value);
   
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
@@ -86,8 +83,6 @@ const calculateTotalCost = () => {
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   costData[12] = index13value; // Ensure correct index
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-
-  console.log("Updated costData:", costData);
 
   // Ensure state updates before page transition
   setTimeout(() => {

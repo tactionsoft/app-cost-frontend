@@ -37,7 +37,7 @@ const PageTwo = ({ onButtonClick}) => {
     });
   };
 
-console.log('index4Value',index1value)
+
 
 const onClickMultiUser = () => {
   setMultiUser((prev) => {
@@ -59,9 +59,6 @@ const onClickMultiUser = () => {
     return newValue;
   });
 };
-
-
-console.log('index4 update is:-',index1value)
 
 const updateCost = (single, multi) => {
   let totalMin = 0, totalMax = 0;
@@ -112,7 +109,6 @@ const updateCost = (single, multi) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[0] = index1value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     console.log('costData is:-',costData);
      onButtonClick("pagethree");
     return finalCost;
 };

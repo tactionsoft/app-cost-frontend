@@ -35,8 +35,6 @@ const PageFour = ({ onButtonClick }) => {
     });
   };
 
-console.log('index4Value',index3value)
-
 const onClickMultiUser = () => {
   setMultiUser((prev) => {
     const newValue = !prev;
@@ -58,9 +56,6 @@ const onClickMultiUser = () => {
     return newValue;
   });
 };
-
-
-console.log('index4 update is:-',index3value)
 
 const updateCost = (single, multi) => {
   let totalMin = 0, totalMax = 0;
@@ -98,8 +93,6 @@ const calculateTotalCost = () => {
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   costData[2] = index3value; // Store at index 3 (4th position)
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-
-  console.log("costData is:", costData);
 
   // Always navigate to page five, even if cost is $0K
   onButtonClick("pagefive");

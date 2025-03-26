@@ -84,7 +84,6 @@ const PageTen = ({ onButtonClick }) => {
       return newValue;
     });
   };
-  console.log('indexValue9 is:-',index9value);
   const updateCost = (single, multi, third) => {
     let totalMin = 0, totalMax = 0;
     if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
@@ -129,8 +128,6 @@ const calculateTotalCost = () => {
 
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-  console.log("Updated costData:", costData);
-
   onButtonClick("pageeleven");
 };
 

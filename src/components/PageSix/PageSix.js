@@ -33,7 +33,6 @@ const PageSix = ({ onButtonClick }) => {
       return newValue;
     });
   };
-  console.log('index4 update is:-',index5value)
 
 const onClickMultiUser = () => {
     setMultiUser((prev) => {
@@ -52,7 +51,6 @@ const onClickMultiUser = () => {
       return newValue;
     });
   };
-  console.log('index4 update is:-',index5value)
 
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
@@ -92,15 +90,10 @@ const onClickMultiUser = () => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[4] = index5value; // Store at index 4 (5th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-    console.log('Updated session storage:', costData);
   
     // Navigate to the next page
     onButtonClick("pageseven");
   };
-
-  // useEffect(() => {
-  //   document.getElementById("total-cost").textContent = calculateTotalCost();
-  // }, [singleUser, multiUser, thirdUser]);
 
   return (
     <>

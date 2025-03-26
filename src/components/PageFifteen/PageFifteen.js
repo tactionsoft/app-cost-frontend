@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./PageFifteen.css";
 import emailjs from '@emailjs/browser';
 import { useNavigate } from "react-router-dom";
-console.log('emailjs',emailjs);
 
 const PageFifteen = ({ onButtonClick }) => {
   const navigate =useNavigate();
@@ -11,7 +10,7 @@ const PageFifteen = ({ onButtonClick }) => {
     email:"",
     phone:"",
   });
-  console.log('formData is :-',formData);
+
   const [errors, setErrors] = useState({
     name: '',
     email: '',
@@ -177,13 +176,6 @@ const handleSubmit = async (e) => {
   const totalCost = calculateTotalCost(costData);
 
   try {
-    console.log("🚀 Sending API Request with Data:", {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      totalCost,
-      selectedIndustry,
-    });
 
     // const response = await fetch('http://localhost:1337/api/user-info/submit', {
     //   method: 'POST',
@@ -220,8 +212,6 @@ const handleSubmit = async (e) => {
       return;
     }
 
-    console.log("✅ API Success:", result);
-
     emailjs.send("service_r4mrnbp", "template_6t7euqq", {
       email: formData.email.trim(),
       phone: formData.phone.trim(),
@@ -233,9 +223,7 @@ const handleSubmit = async (e) => {
       selectedIndustry: selectedIndustry,
     }, "kCTmCH5S7cwmPxSVR")
       .then((response) => {
-        console.log("📩 Email sent successfully!", response.status, response.text);
         // alert("Thank you! Your estimate has been sent.");
-
         sessionStorage.removeItem("userProgress");
         sessionStorage.removeItem("finalCostPrice");
 
@@ -252,10 +240,6 @@ const handleSubmit = async (e) => {
   }
 };
 
-
-
-
-  
   return (
 
     <main className="pt5 black-80 center-fifteen form-content"

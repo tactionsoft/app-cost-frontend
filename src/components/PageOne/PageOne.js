@@ -24,7 +24,6 @@ import "./PageOne.css";
 const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
   
   const [selectedUser, setSelectedUser] = useState(null);
-  const [selectedIndustries, setSelectedIndustries] = useState([]);
   const industryTitles = [
     "Banking",
     "Engineering & Construction",

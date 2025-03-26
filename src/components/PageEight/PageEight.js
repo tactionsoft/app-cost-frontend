@@ -31,8 +31,6 @@ const PageEight = ({ onButtonClick }) => {
     });
   };
 
-  console.log('index6 update is:-',index7value);
-
  
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
@@ -54,8 +52,6 @@ const PageEight = ({ onButtonClick }) => {
       return newValue;
     });
   };
- 
-  console.log('index6 update is:-',index7value)
 
   const updateCost = (single) => {
     let totalMin = 0, totalMax = 0;
@@ -84,8 +80,6 @@ const calculateTotalCost = () => {
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   costData[6] = index7value; // Store in session storage
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-
-  console.log('Updated costData:', costData);
 
   // **Navigate to next page regardless of selection**
   onButtonClick("pagenine");

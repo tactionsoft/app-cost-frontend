@@ -124,7 +124,6 @@ const calculateTotalCostRange = () => {
 
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-  console.log("Updated costData:", costData);
 
   onButtonClick("pagetwelve");
 };
