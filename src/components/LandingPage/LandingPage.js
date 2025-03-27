@@ -26,7 +26,7 @@ import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jp
 // import axios from axios;
 
 
-const LandingPage = ({setCompletedPages,setPage}) => {
+  const LandingPage = ({setCompletedPages,setPage}) => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("");
   const [openItem, setOpenItem] = useState(null);
@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div className="hero-image-wrap col-lg-6 col-12 col-md-7 mt-3 mt-lg-0">
             <div className='' id='calculator-form'> <img src={online} /> </div>
             <form onSubmit={handleSubmit} className="custom-form ebook-download-form shadow banner-form" action="#" method="post" role="form" >
-              <div className="text-center mb-5">
+              <div className="text-center title-text mb-5">
                 <h3 className="mb-1">Estimate Your App Budget – Just One Step Away!</h3>
               </div>
               <div className="banner-tab-form">

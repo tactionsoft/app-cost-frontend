@@ -225,7 +225,7 @@ const updateCost = (single, multi) => {
           maxWidth:"0px",
           outline: "none",
           textDecoration: "none",
-          backgroundColor: isNextButtonEnabled ? "#08354e" : "#a1a1a1",
+          backgroundColor: isNextButtonEnabled ? "#08354e" : "#ddd",
           cursor: isNextButtonEnabled ? "pointer" : "not-allowed",
         }}
         type="submit"
