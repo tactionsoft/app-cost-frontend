@@ -150,7 +150,7 @@ const calculateTotalCost = () => {
           className="mw5 bg-white-four br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
           style={{
             borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height
-            :"auto"
+            :"350px"
           }}
           onClick={() => {onClickMultiUser(0,0)}}
         >
@@ -204,7 +204,7 @@ const calculateTotalCost = () => {
           minWidth: "150px",
           outline: "none",
           textDecoration: "none",
-          backgroundColor: isNextButtonEnabled ? "#08354e" : "#B0C4DE",
+          backgroundColor: isNextButtonEnabled ? "#08354e" : "#ddd",
           cursor: isNextButtonEnabled ? "pointer" : "not-allowed",
           opacity: isNextButtonEnabled ? 1 : 0.6,
         }}

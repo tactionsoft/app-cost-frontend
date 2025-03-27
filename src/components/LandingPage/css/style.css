@@ -2276,6 +2276,47 @@ button[type="submit"] {
 .contact-section {
   padding-bottom: 0;
 }
+@media(max-width:991px){
+  .form-control-side {
+    display: block;
+    width: 90%;
+    padding: .800rem .150rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: .375rem;
+    transition: border-color .15sease -in-out, box-shadow .15sease -in-out;
+}
+}
+
+/* @media(min-width:991.01px) and (max-width:991.99px){
+  .banner-form {
+    top: 40px;
+    left: 57px;
+    right: 58px;
+    padding: 31px 13px 0 14px;
+}
+
+.custom-form .form-control {
+  border-radius: 100px;
+  border-radius: var(--border-radius-large);
+  box-shadow: none;
+  color: #717275;
+  color: var(--p-color);
+  padding-top: 6px;
+  padding-bottom: 13px;
+  padding-right: 40px;
+  padding-left: 20px;
+  outline: none;
+}
+
+} */
 
 
 

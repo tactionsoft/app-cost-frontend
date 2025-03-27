@@ -23,7 +23,8 @@ import ThankYouPage from "./components/ThankYouPage/ThankYouPage";
 import LandingPage   from "./components/LandingPage/LandingPage";
 import "./App.css";
 import tachyons from "tachyons";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate,useParams } from "react-router-dom";
+
 
 
 function App(){
@@ -55,13 +56,13 @@ function MainApp() {
   };
   return (
       <div className="App">
-     
-       {showProgressBar && <Logo />} 
+
+       {showProgressBar && <Logo/>} 
        
         {showProgressBar && hideProgressBar && <MultiStepProgressBar completedPages={completedPages} page={page} onPageNumberClick={nextPage} />}
         <Routes>
           {/* Multi-step form routes */}
-          <Route path="/consultation-form" element={<ConsultationForm />} />
+          <Route path="/consultation-form" element={<ConsultationForm/>} />
           <Route onButtonClick={nextPage} path="/thank-you" element={<ThankYouPage/>} />
           <Route path="/" element={<LandingPage setCompletedPages={setCompletedPages} setPage={setPage}/>}/>
           {/* Pages 1 to 15 */}
@@ -69,8 +70,8 @@ function MainApp() {
               { 
                 pageone: <PageOne onButtonClick={nextPage} setPage={setPage} setCompletedPages={setCompletedPages}/>,
                 pagetwo: <PageTwo onButtonClick={nextPage} />,
-                pagethree: <PageThree onButtonClick={nextPage}  />,
-                pagefour: <PageFour onButtonClick={nextPage}  />,
+                pagethree: <PageThree onButtonClick={nextPage}/>,
+                pagefour: <PageFour onButtonClick={nextPage} />,
                 pagefive: <PageFive onButtonClick={nextPage} />,
                 pagesix: <PageSix onButtonClick={nextPage} />,
                 pageseven: <PageSeven onButtonClick={nextPage} />,
@@ -82,14 +83,13 @@ function MainApp() {
                 pagethirteen: <PageThirteen onButtonClick={nextPage} />,
                 pagefourteen: <PageFourteen  onButtonClick={nextPage} />,
                 pagefifteen: <PageFifteen onButtonClick={nextPage} />,
-                pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress} />,
+                pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress}/>,
               }[page]
             }
-          />
+          />x``
         </Routes>
       </div>
  
   );
 }
-
 export default App;

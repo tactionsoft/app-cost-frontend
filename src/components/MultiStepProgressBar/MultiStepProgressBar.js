@@ -20,7 +20,6 @@ const MultiStepProgressBar = ({ page, onPageNumberClick, completedPages }) => {
         const isCurrent = index === currentStep;
         const isCompleted = completedPages[stepKey] || stepKey === "pageone"; // Ensure pageone is always accessible
         const canNavigate = isCompleted; // Only completed pages are clickable
-
         return (
           <Step key={stepKey}>
             {({ accomplished }) => (
