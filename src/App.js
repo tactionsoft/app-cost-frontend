@@ -69,7 +69,7 @@ function MainApp() {
           <Route path="/app-cost-calculator" element={
               { 
                 pageone: <PageOne onButtonClick={nextPage} setPage={setPage} setCompletedPages={setCompletedPages}/>,
-                pagetwo: <PageTwo onButtonClick={nextPage} />,
+                pagetwo: <PageTwo onButtonClick={nextPage}/>,
                 pagethree: <PageThree onButtonClick={nextPage}/>,
                 pagefour: <PageFour onButtonClick={nextPage} />,
                 pagefive: <PageFive onButtonClick={nextPage} />,
