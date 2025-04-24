@@ -149,9 +149,7 @@ const calculateTotalCost = () => {
         <div
           className="mw5 bg-white-four br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-one"
           style={{
-            borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height
-            :"350px"
-          }}
+            borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"350px"}}
           onClick={() => {onClickMultiUser(0,0)}}
         >
           <div style={{display:"flex",justifyContent:"center"}}>
