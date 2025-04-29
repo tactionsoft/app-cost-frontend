@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import healthcareUser from "./image/health-care.png";
 import bankingUser from "./image/banking.svg";
 import insuranceUser from "./image/insurance.svg";
@@ -21,9 +21,11 @@ import multiIndustryUser from "./image/multiindustry.png";
 import othersUser from "./image/others.png";
 import "./PageOne.css";
 
+
 const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
   
   const [selectedUser, setSelectedUser] = useState(null);
+  const continueRef=useRef();
   const industryTitles = [
     "Banking",
     "Engineering & Construction",
@@ -57,10 +59,29 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
     "Sports & Recreation",
     "Utilities",
     "Others"
-
   ];
 
- 
+  const handleClick = (userType) => {
+    sessionStorage.setItem("finalCostPrice", JSON.stringify([]));
+    if (selectedUser === userType) {
+      setSelectedUser(null);
+      sessionStorage.removeItem('selectedIndustry');
+    } else {
+      setSelectedUser(userType);
+  
+      const industryTitlesLower = industryTitles.map(title => title.toLowerCase());
+      const matchedTitle = industryTitles.find(title =>
+        userType.toLowerCase().includes(title.toLowerCase())
+      );
+      sessionStorage.setItem("selectedIndustry", matchedTitle || "");
+  
+      // Scroll to the Continue section
+      setTimeout(() => {
+        continueRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100); // short delay ensures DOM updates before scrolling
+    }
+  };
+  
   const handleSubmit = () => {
     if (selectedUser) {
       const selectedIndustryTitle = industryTitles.find((title) =>
@@ -72,16 +93,19 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
       
     }
   };
-  const handleClick = (userType) => {
-    sessionStorage.setItem("selectedIndustry", industryTitles);
-    sessionStorage.setItem("finalCostPrice", JSON.stringify([]));
-    if (selectedUser === userType) {
-      setSelectedUser(null);
-    sessionStorage.removeItem('selectedIndustry')
-    } else {
-      setSelectedUser(userType);
-    }
-  };
+  // const handleClick = (userType) => {
+  //   sessionStorage.setItem("selectedIndustry", industryTitles);
+  //   sessionStorage.setItem("finalCostPrice", JSON.stringify([]));
+  //   if (selectedUser === userType) {
+  //     setSelectedUser(null);
+  //   sessionStorage.removeItem('selectedIndustry')
+  //   } else {
+  //     setSelectedUser(userType);
+  //   }
+  // };
+  
+  
+  
   useEffect(() => {
     // ✅ Reset progress when returning to Landing Page
     setCompletedPages({ pageone: true }); // Only enable pageone
@@ -116,7 +140,7 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
               Entertainment</h1>
           </div>
         <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "healthcareUser" ? "#18d2e8" : "#EAEEF5" }}
-  onClick={() => handleClick("healthcareUser")}
+      onClick={() => handleClick("healthcareUser")}
 >
   <img
     src={healthcareUser}
@@ -165,16 +189,16 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
               Manufacturing</h1>
           </div>
 
-    <div
-   className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3"
-   style={{ borderColor: selectedUser === "Multi-industry" ? "#18d2e8" : "#EAEEF5" }}
-   onClick={() => handleClick("Multi-industry")} // Use the exact industry title
-   >
-  <img src={multiIndustryUser} className="icon-size" title="third user icon" alt="users-icon" />
-  <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "Multi-industry" ? "selected" : ""}`}>
+      <div
+     className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3"
+     style={{ borderColor: selectedUser === "Multi-industry" ? "#18d2e8" : "#EAEEF5" }}
+     onClick={() => handleClick("Multi-industry")} // Use the exact industry title
+      >
+    < img src={multiIndustryUser} className="icon-size" title="third user icon" alt="users-icon" />
+     <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "Multi-industry" ? "selected" : ""}`}>
     Multi-industry
-  </h1>
-</div>
+    </h1>
+     </div>
         </div>
 
 
@@ -255,8 +279,8 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
           </div>
         </div>
       </div>
-
-      <input
+<div ref={continueRef}>
+<input
         className="f6 grow br2 ph3 pv2 mb2 dib white submitButton-pageone"
         style={{
           fontSize: "12px",
@@ -268,14 +292,18 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
           minWidth: "150px",
           outline: "none",
           textDecoration: "none",
+    
           backgroundColor: isContinueButtonEnabled ? "#08354e" : "#ddd",
           cursor: isContinueButtonEnabled ? "pointer" : "not-allowed",
         }}
         type="submit"
+        // continueRef={continueRef}
         value="Continue"
         onClick={handleSubmit}
         disabled={!isContinueButtonEnabled}
       />
+</div>
+  
     </main>
   );
 };
