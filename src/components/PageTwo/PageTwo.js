@@ -153,6 +153,10 @@ const updateCost = (single, multi) => {
 //   })
 // }
 // },[singleUser,multiUser])
+const backButton=()=>{
+  onButtonClick("pageone")
+  sessionStorage.clear();
+}
 
 useEffect(() => {
   const savedSelection = JSON.parse(sessionStorage.getItem("userSelection"));
@@ -287,7 +291,8 @@ useEffect(() => {
         }}
         type="submit"
         value="Back"
-        onClick={() => onButtonClick("pageone")}
+        // onClick={() => onButtonClick("pageone")}
+        onClick={backButton}
       />
       {/* Navigation Buttons */}
       <input
