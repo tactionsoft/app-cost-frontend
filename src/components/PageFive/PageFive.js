@@ -144,16 +144,6 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
   };
 
 
-
-  // const updateCost = (single, multi, third) => {
-  //   let totalMin = 0, totalMax = 0;
-  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  // };
-
-
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   
@@ -225,13 +215,6 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
     if (totalMin === 0 && totalMax === 0) {
       return "$0K";
     }
-
-    // Format the total cost in "K" format with two decimal places
-    // const formattedMin = Math.ceil(totalMin / 1000)
-    // const formattedMax = Math.ceil(totalMax / 1000)
-
-    // const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-    // console.log('final cost is :-',finalCost)
     const roundedMin = (totalMin / 1000) * 1000;
     const roundedMax = (totalMax / 1000) * 1000;
     const finalCost = `$${roundedMin / 1000}K - $${roundedMax / 1000}K`;
@@ -242,85 +225,16 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
     return finalCost;
 };
-// useEffect(()=>{
-// const selection=JSON.parse(sessionStorage.getItem('userSelection_pageFive'));
-// if(!selection) return;
-// const{singleUser:SaveSingle,multiUser:saveMulti,thirdUser:saveThird}=selection
 
-// if(SaveSingle){
-// setSingleUser(true)
-// setMultiUser(false)
-// setThirdUser(false)
-// updateCost(true,false,false)
-// setIndex4value({
-//   value1:singleUserCost.min,
-//   value2:singleUserCost.max,
-//   value3:0,
-//   value4:0,
-//   value5:0,
-//   value6:0,
-//   title1:"ios"
-// })
-// }else if(saveMulti){
-//   setSingleUser(false)
-//   setMultiUser(true)
-//   setThirdUser(false)
-//   updateCost(false,true,false)
-//   setIndex4value({
-//     value1:0,
-//     value2:0,
-//     value3:multiUserCost.min,
-//     value4:multiUserCost.max,
-//     value5:0,
-//     value6:0,
-//     title1:"",
-//     title2:"Android",
-//     title3:""
-//   })
-// }else if (saveThird) {
-//   setSingleUser(false);
-//   setMultiUser(false);
-//   setThirdUser(true);
-//   updateCost(false, false, true);
-//   setIndex4value({
-//     value1: 0,
-//     value2: 0,
-//     value3: 0,
-//     value4: 0,
-//     value5: thirdUserCost.min,
-//     value6: thirdUserCost.max,
-//     title3: "Cross-Platform iOS and Android"
-//   });
-// } else if(SaveSingle && saveMulti){
-//   setSingleUser(true);
-//   setMultiUser(true);
-//   setThirdUser(false);
-//   setIndex4value({
-//     value1: 0,
-//     value2: 0,
-//     value3: 0,
-//     value4: 0,
-//     value5: thirdUserCost.min,
-//     value6: thirdUserCost.max,
-//     title3: "Cross-Platform iOS and Android"
-//   });
-//   updateCost(true, true, false);
-// }
-// },[]);
-  // Enable "Next" button only if at least one option is selected
-  
   useEffect(() => {
     const selection = JSON.parse(sessionStorage.getItem('userSelection_pageFive'));
     if (!selection) return;
-  
     const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
   
     setSingleUser(saveSingle);
     setMultiUser(saveMulti);
     setThirdUser(saveThird);
-  
     updateCost(saveSingle, saveMulti, saveThird);
-  
     setIndex4value({
       value1: saveSingle ? singleUserCost.min : 0,
       value2: saveSingle ? singleUserCost.max : 0,
@@ -500,6 +414,7 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
         
           // Store index4value at index 3 (4th position)
           costData[3] = index4value;
+          console.log('index 4 value is:-',index4value)
         
           // Save the updated data back to session storage
           sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));

@@ -19,7 +19,6 @@
   
 export const calculateOverallTotalCost = () => {
     const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    console.log("costData is:-", costData);
   
     let totalMin = 0;
     let totalMax = 0;

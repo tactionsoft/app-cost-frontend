@@ -64,7 +64,6 @@ function App(){
 function MainApp() {
   const [page, setPage] = useState("pageone");
   const [totalCost,setTotalCost]=useState("$0K");
-  console.log('total cost is:------------',totalCost)
   const [completedPages, setCompletedPages] = useState({ pageone: true });
   const location=useLocation();
   const showProgressBar = location.pathname !== "/";

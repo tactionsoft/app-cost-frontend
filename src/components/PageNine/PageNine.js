@@ -5,7 +5,7 @@ import usersthree from "./facebook.png";
 import "./PageNine.css";
 
 const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
-  console.log('total cost of pagenine is:-',totalCost)
+
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
@@ -36,7 +36,6 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
         index: newValue?pageIndex:0,
         title1: newValue?"Email/Password":""
       }));
-  
       return newValue;
     });
   };
@@ -124,7 +123,6 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
     let totalMin = 0;
     let totalMax = 0;
     for (let item of costData) {
-      console.log('item is:-',item)
       if (item) {
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
@@ -167,11 +165,9 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
      const formattedMax = (totalMax / 1000);
 
      const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-     console.log('final cost is :-',finalCost)
      setTotalCost(finalCost);
      // Store final cost in session storage under a unique index
      let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-     console.log(costData)
      costData[7] = index8value; // Store at index 3 (4th position)
      sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      onButtonClick("pageten");

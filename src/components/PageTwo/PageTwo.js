@@ -4,7 +4,6 @@ import users from "./rocket.png";
 import "./PageTwo.css";
 
 const PageTwo = ({ onButtonClick,totalCost,setTotalCost}) => {
-console.log('total cost is :-',totalCost)
   // const [selectedUserType, setSelectedUserType] = useState(null);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
@@ -114,7 +113,6 @@ const updateCost = (single, multi) => {
     const formattedMax = (totalMax / 1000);
 
     const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-    console.log('final cost is :-',finalCost)
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
@@ -124,35 +122,6 @@ const updateCost = (single, multi) => {
     return finalCost;
 };
 
-
-// useEffect(()=>{
-// const selectedoption=JSON.parse(sessionStorage.getItem('userSelection'))
-// if(selectedoption.singleUser){
-//   setMultiUser(false)
-//   setSingleUser(true)
-//   updateCost(true,false)
-//   setIndex1value({
-//     value1:singleUserCost.min,
-//     value2:singleUserCost.max,
-//     value3:0,
-//     value4:0,
-//     title1:"MVP",
-//     title2:""
-//   })
-// }else if(selectedoption.multiUser){
-//   setMultiUser(true)
-//   setSingleUser(false)
-//   updateCost(false,true)
-//   setIndex1value({
-// value1:0,
-// value2:0,
-// value3:multiUserCost.min,
-// value4:multiUserCost.max,
-// title1:"",
-// title2:"Feature Rich"
-//   })
-// }
-// },[singleUser,multiUser])
 const backButton=()=>{
   onButtonClick("pageone")
   sessionStorage.clear();

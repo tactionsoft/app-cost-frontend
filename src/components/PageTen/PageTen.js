@@ -5,7 +5,6 @@ import usersthree from "./minus-sign.png";
 import "./PageTen.css";
 
 const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
-  console.log('total cost of pageten is :-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);

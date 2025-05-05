@@ -145,9 +145,9 @@ const storeDataAndContinue = () => {
 
 useEffect(() => {
   const savedSelection = JSON.parse(sessionStorage.getItem("userSelection_PageSeven"));
+  if(!savedSelection) return;
+  const { singleUser: savedSingle, thirdUser: savedThird } = savedSelection;
   if (savedSelection) {
-    const { singleUser: savedSingle, thirdUser: savedThird } = savedSelection;
-
     if (savedSingle) {
       setSingleUser(true);
       setThirdUser(false);
