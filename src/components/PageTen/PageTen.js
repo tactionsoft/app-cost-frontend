@@ -4,11 +4,12 @@ import users from "./rocket.png";
 import usersthree from "./minus-sign.png";
 import "./PageTen.css";
 
-const PageTen = ({ onButtonClick }) => {
+const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
+  console.log('total cost of pageten is :-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
 
   const singleUserCost = { min: 5500, max: 8250 };
   const multiUserCost = { min: 16500, max: 27500 };
@@ -24,6 +25,12 @@ const PageTen = ({ onButtonClick }) => {
         setMultiUser(false);
         setThirdUser(false);
       }; // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser:newValue,
+        multiUser:false,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageTen', JSON.stringify(updatedState));
       updateCost(newValue);
       const pageIndex=10;
       setIndex9value({
@@ -45,6 +52,12 @@ const PageTen = ({ onButtonClick }) => {
         setThirdUser(false);
         setSingleUser(false);
       } // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser:false,
+        multiUser:newValue,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageTen', JSON.stringify(updatedState));
       const pageIndex=10;
       updateCost( false, newValue, false);
       setIndex9value( {
@@ -66,7 +79,12 @@ const PageTen = ({ onButtonClick }) => {
         setSingleUser(false);
         setMultiUser(false);
       }
-  
+      const updatedState = {
+        singleUser:false,
+        multiUser:false,
+        thirdUser:newValue
+      };
+      sessionStorage.setItem('userSelection_pageTen', JSON.stringify(updatedState));
       updateCost(false, false, newValue);
       const pageIndex=10;
       setIndex9value({
@@ -84,12 +102,49 @@ const PageTen = ({ onButtonClick }) => {
       return newValue;
     });
   };
+  // const updateCost = (single, multi, third) => {
+  //   let totalMin = 0, totalMax = 0;
+  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
+  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
+  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
+  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // };
+
   const updateCost = (single, multi, third) => {
-    let totalMin = 0, totalMax = 0;
-    if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-    if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-    if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-    setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+    const value = {
+      value1: single ? singleUserCost.min : 0,
+      value2: single ? singleUserCost.max : 0,
+      value3: multi ? multiUserCost.min : 0,
+      value4: multi ? multiUserCost.max : 0,
+      value5: third ? thirdUserCost.min : 0,
+      value6: third ? thirdUserCost.max : 0,
+      index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
+      title1: single ? "Yes, to some extent" : "",
+      title2: multi ? "Yes to quite an extent" : "",
+      title3: third ? "Artificial Intelligence-Roadmap" : "",
+      answer:third?"No":""
+    };
+  
+    costData[8] = value; // ✅ store at index 8 (PageNine)
+    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+    // Recalculate total cost
+    let totalMin = 0;
+    let totalMax = 0;
+    for (let item of costData) {
+      if (item) {
+        totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+        totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+      }
+    }
+  
+    setTotalCost(
+      totalMin === 0 && totalMax === 0
+        ? "$0K"
+        : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
+    );
   };
 
 
@@ -106,8 +161,8 @@ const calculateTotalCost = () => {
     totalMax += thirdUserCost.max;
   }
 
-  const formattedMin = (totalMin / 1000).toFixed(2);
-  const formattedMax = (totalMax / 1000).toFixed(2);
+  const formattedMin = (totalMin / 1000);
+  const formattedMax = (totalMax / 1000);
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `$${formattedMin}K - $${formattedMax}K`;
 
   setTotalCost(finalCost);
@@ -130,7 +185,31 @@ const calculateTotalCost = () => {
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   onButtonClick("pageeleven");
 };
+useEffect(() => {
+  const selection = JSON.parse(sessionStorage.getItem('userSelection_pageTen'));
+  if (!selection) return;
 
+  const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+
+  setSingleUser(saveSingle);
+  setMultiUser(saveMulti);
+  setThirdUser(saveThird);
+
+  updateCost(saveSingle, saveMulti, saveThird);
+
+  setIndex9value({
+    value1: saveSingle ? singleUserCost.min : 0,
+    value2: saveSingle ? singleUserCost.max : 0,
+    value3: saveMulti ? multiUserCost.min : 0,
+    value4: saveMulti ? multiUserCost.max : 0,
+    value5: saveThird ? thirdUserCost.min : 0,
+    value6: saveThird ? thirdUserCost.max : 0,
+    title1: saveSingle ? "Yes, to some extent" : "",
+    title2: saveMulti ? "Yes to quite an extent" : "",
+    title3: saveThird ? "Artificial Intelligence-Roadmap" : "",
+    answer:saveThird?"No":"",
+  });
+}, []);
 const isNextButtonEnabled = singleUser || multiUser || thirdUser;
 
   return (

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import user from "./heart-rate.png";
+import React, { useEffect, useState } from "react";
+import user from "./heart-rate.png";4
 import users from "./minus-sign.png";
 import "./PageFourteen.css";
 
-const PageFourteen = ({ onButtonClick }) => {
+const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
   // const [selectedUser, setSelectedUser] = useState(null);
   const [singleUser, setSingleUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
@@ -11,12 +11,17 @@ const PageFourteen = ({ onButtonClick }) => {
   const singleUserCost = { min: 11000, max:22000 };
   const thirdUserCost = { min: 0, max: 0 };
   const [index13value, setIndex13value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",answer:"" });
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
 
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser:newValue,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageFourteen', JSON.stringify(updatedState));
       updateCost(newValue);
       const pageIndex=14;
       setIndex13value((prevState) => ({
@@ -39,6 +44,11 @@ const PageFourteen = ({ onButtonClick }) => {
             setSingleUser(false);
         }
         updateCost(false, newValue); // Fix the function call
+        const updatedState = {
+          singleUser:false,
+          thirdUser:newValue
+        };
+        sessionStorage.setItem('userSelection_pageFourteen', JSON.stringify(updatedState));
         const pageIndex=14;
         setIndex13value({
             value1: newValue ? thirdUserCost.min : 0,
@@ -53,14 +63,48 @@ const PageFourteen = ({ onButtonClick }) => {
     });
 };
 
-  const updateCost = (single,third) => {
-    let totalMin = 0, totalMax = 0;
-    if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-    if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-    setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // const updateCost = (single,third) => {
+  //   let totalMin = 0, totalMax = 0;
+  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
+  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
+  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // };
+
+  const updateCost = (single, multi) => {
+    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+    const value = {
+      value1: single ? singleUserCost.min : 0,
+      value2: single ? singleUserCost.max : 0,
+      value3: multi ? thirdUserCost.min : 0,
+      value4: multi ? thirdUserCost.max : 0,
+      index: single || multi ? 14 : 0,
+      title1: single ? "EHR Integration" : "",
+      title2: multi ? "EHR Integration" : "",
+      answer: single ? "Yes" : multi ? "No" : "",
+    };
+  
+    // Always update index 3 for Page Four
+    costData[12] = value;
+    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+    // Recalculate total from all pages
+    let totalMin = 0;
+    let totalMax = 0;
+    for (let item of costData) {
+      if (item) {
+        totalMin += (item.value1 || 0) + (item.value3 || 0);
+        totalMax += (item.value2 || 0) + (item.value4 || 0);
+      }
+    }
+  
+    setTotalCost(
+      totalMin === 0 && totalMax === 0
+        ? "$0K"
+        : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
+    );
   };
-
-
+  
 
 const calculateTotalCost = () => {
   let totalMin = 0;
@@ -75,8 +119,8 @@ const calculateTotalCost = () => {
       totalMax += thirdUserCost.max;
   }
 
-  const formattedMin = (totalMin / 1000).toFixed(2);
-  const formattedMax = (totalMax / 1000).toFixed(2);
+  const formattedMin = (totalMin / 1000);
+  const formattedMax = (totalMax / 1000);
 
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `${formattedMin}K - ${formattedMax}K`;
 
@@ -91,7 +135,27 @@ const calculateTotalCost = () => {
 
   return finalCost;
 };
+useEffect(() => {
+  const selection = JSON.parse(sessionStorage.getItem('userSelection_pageFourteen'));
+  if (!selection) return;
 
+  const { singleUser: saveSingle, thirdUser: saveThird } = selection;
+
+  setSingleUser(saveSingle);
+  setThirdUser(saveThird);
+
+  updateCost(saveSingle, saveThird);
+
+  setIndex13value({
+    value1: saveSingle ? singleUserCost.min : 0,
+    value2: saveSingle ? singleUserCost.max : 0,
+    value3: saveThird ? thirdUserCost.min : 0,
+    value4: saveThird ? thirdUserCost.max : 0,
+    title1: saveSingle ? "EHR Integration" : "",
+    title2: saveThird ? "EHR Integration" : "",
+    answer:saveThird?"No":saveSingle?"Yes":"",
+  });
+}, []);
 const isContinueButtonEnabled = singleUser || thirdUser;
 
   return (

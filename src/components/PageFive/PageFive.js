@@ -4,11 +4,11 @@ import users from "./android-icon.png";
 import usersthree from "./react-icon.png";
 import "./PageFive.css";
 
-const PageFive = ({ onButtonClick }) => {
+const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
 
   // Define the cost ranges
   const singleUserCost = { min: 8250, max: 13750 };
@@ -18,44 +18,106 @@ const PageFive = ({ onButtonClick }) => {
   const [index4value, setIndex4value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"" });
 
 
+  //   const onClickSingleUser = () => {
+  //   setSingleUser((prev) => {
+  //     const newValue = !prev;
+  //     if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+  //     sessionStorage.setItem('userSelection_pageFive',JSON.stringify({
+  //       singleUser:newValue,
+  //       multiUser:false,
+  //       thirdUser:false
+  //     }))
+
+  //     updateCost(newValue, multiUser);
+  //     const pageIndex=5;
+  //     setIndex4value((prevState) => ({
+  //       ...prevState,
+  //       value1: newValue ? singleUserCost.min : 0,
+  //       value2: newValue ? singleUserCost.max : 0,
+  //       index:newValue?pageIndex:0,
+  //       title1:newValue?"ios":""
+  //     }));
+  
+  //     return newValue;
+  //   });
+  // };
+
+
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
       const newValue = !prev;
-      if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
-      updateCost(newValue, multiUser);
-      const pageIndex=5;
+      if (thirdUser) setThirdUser(false); // Deselect thirdUser if active
+  
+      const updatedState = {
+        singleUser: newValue,
+        multiUser,
+        thirdUser: false
+      };
+      sessionStorage.setItem('userSelection_pageFive', JSON.stringify(updatedState));
+      updateCost(newValue, multiUser, false);
+  
       setIndex4value((prevState) => ({
         ...prevState,
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
-        index:newValue?pageIndex:0,
-        title1:newValue?"ios":""
+        title1: newValue ? "ios" : "",
       }));
   
       return newValue;
     });
   };
+  
 
 
-
-
+  // const onClickMultiUser = () => {
+  //   setMultiUser((prev) => {
+  //     const newValue = !prev;
+  //     if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+  //     sessionStorage.setItem('userSelection_pageFive',JSON.stringify({
+  //       singleUser:false,
+  //       multiUser:newValue,
+  //       thirdUser:false
+  //     }))
+  //     updateCost(singleUser, newValue, false);
+  //     const pageIndex=5
+  //     setIndex4value((prevState) => ({
+  //       ...prevState,
+  //       value3: newValue ? multiUserCost.min : 0,
+  //       value4: newValue ? multiUserCost.max : 0,
+  //       index:newValue?pageIndex:0,
+  //       title2:newValue?"Android":"",
+  //     }));
+  //     return newValue;
+  //   });
+  // };
+  
+  
   const onClickMultiUser = () => {
     setMultiUser((prev) => {
       const newValue = !prev;
-      if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+      if (thirdUser) setThirdUser(false); // Deselect thirdUser if active
+  
+      const updatedState = {
+        singleUser,
+        multiUser: newValue,
+        thirdUser: false
+      };
+      sessionStorage.setItem('userSelection_pageFive', JSON.stringify(updatedState));
       updateCost(singleUser, newValue, false);
-      const pageIndex=5
+  
       setIndex4value((prevState) => ({
         ...prevState,
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
-        index:newValue?pageIndex:0,
-        title2:newValue?"Android":"",
+        title2: newValue ? "Android" : "",
       }));
   
       return newValue;
     });
   };
+  
+
+
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
       const newValue = !prev;
@@ -63,6 +125,11 @@ const PageFive = ({ onButtonClick }) => {
         setSingleUser(false);
         setMultiUser(false);
       }
+      sessionStorage.setItem("userSelection_pageFive",JSON.stringify({
+        singleUser:false,
+        multiUser:false,
+        thirdUser:true
+      }))
       const pageIndex=5
       updateCost(false, false, newValue);
       setIndex4value({
@@ -78,13 +145,62 @@ const PageFive = ({ onButtonClick }) => {
 
 
 
+  // const updateCost = (single, multi, third) => {
+  //   let totalMin = 0, totalMax = 0;
+  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
+  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
+  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
+  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // };
+
+
   const updateCost = (single, multi, third) => {
-    let totalMin = 0, totalMax = 0;
-    if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-    if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-    if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-    setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+    const value = {
+      value1: single ? singleUserCost.min : 0,
+      value2: single ? singleUserCost.max : 0,
+      value3: multi ? multiUserCost.min : 0,
+      value4: multi ? multiUserCost.max : 0,
+      value5: third ? thirdUserCost.min : 0,
+      value6: third ? thirdUserCost.max : 0,
+      index: single || multi || third ? 5 : 0,
+      title1: single ? "iOS" : "",
+      title2: multi ? "Android" : "",
+      title3: third ? "Cross-Platform iOS and Android" : ""
+    };
+  
+    // Update PageFive index (index 4)
+    costData[3] = value;
+    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+    // Recalculate total from all stored values
+    let totalMin = 0;
+    let totalMax = 0;
+    for (let item of costData) {
+      if (item) {
+        totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+        totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+      }
+    }
+    
+    const roundedMin = (totalMin / 1000) * 1000;
+    const roundedMax = (totalMax / 1000) * 1000;
+    setTotalCost(
+      totalMin === 0 && totalMax === 0
+        ? "$0K"
+        : `$${roundedMin / 1000}K - $${roundedMax / 1000}K`
+    );
+    
+
+      // setTotalCost(
+      //   totalMin === 0 && totalMax === 0
+      //     ? "$0K"
+      //     : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`
+      // );
   };
+  
+
 
   const calculateTotalCost = () => {
     
@@ -111,21 +227,115 @@ const PageFive = ({ onButtonClick }) => {
     }
 
     // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000).toFixed(2);
-    const formattedMax = (totalMax / 1000).toFixed(2);
+    // const formattedMin = Math.ceil(totalMin / 1000)
+    // const formattedMax = Math.ceil(totalMax / 1000)
 
-    const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-
+    // const finalCost = `$${formattedMin}K - $${formattedMax}K`;
+    // console.log('final cost is :-',finalCost)
+    const roundedMin = (totalMin / 1000) * 1000;
+    const roundedMax = (totalMax / 1000) * 1000;
+    const finalCost = `$${roundedMin / 1000}K - $${roundedMax / 1000}K`;
+  setTotalCost(finalCost)
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[3] = index4value; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
     return finalCost;
 };
+// useEffect(()=>{
+// const selection=JSON.parse(sessionStorage.getItem('userSelection_pageFive'));
+// if(!selection) return;
+// const{singleUser:SaveSingle,multiUser:saveMulti,thirdUser:saveThird}=selection
 
+// if(SaveSingle){
+// setSingleUser(true)
+// setMultiUser(false)
+// setThirdUser(false)
+// updateCost(true,false,false)
+// setIndex4value({
+//   value1:singleUserCost.min,
+//   value2:singleUserCost.max,
+//   value3:0,
+//   value4:0,
+//   value5:0,
+//   value6:0,
+//   title1:"ios"
+// })
+// }else if(saveMulti){
+//   setSingleUser(false)
+//   setMultiUser(true)
+//   setThirdUser(false)
+//   updateCost(false,true,false)
+//   setIndex4value({
+//     value1:0,
+//     value2:0,
+//     value3:multiUserCost.min,
+//     value4:multiUserCost.max,
+//     value5:0,
+//     value6:0,
+//     title1:"",
+//     title2:"Android",
+//     title3:""
+//   })
+// }else if (saveThird) {
+//   setSingleUser(false);
+//   setMultiUser(false);
+//   setThirdUser(true);
+//   updateCost(false, false, true);
+//   setIndex4value({
+//     value1: 0,
+//     value2: 0,
+//     value3: 0,
+//     value4: 0,
+//     value5: thirdUserCost.min,
+//     value6: thirdUserCost.max,
+//     title3: "Cross-Platform iOS and Android"
+//   });
+// } else if(SaveSingle && saveMulti){
+//   setSingleUser(true);
+//   setMultiUser(true);
+//   setThirdUser(false);
+//   setIndex4value({
+//     value1: 0,
+//     value2: 0,
+//     value3: 0,
+//     value4: 0,
+//     value5: thirdUserCost.min,
+//     value6: thirdUserCost.max,
+//     title3: "Cross-Platform iOS and Android"
+//   });
+//   updateCost(true, true, false);
+// }
+// },[]);
   // Enable "Next" button only if at least one option is selected
+  
+  useEffect(() => {
+    const selection = JSON.parse(sessionStorage.getItem('userSelection_pageFive'));
+    if (!selection) return;
+  
+    const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+  
+    setSingleUser(saveSingle);
+    setMultiUser(saveMulti);
+    setThirdUser(saveThird);
+  
+    updateCost(saveSingle, saveMulti, saveThird);
+  
+    setIndex4value({
+      value1: saveSingle ? singleUserCost.min : 0,
+      value2: saveSingle ? singleUserCost.max : 0,
+      value3: saveMulti ? multiUserCost.min : 0,
+      value4: saveMulti ? multiUserCost.max : 0,
+      value5: saveThird ? thirdUserCost.min : 0,
+      value6: saveThird ? thirdUserCost.max : 0,
+      title1: saveSingle ? "ios" : "",
+      title2: saveMulti ? "Android" : "",
+      title3: saveThird ? "Cross-Platform iOS and Android" : ""
+    });
+  }, []);
+  
+  
   const isNextButtonEnabled = singleUser || multiUser || thirdUser;
-
   return (
     <>
         <main

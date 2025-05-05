@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import user from "./heart-rate.png";
 import users from "./minus-sign.png";
 import "./PageFour.css";
 
-const PageFour = ({ onButtonClick }) => {
+const PageFour = ({ onButtonClick,totalCost,setTotalCost }) => {
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
   const singleUserCost = { min: 5500, max: 6875 };
   const multiUserCost = { min: 0, max: 0 };
   const [index3value, setIndex3value] = useState({
@@ -19,6 +19,10 @@ const PageFour = ({ onButtonClick }) => {
       if (newValue) {
         setMultiUser(false);
       }
+      sessionStorage.setItem('userSelection_pageFour',JSON.stringify({
+        singleUser:newValue,
+        multiUser:false
+      }))
       updateCost(newValue, false); // Ensure multiUser is false if selecting single
   const pageIndex=4;
       setIndex3value(() => ({
@@ -41,6 +45,10 @@ const onClickMultiUser = () => {
     if (newValue) {
       setSingleUser(false);
     }
+    sessionStorage.setItem('userSelection_pageFour',JSON.stringify({
+      singleUser:false,
+      multiUser:newValue
+    }))
     updateCost(false, newValue); // Ensure singleUser is false if selecting multi
    const pagIndex=4;
     setIndex3value(() => ({
@@ -57,21 +65,63 @@ const onClickMultiUser = () => {
   });
 };
 
-const updateCost = (single, multi) => {
-  let totalMin = 0, totalMax = 0;
-  if (single) {
-    totalMin += singleUserCost.min;
-    totalMax += singleUserCost.max;
-  }
-  if (multi) {
-    totalMin += multiUserCost.min;
-    totalMax += multiUserCost.max;
-  }
+// const updateCost = (single, multi) => {
+//   let totalMin = 0, totalMax = 0;
+//   if (single) {
+//     totalMin += singleUserCost.min;
+//     totalMax += singleUserCost.max;
+//   }
+//   if (multi) {
+//     totalMin += multiUserCost.min;
+//     totalMax += multiUserCost.max;
+//   }
   
+//   setTotalCost(
+//     totalMin === 0 && totalMax === 0
+//       ? "$0K"
+//       : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`
+//   );
+// };
+
+const updateCost = (single, multi) => {
+  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  const value = {
+    value1: single ? singleUserCost.min : 0,
+    value2: single ? singleUserCost.max : 0,
+    value3: multi ? multiUserCost.min : 0,
+    value4: multi ? multiUserCost.max : 0,
+    index: single || multi ? 4 : 0,
+    title1: single ? "HIPAA/Bank-level Encryption" : "",
+    title2: multi ? "HIPAA/Bank-level Encryption" : "",
+    answer: single ? "Yes" : multi ? "No" : "",
+  };
+
+  // Always update index 3 for Page Four
+  costData[2] = value;
+  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+
+  // Recalculate total from all pages
+  let totalMin = 0;
+  let totalMax = 0;
+  for (let item of costData) {
+    if (item) {
+      totalMin += (item.value1 || 0) + (item.value3 || 0);
+      totalMax += (item.value2 || 0) + (item.value4 || 0);
+    }
+  }
+
+  // const roundedMin = Math.ceil(totalMin / 1000) * 1000;
+  // const roundedMax = Math.ceil(totalMax / 1000) * 1000;
+  // setTotalCost(
+  //   totalMin === 0 && totalMax === 0
+  //     ? "$0K"
+  //     : `$${roundedMin / 1000}K - $${roundedMax / 1000}K`
+  // );
+
   setTotalCost(
     totalMin === 0 && totalMax === 0
       ? "$0K"
-      : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`
+      : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
   );
 };
 
@@ -88,7 +138,10 @@ const calculateTotalCost = () => {
     totalMin += multiUserCost.min;
     totalMax += multiUserCost.max;
   }
-
+  const roundedMin = (totalMin / 1000) * 1000;
+  const roundedMax = (totalMax / 1000) * 1000;
+  const finalCost = `$${roundedMin / 1000}K - $${roundedMax / 1000}K`;
+   setTotalCost(finalCost)
   // Store final cost in session storage under a unique index
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   costData[2] = index3value; // Store at index 3 (4th position)
@@ -96,12 +149,45 @@ const calculateTotalCost = () => {
 
   // Always navigate to page five, even if cost is $0K
   onButtonClick("pagefive");
-
   return totalMin === 0 && totalMax === 0 ? "$0K" : `$${(totalMin / 1000).toFixed(2)}K - $${(totalMax / 1000).toFixed(2)}K`;
 };
 
-
-
+useEffect(()=>{
+const selection=JSON.parse(sessionStorage.getItem("userSelection_pageFour"));
+if(!selection) return;
+const{singleUser:savedSingle,multiUser:savedMulti}=selection;
+if(savedSingle){
+  setSingleUser(true)
+  setMultiUser(false)
+  updateCost(true,false)
+  setIndex3value({
+    value1:singleUserCost.min,
+    value2:singleUserCost.max,
+    value3:0,
+    value4:0,
+    value5:0,
+    value6:0,
+    title1:"HIPAA/Bank-level Encryption",
+    title2:"",
+    answer:"Yes"
+  })
+}else if(savedMulti){
+  setMultiUser(true)
+  setSingleUser(false)
+  updateCost(false,true)
+  setIndex3value({
+    value1:0,
+    value2:0,
+    value3:multiUserCost.min,
+    value4:multiUserCost.max,
+    value5:0,
+    value6:0,
+    title1:"",
+    title2:"HIPAA/Bank-level Encryption",
+    answer:"No"
+  })
+}
+},[])
 
 
   return (

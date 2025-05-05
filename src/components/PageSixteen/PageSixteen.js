@@ -50,6 +50,7 @@ const PageSixteen = ({onButtonClick,resetProgress}) => {
         type="button"
         value="Get Free Consultation"
         onClick={() => {
+          sessionStorage.clear();
           onButtonClick("pageone");
           resetProgress();
         }}

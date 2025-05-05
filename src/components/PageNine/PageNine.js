@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import user from "./Email-pass.png";
 import users from "./google.png";
 import usersthree from "./facebook.png";
 import "./PageNine.css";
 
-const PageNine = ({ onButtonClick }) => {
+const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
+  console.log('total cost of pagenine is:-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
   const [index8value, setIndex8value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"" });
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
 
   // Define the cost range for each user type (min and max)
   const singleUserCostRange = { min: 550, max: 1375 };
@@ -20,6 +21,12 @@ const PageNine = ({ onButtonClick }) => {
     setSingleUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser:newValue,
+        multiUser,
+        thirdUser
+      };
+      sessionStorage.setItem('userSelection_pageNine', JSON.stringify(updatedState));
       updateCost(newValue, multiUser, thirdUser);
        const pageIndex=9;
       setIndex8value((prevState) => ({
@@ -39,6 +46,12 @@ const PageNine = ({ onButtonClick }) => {
     setMultiUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser,
+        multiUser: newValue,
+        thirdUser
+      };
+      sessionStorage.setItem('userSelection_pageNine', JSON.stringify(updatedState));
       updateCost(singleUser, newValue, thirdUser);
       const pageIndex=9;
       setIndex8value((prevState) => ({
@@ -59,6 +72,12 @@ const PageNine = ({ onButtonClick }) => {
       const newValue = !prev;
       const pageIndex=9;
       updateCost(singleUser, multiUser, newValue);
+      const updatedState = {
+        singleUser,
+        multiUser,
+        thirdUser:newValue
+      };
+      sessionStorage.setItem('userSelection_pageNine', JSON.stringify(updatedState));
       setIndex8value((prevState)=>({
         ...prevState,
         value5: newValue ? thirdUserCostRange.min : 0,
@@ -72,14 +91,52 @@ const PageNine = ({ onButtonClick }) => {
   };
 
 
-  const updateCost = (single, multi, third) => {
-    let totalMin = 0, totalMax = 0;
-    if (single) { totalMin += singleUserCostRange.min; totalMax += singleUserCostRange.max; }
-    if (multi) { totalMin += multiUserCostRange.min; totalMax += multiUserCostRange.max; }
-    if (third) { totalMin += thirdUserCostRange.min; totalMax += thirdUserCostRange.max; }
-    setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  };
+  // const updateCost = (single, multi, third) => {
+  //   let totalMin = 0, totalMax = 0;
+  //   if (single) { totalMin += singleUserCostRange.min; totalMax += singleUserCostRange.max; }
+  //   if (multi) { totalMin += multiUserCostRange.min; totalMax += multiUserCostRange.max; }
+  //   if (third) { totalMin += thirdUserCostRange.min; totalMax += thirdUserCostRange.max; }
+  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // };
 
+
+
+  const updateCost = (single, multi, third) => {
+    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+    const value = {
+      value1: single ? singleUserCostRange.min : 0,
+      value2: single ? singleUserCostRange.max : 0,
+      value3: multi ? multiUserCostRange.min : 0,
+      value4: multi ? multiUserCostRange.max : 0,
+      value5: third ? thirdUserCostRange.min : 0,
+      value6: third ? thirdUserCostRange.max : 0,
+      index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
+      title1: single ? "Email/Password" : "",
+      title2: multi ? "Google Auth" : "",
+      title3: third ? "Facebook" : ""
+    };
+  
+    costData[7] = value; // ✅ store at index 8 (PageNine)
+    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+    // Recalculate total cost
+    let totalMin = 0;
+    let totalMax = 0;
+    for (let item of costData) {
+      console.log('item is:-',item)
+      if (item) {
+        totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+        totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+      }
+    }
+  
+    setTotalCost(
+      totalMin === 0 && totalMax === 0
+        ? "$0K"
+        : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
+    );
+  };
 
   const calculateTotalCostRange = () => {
     
@@ -106,18 +163,45 @@ const PageNine = ({ onButtonClick }) => {
     }
 
     // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000).toFixed(2);
-    const formattedMax = (totalMax / 1000).toFixed(2);
+     const formattedMin = (totalMin / 1000);
+     const formattedMax = (totalMax / 1000);
 
-    const finalCost = `$${formattedMin}K - $${formattedMax}K`;
-
-    // Store final cost in session storage under a unique index
-    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[7] = index8value; // Store at index 3 (4th position)
-    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     onButtonClick("pageten")
-    return finalCost;
+     const finalCost = `$${formattedMin}K - $${formattedMax}K`;
+     console.log('final cost is :-',finalCost)
+     setTotalCost(finalCost);
+     // Store final cost in session storage under a unique index
+     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+     console.log(costData)
+     costData[7] = index8value; // Store at index 3 (4th position)
+     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+     onButtonClick("pageten");
+     return finalCost;
 };
+
+useEffect(() => {
+  const selection = JSON.parse(sessionStorage.getItem('userSelection_pageNine'));
+  if (!selection) return;
+
+  const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+
+  setSingleUser(saveSingle);
+  setMultiUser(saveMulti);
+  setThirdUser(saveThird);
+
+  updateCost(saveSingle, saveMulti, saveThird);
+
+  setIndex8value({
+    value1: saveSingle ? singleUserCostRange.min : 0,
+    value2: saveSingle ? singleUserCostRange.max : 0,
+    value3: saveMulti ? multiUserCostRange.min : 0,
+    value4: saveMulti ? multiUserCostRange.max : 0,
+    value5: saveThird ? thirdUserCostRange.min : 0,
+    value6: saveThird ? thirdUserCostRange.max : 0,
+    title1: saveSingle ? "Web App" : "",
+    title2: saveMulti ? "Google Auth" : "",
+    title3: saveThird ? "Facebook" : ""
+  });
+}, []);
 
   // Determine if the "Next" button should be enabled
   const isNextButtonEnabled = singleUser || multiUser || thirdUser;
