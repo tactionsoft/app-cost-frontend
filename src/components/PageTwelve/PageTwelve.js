@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import user from "./api-icon.png";
 import users from "./booking.png";
 import usersthree from "./connection.png";
 import "./PageTwelve.css";
 
-const PageTwelve = ({ onButtonClick }) => {
+const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
 
   const singleUserCost = { min: 1100, max: 1650 };
   const multiUserCost = { min: 2200, max: 3300 };
@@ -22,6 +22,12 @@ const PageTwelve = ({ onButtonClick }) => {
         setMultiUser(false);
         setThirdUser(false);
       }
+      const updatedState = {
+        singleUser:newValue,
+        multiUser:false,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageTwelve', JSON.stringify(updatedState));
       updateCost(newValue);
   const  pageIndex=12;
       setIndex11value((prevState) => ({
@@ -29,7 +35,7 @@ const PageTwelve = ({ onButtonClick }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue ? pageIndex : prevState.index,
-        title1: newValue ? "Twillio SMS " : prevState.title
+        title1: newValue ? "Twillio SMS " : prevState.title1
       }));
   
       return newValue;
@@ -43,6 +49,12 @@ const PageTwelve = ({ onButtonClick }) => {
         setSingleUser(false);
         setThirdUser(false);
       }
+      const updatedState = {
+        singleUser:false,
+        multiUser:newValue,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageTwelve', JSON.stringify(updatedState));
       updateCost(false, newValue, false);
   const pageIndex=12;
       setIndex11value((prevState) => ({
@@ -63,6 +75,12 @@ const PageTwelve = ({ onButtonClick }) => {
         setSingleUser(false);
         setMultiUser(false);
       }
+      const updatedState = {
+        singleUser:false,
+        multiUser:false,
+        thirdUser:newValue
+      };
+      sessionStorage.setItem('userSelection_pageTwelve', JSON.stringify(updatedState));
       updateCost(false, false, newValue);
     const pageIndex=12;
       setIndex11value((prevState) => ({
@@ -77,12 +95,49 @@ const PageTwelve = ({ onButtonClick }) => {
     });
   };
 
+  // const updateCost = (single, multi, third) => {
+  //   let totalMin = 0, totalMax = 0;
+  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
+  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
+  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
+  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // };
+
+
   const updateCost = (single, multi, third) => {
-    let totalMin = 0, totalMax = 0;
-    if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-    if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-    if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-    setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+    const value = {
+      value1: single ? singleUserCost.min : 0,
+      value2: single ? singleUserCost.max : 0,
+      value3: multi ? multiUserCost.min : 0,
+      value4: multi ? multiUserCost.max : 0,
+      value5: third ? thirdUserCost.min : 0,
+      value6: third ? thirdUserCost.max : 0,
+      index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
+      title1: single ? "Twillio SMS" : "",
+      title2: multi ? "Twillio SMS - Calendly" : "",
+      title3: third ? "Twillio SMS - Calendly - Google Map" : "",
+    };
+  
+    costData[10] = value; // ✅ store at index 8 (PageNine)
+    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+    // Recalculate total cost
+    let totalMin = 0;
+    let totalMax = 0;
+    for (let item of costData) {
+      if (item) {
+        totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+        totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+      }
+    }
+  
+    setTotalCost(
+      totalMin === 0 && totalMax === 0
+        ? "$0K"
+        : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
+    );
   };
 
   const calculateTotalCost = () => {
@@ -110,8 +165,8 @@ const PageTwelve = ({ onButtonClick }) => {
     }
 
     // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000).toFixed(2);
-    const formattedMax = (totalMax / 1000).toFixed(2);
+    const formattedMin = (totalMin / 1000);
+    const formattedMax = (totalMax / 1000);
 
     const finalCost = `$${formattedMin}K - $${formattedMax}K`;
 
@@ -123,6 +178,30 @@ const PageTwelve = ({ onButtonClick }) => {
     return finalCost;
 };
 
+useEffect(() => {
+  const selection = JSON.parse(sessionStorage.getItem('userSelection_pageTwelve'));
+  if (!selection) return;
+
+  const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+
+  setSingleUser(saveSingle);
+  setMultiUser(saveMulti);
+  setThirdUser(saveThird);
+
+  updateCost(saveSingle, saveMulti, saveThird);
+
+  setIndex11value({
+    value1: saveSingle ? singleUserCost.min : 0,
+    value2: saveSingle ? singleUserCost.max : 0,
+    value3: saveMulti ? multiUserCost.min : 0,
+    value4: saveMulti ? multiUserCost.max : 0,
+    value5: saveThird ? thirdUserCost.min : 0,
+    value6: saveThird ? thirdUserCost.max : 0,
+    title1: saveSingle ? "Twillio SMS" : "",
+    title2: saveMulti ? "Twillio SMS - Calendly" : "",
+    title3: saveThird ? "Twillio SMS - Calendly - Google Map" : "",
+  });
+}, []);
 
 const isNextButtonEnabled = singleUser || multiUser || thirdUser;
 

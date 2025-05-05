@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import user from "./Small.png";
 import users from "./Medium.png";
 import usersthree from "./minus-sign.png";
@@ -31,7 +31,12 @@ const PageThirteen = ({ onButtonClick }) => {
         setMultiUser(false);
         setThirdUser(false);
       }
-
+      const updatedState = {
+        singleUser:newValue,
+        multiUser:false,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageThirteen', JSON.stringify(updatedState));
       // updateCost(newValue);
   const  pageIndex=13;
       setIndex12value({
@@ -51,6 +56,12 @@ const PageThirteen = ({ onButtonClick }) => {
         setSingleUser(false);
         setThirdUser(false);
       }
+      const updatedState = {
+        singleUser:false,
+        multiUser:newValue,
+        thirdUser:false
+      };
+      sessionStorage.setItem('userSelection_pageThirteen', JSON.stringify(updatedState));
       // updateCost(false, newValue, false);
   const pageIndex=13;
       setIndex12value( {
@@ -71,6 +82,12 @@ const PageThirteen = ({ onButtonClick }) => {
         setSingleUser(false);
         setMultiUser(false);
       }
+      const updatedState = {
+        singleUser:false,
+        multiUser:false,
+        thirdUser:newValue
+      };
+      sessionStorage.setItem('userSelection_pageThirteen', JSON.stringify(updatedState));
       // updateCost(false, false, newValue);
     const pageIndex=13;
       setIndex12value({
@@ -102,7 +119,29 @@ const calculateTotalCost = () => {
 };
 
 
+useEffect(() => {
+  const selection = JSON.parse(sessionStorage.getItem('userSelection_pageThirteen'));
+  if (!selection) return;
 
+  const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+
+  setSingleUser(saveSingle);
+  setMultiUser(saveMulti);
+  setThirdUser(saveThird);
+
+  setIndex12value({
+    value1: saveSingle ? singleUser.min : 0,
+    value2: saveSingle ? singleUser.max : 0,
+    value3: saveMulti ? multiUser.min : 0,
+    value4: saveMulti ? multiUser.max : 0,
+    value5: saveThird ? thirdUser.min : 0,
+    value6: saveThird ? thirdUser.max : 0,
+    title1: saveSingle ? "Maintainance and Support" : "",
+    title2: saveMulti ? "Maintainance and Support" : "",
+    title3: saveThird ? "Maintainance and Support" : "",
+    answer:saveSingle?"40 hours per month":saveMulti?"80 hours per month":saveThird?"No":"",
+  });
+}, []);
 
 
 

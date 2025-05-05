@@ -4,7 +4,7 @@ import users from "./api-icon.png";
 import usersthree from "./minus-sign.png";
 import "./PageSix.css";
 
-const PageSix = ({ onButtonClick }) => {
+const PageSix = ({ onButtonClick,totalCost,setTotalCost }) => {
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
@@ -14,12 +14,18 @@ const PageSix = ({ onButtonClick }) => {
   const multiUserCost = { min: 8250, max: 13750 };
   const thirdUserCost = { min: 0, max: 0 };
   const [index5value, setIndex5value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"",answer:"" });
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
 
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser: newValue,
+        multiUser,
+        thirdUser: false
+      };
+      sessionStorage.setItem('userSelection_pageSix', JSON.stringify(updatedState));
       updateCost(newValue, multiUser, thirdUser);
       const pageIndex=6
       setIndex5value((prevState) => ({
@@ -38,6 +44,12 @@ const onClickMultiUser = () => {
     setMultiUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
+      const updatedState = {
+        singleUser,
+        multiUser: newValue,
+        thirdUser: false
+      };
+      sessionStorage.setItem('userSelection_pageSix', JSON.stringify(updatedState));
       updateCost(singleUser, newValue, thirdUser);
       const pageIndex=6
       setIndex5value((prevState) => ({
@@ -59,6 +71,11 @@ const onClickMultiUser = () => {
         setSingleUser(false);
         setMultiUser(false);
       }
+      sessionStorage.setItem("userSelection_pageSix",JSON.stringify({
+        singleUser:false,
+        multiUser:false,
+        thirdUser:true
+      }))
       updateCost(false, false, newValue);
       const pageIndex=6
       setIndex5value({
@@ -75,18 +92,70 @@ const onClickMultiUser = () => {
     });
   };
 
-  const updateCost = (single, multi, third) => {
-    let totalMin = 0, totalMax = 0;
-    if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-    if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-    if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-    setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  };
+  // const updateCost = (single, multi, third) => {
+  //   let totalMin = 0, totalMax = 0;
+  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
+  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
+  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
+  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
+  // };
 
+  const updateCost = (single, multi, third) => {
+    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+    const value = {
+      value1: single ? singleUserCost.min : 0,
+      value2: single ? singleUserCost.max : 0,
+      value3: multi ? multiUserCost.min : 0,
+      value4: multi ? multiUserCost.max : 0,
+      value5: third ? thirdUserCost.min : 0,
+      value6: third ? thirdUserCost.max : 0,
+      index: single || multi || third ? 6 : 0,
+      title1: single ? "Web App" : "",
+      title2: multi ? "Backend API" : "",
+      title3: third ? "None" : ""
+    };
+  
+    costData[4] = value; // ✅ Index 5 for PageSix
+    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+    // Recalculate total
+    let totalMin = 0;
+    let totalMax = 0;
+    for (let item of costData) {
+      if (item) {
+        totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+        totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+      }
+    }
+  
+
+    const roundedMin = (totalMin / 1000) * 1000;
+    const roundedMax = (totalMax / 1000) * 1000;
+    setTotalCost(
+      totalMin === 0 && totalMax === 0
+        ? "$0K"
+        : `$${roundedMin / 1000}K - $${roundedMax / 1000}K`
+    );
+    
+
+    // setTotalCost(
+    //   totalMin === 0 && totalMax === 0
+    //     ? "$0K"
+    //     : `$${Math.round(totalMin / 1000)}K - $${Math.round(totalMax / 1000)}K`
+    // );
+  };
+  
 
   const isContinueButtonEnabled = singleUser || multiUser || thirdUser;
 
   const onClickContinue = () => {
+    let totalMin = 0;
+    let totalMax = 0;
+    const roundedMin = (totalMin / 1000) * 1000;
+    const roundedMax = (totalMax / 1000) * 1000;
+    const finalCost = `$${roundedMin / 1000}K - $${roundedMax / 1000}K`;
+  setTotalCost(finalCost)
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     costData[4] = index5value; // Store at index 4 (5th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
@@ -94,6 +163,32 @@ const onClickMultiUser = () => {
     // Navigate to the next page
     onButtonClick("pageseven");
   };
+
+
+  useEffect(() => {
+    const selection = JSON.parse(sessionStorage.getItem('userSelection_pageSix'));
+    if (!selection) return;
+  
+    const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+  
+    setSingleUser(saveSingle);
+    setMultiUser(saveMulti);
+    setThirdUser(saveThird);
+  
+    updateCost(saveSingle, saveMulti, saveThird);
+  
+    setIndex5value({
+      value1: saveSingle ? singleUserCost.min : 0,
+      value2: saveSingle ? singleUserCost.max : 0,
+      value3: saveMulti ? multiUserCost.min : 0,
+      value4: saveMulti ? multiUserCost.max : 0,
+      value5: saveThird ? thirdUserCost.min : 0,
+      value6: saveThird ? thirdUserCost.max : 0,
+      title1: saveSingle ? "Web App" : "",
+      title2: saveMulti ? "Backend API" : "",
+      title3: saveThird ? "None" : ""
+    });
+  }, []);
 
   return (
     <>

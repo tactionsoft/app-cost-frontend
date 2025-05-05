@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import user from "./plan.png";
 import users from "./minus-sign.png";
 import "./PageThree.css";
+import {calculateOverallTotalCost} from '../../utils/OveralCost'
 
-const PageThree = ({ onButtonClick }) => {
+const PageThree = ({ onButtonClick,totalCost,setTotalCost }) => {
+  console.log('pagethree total cost is :-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
-  const [totalCost, setTotalCost] = useState("$0K");
+  // const [totalCost, setTotalCost] = useState("$0K");
   const singleUserCost = { min: 1375, max: 2200 };
   const multiUserCost = { min: 6600, max: 8800 };
   const [index2value, setIndex2value] = useState({
@@ -20,6 +22,7 @@ const PageThree = ({ onButtonClick }) => {
       if (newValue) {
         setMultiUser(false);
       }
+      sessionStorage.setItem('userSelection_pageThree',JSON.stringify({singleUser:newValue,multiUser:false}))
       updateCost(newValue, false); // Ensure multiUser is false if selecting single
       const pageIndex=3
       setIndex2value(() => ({
@@ -42,6 +45,7 @@ const onClickMultiUser = () => {
     if (newValue) {
       setSingleUser(false);
     }
+    sessionStorage.setItem("userSelection_pageThree",JSON.stringify({singleUser:false,multiUser:newValue}))
     updateCost(false, newValue); // Ensure singleUser is false if selecting multi
    const pageIndex=3
     setIndex2value(() => ({
@@ -59,59 +63,182 @@ const onClickMultiUser = () => {
 };
 
 
+// const updateCost = (single, multi) => {
+//   let pageThreeMin = 0, pageThreeMax = 0;
+
+//   if (single) {
+//     pageThreeMin += singleUserCost.min;
+//     pageThreeMax += singleUserCost.max;
+//   }
+//   if (multi) {
+//     pageThreeMin += multiUserCost.min;
+//     pageThreeMax += multiUserCost.max;
+//   }
+
+//   // --- Get cost from PageTwo ---
+//   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+//   let pageTwo = costData[0] || {}; // Assuming PageTwo is index 0
+//   let pageTwoMin = (pageTwo.value1 || 0) + (pageTwo.value3 || 0);
+//   let pageTwoMax = (pageTwo.value2 || 0) + (pageTwo.value4 || 0);
+
+//   let totalMin = pageTwoMin + pageThreeMin;
+//   let totalMax = pageTwoMax + pageThreeMax;
+
+//   const formattedTotal = totalMin === 0 && totalMax === 0
+//     ? "$0K"
+//     : `$${Math.round(totalMin / 1000)}K - $${Math.round(totalMax / 1000)}K`;
+
+//   setTotalCost(formattedTotal);
+// };
+
+
 
 const updateCost = (single, multi) => {
-  let totalMin = 0, totalMax = 0;
+  let pageThreeMin = 0, pageThreeMax = 0;
+
   if (single) {
+    pageThreeMin += singleUserCost.min;
+    pageThreeMax += singleUserCost.max;
+  }
+  if (multi) {
+    pageThreeMin += multiUserCost.min;
+    pageThreeMax += multiUserCost.max;
+  }
+
+  // --- Get PageTwo cost from sessionStorage ---
+  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  let pageTwo = costData[0] || {}; // Assuming index 0 is Page Two
+  let pageTwoMin = (pageTwo.value1 || 0) + (pageTwo.value3 || 0);
+  let pageTwoMax = (pageTwo.value2 || 0) + (pageTwo.value4 || 0);
+  console.log('page two value is :-',`${pageTwoMin}-${pageTwoMax}`)
+
+  // --- Total of Page Two + Page Three ---
+  let totalMin = pageTwoMin + pageThreeMin;
+  let totalMax = pageTwoMax + pageThreeMax;
+
+  const formattedTotal = totalMin === 0 && totalMax === 0
+    ? "$0K"
+    : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`;
+
+  setTotalCost(formattedTotal);
+};
+
+
+const calculateTotalCost = () => {
+  let totalMin = 0;
+  let totalMax = 0;
+
+  if (singleUser) {
     totalMin += singleUserCost.min;
     totalMax += singleUserCost.max;
   }
-  if (multi) {
+  if (multiUser) {
     totalMin += multiUserCost.min;
     totalMax += multiUserCost.max;
   }
-  
-  setTotalCost(
-    totalMin === 0 && totalMax === 0
-      ? "$0K"
-      : `$${Math.round(totalMin / 1000)}K - $${(Math.round(totalMax / 1000))}K`
-  );
+
+  const formattedMin = totalMin / 1000;
+  const formattedMax = totalMax / 1000;
+
+  const finalCost = (totalMin === 0 && totalMax === 0)
+    ? "$0K"
+    : `$${(formattedMin)}K - $${(formattedMax)}K`;
+
+  // --- Save Page Three data to sessionStorage ---
+  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  costData[1] = {
+    value1: 0,
+    value2: 0,
+    value3: totalMin,
+    value4: totalMax,
+    index: 3,
+    title2: "UI/UX",
+    answer: singleUser ? "Yes" : multiUser ? "No" : ""
+  };
+  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  // --- Call combined cost updater ---
+  const updatedCost = calculateOverallTotalCost(); // Or call updateCost(singleUser, multiUser)
+  setTotalCost(updatedCost);
+  onButtonClick("pagefour");
+  return finalCost;
 };
 
 
-  const calculateTotalCost = () => {
+useEffect(()=>{
+const selection=JSON.parse(sessionStorage.getItem("userSelection_pageThree"))
+if(selection){
+  const { singleUser: savedSingle, multiUser: savedMulti } = selection;
+  if(savedSingle){
+    setSingleUser(true)
+    setMultiUser(false)
+    updateCost(true,false)
+    setIndex2value({
+      value1:singleUserCost.min,
+      value2:singleUserCost.max,
+      value3:0,
+      value4:0,
+      value5:0,
+      value6:0,
+      index:3,
+      title1:"UI/UX",
+      title2:"",
+      answer:"Yes"
+    })
+  }
+  if(savedMulti){
+    setSingleUser(false)
+    setMultiUser(true)
+    updateCost(false,true)
+    setIndex2value({
+      value1:0,
+      value2:0,
+      value3:multiUserCost.min,
+      value4:multiUserCost.max,
+      value5:0,
+      value6:0,
+      title1:"",
+      title2:"UI/UX",
+      answer:"No"
+    })
+  }
+}
+
+},[])
+//   const calculateTotalCost = () => {
     
-    let totalMin = 0;
-    let totalMax = 0;
+//     let totalMin = 0;
+//     let totalMax = 0;
 
-    // Add cost ranges for selected options
-    if (singleUser) {
-      totalMin += singleUserCost.min;
-      totalMax += singleUserCost.max;
-    }
-    if (multiUser) {
-      totalMin += multiUserCost.min;
-      totalMax += multiUserCost.max;
-    }
+//     // Add cost ranges for selected options
+//     if (singleUser) {
+//       totalMin += singleUserCost.min;
+//       totalMax += singleUserCost.max;
+//     }
+//     if (multiUser) {
+//       totalMin += multiUserCost.min;
+//       totalMax += multiUserCost.max;
+//     }
 
-    // If no user is selected, show $0K
-    if (totalMin === 0 && totalMax === 0) {
-      return "$0K";
-    }
+//     // If no user is selected, show $0K
+//     if (totalMin === 0 && totalMax === 0) {
+//       return "$0K";
+//     }
 
-    // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000);
-    const formattedMax = (totalMax / 1000);
+//     // Format the total cost in "K" format with two decimal places
+//     const formattedMin = (totalMin / 1000);
+//     const formattedMax = (totalMax / 1000);
 
-    const finalCost = `$${Math.round(formattedMin)}K - $${Math.round(formattedMax)}K`;
+//     const finalCost = `$${Math.round(formattedMin)}K - $${Math.round(formattedMax)}K`;
 
-    // Store final cost in session storage under a unique index
-    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[1] = index2value; // Store at index 3 (4th position)
-    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     onButtonClick("pagefour");
-    return finalCost;
-};
+//     // Store final cost in session storage under a unique index
+//     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+//     costData[1] = index2value; // Store at index 3 (4th position)
+//     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+//     const updatedCost = calculateOverallTotalCost();
+//     setTotalCost(updatedCost);
+//      onButtonClick("pagefour");
+//     return finalCost;
+// };
   return (
     <>
         <main

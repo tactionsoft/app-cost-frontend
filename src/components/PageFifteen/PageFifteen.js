@@ -211,7 +211,6 @@ const handleSubmit = async (e) => {
       alert(`Error: ${errorMessage}`);
       return;
     }
-
     emailjs.send("service_r4mrnbp", "template_6t7euqq", {
       email: formData.email.trim(),
       phone: formData.phone.trim(),
@@ -226,7 +225,6 @@ const handleSubmit = async (e) => {
         // alert("Thank you! Your estimate has been sent.");
         sessionStorage.removeItem("userProgress");
         sessionStorage.removeItem("finalCostPrice");
-
         onButtonClick('pagesixteen'); // Redirect user
       })
       .catch((error) => {
@@ -244,7 +242,6 @@ const handleSubmit = async (e) => {
 
     <main className="pt5 black-80 center-fifteen form-content"
       style={{ maxWidth: "60%", maxHeight: "30%", margin: "auto" }}>
-
         <div className="total-est-cost well">
         <h2 className="total-cost-title">Estimated Cost based on your total selection: <span id="total-selection-cost"><br/>{totalCost}</span>
         </h2>

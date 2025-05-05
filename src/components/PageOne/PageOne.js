@@ -26,7 +26,21 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
   
   const [selectedUser, setSelectedUser] = useState(null);
   const continueRef=useRef();
+  // const industryTitles=[
+  //   {key:"bankingUser",title:"Banking",img:"bankingUser"},
+  //   {key:"engineeringConstructionUser",title:"Engineering & Construction",img:"engineeringConstructionUser"},
+  //   {key:"entertainmentUser",title:"Entertainment",img:"entertainmentUser"},
+  //   {key:"healthcareUser",title:"Healthcare",img:"healthcareUser"},
+  //   {key:"InformationTechnologyUser",title:"Information Technology",img:"InformationTechnologyUser"},
+  //   {key:"RetailWholesaleUser",title:"Retail and Wholesale",img:"RetailWholesaleUser"},
+  //   {key:"educationUser",title:"Education",img:"educationUser"},
+  //   {key:"manufacturingUser",title:"Manufacturing",img:"manufacturingUser"},
+  //   {key:"telecommunicationsUser",title:"Telecommunications",img:"telecommunicationsUser"},
+  //   {}
+  // ]
+
   const industryTitles = [
+
     "Banking",
     "Engineering & Construction",
     "Entertainment",
@@ -73,6 +87,7 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
       const matchedTitle = industryTitles.find(title =>
         userType.toLowerCase().includes(title.toLowerCase())
       );
+      console.log('matched title is:-',matchedTitle)
       sessionStorage.setItem("selectedIndustry", matchedTitle || "");
   
       // Scroll to the Continue section

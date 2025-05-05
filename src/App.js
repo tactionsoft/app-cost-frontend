@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {calculateOverallTotalCost} from '../src/utils/OveralCost'
 import Logo from "./components/Logo/Logo";
 import MultiStepProgressBar from "./components/MultiStepProgressBar/MultiStepProgressBar";
 import PageOne from "./components/PageOne/PageOne";
@@ -25,6 +26,30 @@ import "./App.css";
 import tachyons from "tachyons";
 import { useLocation,useNavigate,useParams } from "react-router-dom";
 
+function AppCostCalculatorPage({ page, setPage, nextPage, totalCost, setTotalCost, resetProgress, setCompletedPages }) {
+  const sharedProps = { onButtonClick: nextPage, totalCost, setTotalCost, setPage, setCompletedPages };
+  
+  const pages = {
+    pageone: <PageOne {...sharedProps} />,
+    pagetwo: <PageTwo {...sharedProps} />,
+    pagethree: <PageThree {...sharedProps} />,
+    pagefour: <PageFour {...sharedProps} />,
+    pagefive: <PageFive {...sharedProps} />,
+    pagesix: <PageSix {...sharedProps} />,
+    pageseven: <PageSeven {...sharedProps} />,
+    pageeight: <PageEight {...sharedProps} />,
+    pagenine: <PageNine {...sharedProps} />,
+    pageten: <PageTen {...sharedProps} />,
+    pageeleven: <PageEleven {...sharedProps} />,
+    pagetwelve: <PageTwelve {...sharedProps} />,
+    pagethirteen: <PageThirteen {...sharedProps} />,
+    pagefourteen: <PageFourteen {...sharedProps} />,
+    pagefifteen: <PageFifteen {...sharedProps} />,
+    pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress} />,
+  };
+
+  return pages[page] || <PageOne {...sharedProps} />;
+}
 
 
 function App(){
@@ -38,6 +63,8 @@ function App(){
 
 function MainApp() {
   const [page, setPage] = useState("pageone");
+  const [totalCost,setTotalCost]=useState("$0K");
+  console.log('total cost is:------------',totalCost)
   const [completedPages, setCompletedPages] = useState({ pageone: true });
   const location=useLocation();
   const showProgressBar = location.pathname !== "/";
@@ -53,7 +80,33 @@ function MainApp() {
       [nextPageKey]: true, // Mark the page as completed
     }));
     setPage(nextPageKey);
+    const cost = calculateOverallTotalCost();
+    setTotalCost(cost);
   };
+
+  // useEffect(() => {
+  //   const cost = calculateOverallTotalCost();
+  //   setTotalCost(cost);
+  // }, []);
+  useEffect(() => {
+    // Clear sessionStorage when the user reloads the page
+    window.addEventListener("beforeunload", () => {
+      sessionStorage.clear();
+    });
+  
+    // Set totalCost on first mount
+    const cost = calculateOverallTotalCost();
+    setTotalCost(cost);
+  
+    // Cleanup listener on unmount
+    return () => {
+      window.removeEventListener("beforeunload", () => {
+        sessionStorage.clear();
+      });
+    };
+  }, []);
+  
+
   return (
       <div className="App">
 
@@ -65,28 +118,43 @@ function MainApp() {
           <Route path="/consultation-form" element={<ConsultationForm/>} />
           <Route onButtonClick={nextPage} path="/thank-you" element={<ThankYouPage/>} />
           <Route path="/" element={<LandingPage setCompletedPages={setCompletedPages} setPage={setPage}/>}/>
+          <Route
+    path="/app-cost-calculator"
+    element={
+      <AppCostCalculatorPage
+        page={page}
+        setPage={setPage}
+        nextPage={nextPage}
+        totalCost={totalCost}
+        setTotalCost={setTotalCost}
+        resetProgress={resetProgress}
+        setCompletedPages={setCompletedPages}
+      />
+    }
+  /> 
           {/* Pages 1 to 15 */}
-          <Route path="/app-cost-calculator" element={
+          {/* <Route path="/app-cost-calculator" element={
               { 
                 pageone: <PageOne onButtonClick={nextPage} setPage={setPage} setCompletedPages={setCompletedPages}/>,
-                pagetwo: <PageTwo onButtonClick={nextPage}/>,
-                pagethree: <PageThree onButtonClick={nextPage}/>,
-                pagefour: <PageFour onButtonClick={nextPage} />,
-                pagefive: <PageFive onButtonClick={nextPage} />,
-                pagesix: <PageSix onButtonClick={nextPage} />,
-                pageseven: <PageSeven onButtonClick={nextPage} />,
-                pageeight: <PageEight onButtonClick={nextPage} />,
-                pagenine: <PageNine onButtonClick={nextPage} />,
-                pageten: <PageTen onButtonClick={nextPage} />,
-                pageeleven: <PageEleven onButtonClick={nextPage} />,
-                pagetwelve: <PageTwelve onButtonClick={nextPage} />,
-                pagethirteen: <PageThirteen onButtonClick={nextPage} />,
-                pagefourteen: <PageFourteen  onButtonClick={nextPage} />,
-                pagefifteen: <PageFifteen onButtonClick={nextPage} />,
+                pagetwo: <PageTwo onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost}/> ,
+                pagethree: <PageThree onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost}/>,
+                pagefour: <PageFour onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagefive: <PageFive onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagesix: <PageSix onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pageseven: <PageSeven onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pageeight: <PageEight onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagenine: <PageNine onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pageten: <PageTen onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pageeleven: <PageEleven onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagetwelve: <PageTwelve onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagethirteen: <PageThirteen onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagefourteen: <PageFourteen  onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
+                pagefifteen: <PageFifteen onButtonClick={nextPage} totalCost={totalCost} setTotalCost={setTotalCost} />,
                 pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress}/>,
               }[page]
             }
-          />x``
+          />x`` */}
+          
         </Routes>
       </div>
  

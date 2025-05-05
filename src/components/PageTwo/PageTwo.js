@@ -3,12 +3,13 @@ import user from "./mail.png";
 import users from "./rocket.png";
 import "./PageTwo.css";
 
-const PageTwo = ({ onButtonClick}) => {
-
+const PageTwo = ({ onButtonClick,totalCost,setTotalCost}) => {
+console.log('total cost is :-',totalCost)
   // const [selectedUserType, setSelectedUserType] = useState(null);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
-  const [totalCost, setTotalCost] = useState("$0K");
+  // sessionStorage.setItem('userSelection',JSON.stringify({singleUser,multiUser}))
+  // const [totalCost, setTotalCost] = useState("$0K");
   const singleUserCost = { min: 13750, max: 33000 };
   const multiUserCost = { min: 27500, max: 55000 };
   const [index1value, setIndex1value] = useState({
@@ -22,6 +23,10 @@ const PageTwo = ({ onButtonClick}) => {
       if (newValue) {
         setMultiUser(false);
       }
+      sessionStorage.setItem("userSelection", JSON.stringify({
+        singleUser: newValue,
+        multiUser: false
+      }));
       updateCost(newValue, false); // Ensure multiUser is false if selecting single
       const pageIndex = 2; 
       setIndex1value(() => ({
@@ -45,6 +50,11 @@ const onClickMultiUser = () => {
     if (newValue) {
       setSingleUser(false);
     }
+
+    sessionStorage.setItem("userSelection", JSON.stringify({
+      singleUser: false,
+      multiUser: newValue
+    }));
     updateCost(false, newValue); // Ensure singleUser is false if selecting multi
      const pageIndex=2;
     setIndex1value(() => ({
@@ -74,7 +84,7 @@ const updateCost = (single, multi) => {
   setTotalCost(
     totalMin === 0 && totalMax === 0
       ? "$0K"
-      : `$${Math.round(totalMin / 1000)}K - $${Math.round(totalMax / 1000)}K`
+      : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
   );
 };
 
@@ -100,10 +110,11 @@ const updateCost = (single, multi) => {
     }
 
     // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000).toFixed(2);
-    const formattedMax = (totalMax / 1000).toFixed(2);
+    const formattedMin = (totalMin / 1000);
+    const formattedMax = (totalMax / 1000);
 
     const finalCost = `$${formattedMin}K - $${formattedMax}K`;
+    console.log('final cost is :-',finalCost)
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
@@ -112,6 +123,73 @@ const updateCost = (single, multi) => {
      onButtonClick("pagethree");
     return finalCost;
 };
+
+
+// useEffect(()=>{
+// const selectedoption=JSON.parse(sessionStorage.getItem('userSelection'))
+// if(selectedoption.singleUser){
+//   setMultiUser(false)
+//   setSingleUser(true)
+//   updateCost(true,false)
+//   setIndex1value({
+//     value1:singleUserCost.min,
+//     value2:singleUserCost.max,
+//     value3:0,
+//     value4:0,
+//     title1:"MVP",
+//     title2:""
+//   })
+// }else if(selectedoption.multiUser){
+//   setMultiUser(true)
+//   setSingleUser(false)
+//   updateCost(false,true)
+//   setIndex1value({
+// value1:0,
+// value2:0,
+// value3:multiUserCost.min,
+// value4:multiUserCost.max,
+// title1:"",
+// title2:"Feature Rich"
+//   })
+// }
+// },[singleUser,multiUser])
+
+useEffect(() => {
+  const savedSelection = JSON.parse(sessionStorage.getItem("userSelection"));
+  if (savedSelection) {
+    const { singleUser: savedSingle, multiUser: savedMulti } = savedSelection;
+
+    if (savedSingle) {
+      setSingleUser(true);
+      setMultiUser(false);
+      updateCost(true, false);
+      setIndex1value({
+        value1: singleUserCost.min,
+        value2: singleUserCost.max,
+        value3: 0,
+        value4: 0,
+        index: 2,
+        title1: "MVP",
+        title2: ""
+      });
+    } else if (savedMulti) {
+      setMultiUser(true);
+      setSingleUser(false);
+      updateCost(false, true);
+      setIndex1value({
+        value1: 0,
+        value2: 0,
+        value3: multiUserCost.min,
+        value4: multiUserCost.max,
+        index: 2,
+        title1: "",
+        title2: "Feature Rich"
+      });
+    }
+  }
+}, []);
+
+
   return (
     <main
       className="pt5 black-80"
@@ -237,6 +315,7 @@ const updateCost = (single, multi) => {
       <div className="totals well">
         <h2 className="total-cost">
           Total Estimated Cost: <span id="total-cost">{totalCost}</span>
+          
         </h2>
         <p className="disclaimer">
           Please note, all cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.

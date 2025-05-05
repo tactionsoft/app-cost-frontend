@@ -25,7 +25,15 @@ const MultiStepProgressBar = ({ page, onPageNumberClick, completedPages }) => {
             {({ accomplished }) => (
               <div
                 className={`indexedStep ${isCurrent ? "current-step" : isCompleted ? "past-step" : "disabled"}`}
-                onClick={() => canNavigate && onPageNumberClick(stepKey)}
+                // onClick={() => canNavigate && onPageNumberClick(stepKey)}
+                onClick={() => {
+                  if (canNavigate) {
+                    if (stepKey === "pageone") {
+                      sessionStorage.clear();           // 🔹 Clear session storage
+                    }
+                    onPageNumberClick(stepKey);         // 🔹 Navigate to the selected page
+                  }
+                }}
               >
                 {index + 1}
               </div>
