@@ -5,7 +5,6 @@ import "./PageThree.css";
 import {calculateOverallTotalCost} from '../../utils/OveralCost'
 
 const PageThree = ({ onButtonClick,totalCost,setTotalCost }) => {
-  console.log('pagethree total cost is :-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   // const [totalCost, setTotalCost] = useState("$0K");
@@ -63,39 +62,9 @@ const onClickMultiUser = () => {
 };
 
 
-// const updateCost = (single, multi) => {
-//   let pageThreeMin = 0, pageThreeMax = 0;
-
-//   if (single) {
-//     pageThreeMin += singleUserCost.min;
-//     pageThreeMax += singleUserCost.max;
-//   }
-//   if (multi) {
-//     pageThreeMin += multiUserCost.min;
-//     pageThreeMax += multiUserCost.max;
-//   }
-
-//   // --- Get cost from PageTwo ---
-//   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-//   let pageTwo = costData[0] || {}; // Assuming PageTwo is index 0
-//   let pageTwoMin = (pageTwo.value1 || 0) + (pageTwo.value3 || 0);
-//   let pageTwoMax = (pageTwo.value2 || 0) + (pageTwo.value4 || 0);
-
-//   let totalMin = pageTwoMin + pageThreeMin;
-//   let totalMax = pageTwoMax + pageThreeMax;
-
-//   const formattedTotal = totalMin === 0 && totalMax === 0
-//     ? "$0K"
-//     : `$${Math.round(totalMin / 1000)}K - $${Math.round(totalMax / 1000)}K`;
-
-//   setTotalCost(formattedTotal);
-// };
-
-
 
 const updateCost = (single, multi) => {
   let pageThreeMin = 0, pageThreeMax = 0;
-
   if (single) {
     pageThreeMin += singleUserCost.min;
     pageThreeMax += singleUserCost.max;
@@ -110,7 +79,6 @@ const updateCost = (single, multi) => {
   let pageTwo = costData[0] || {}; // Assuming index 0 is Page Two
   let pageTwoMin = (pageTwo.value1 || 0) + (pageTwo.value3 || 0);
   let pageTwoMax = (pageTwo.value2 || 0) + (pageTwo.value4 || 0);
-  console.log('page two value is :-',`${pageTwoMin}-${pageTwoMax}`)
 
   // --- Total of Page Two + Page Three ---
   let totalMin = pageTwoMin + pageThreeMin;
@@ -166,6 +134,7 @@ const calculateTotalCost = () => {
 
 useEffect(()=>{
 const selection=JSON.parse(sessionStorage.getItem("userSelection_pageThree"))
+if(!selection) return
 if(selection){
   const { singleUser: savedSingle, multiUser: savedMulti } = selection;
   if(savedSingle){

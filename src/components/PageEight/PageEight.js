@@ -4,7 +4,6 @@ import users from "./minus-sign.png";
 import "./PageEight.css";
 
 const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
-  console.log('total cost is :-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
 
@@ -127,10 +126,9 @@ const calculateTotalCost = () => {
 
 useEffect(() => {
   const savedSelection = JSON.parse(sessionStorage.getItem("userSelection_pageEight"));
-  if(!savedSelection) return
+  if(!savedSelection) return;
   if (savedSelection) {
     const { singleUser: savedSingle, thirdUser: savedThird } = savedSelection;
-
     if (savedSingle) {
       setSingleUser(true);
       setThirdUser(false);

@@ -87,7 +87,6 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
       const matchedTitle = industryTitles.find(title =>
         userType.toLowerCase().includes(title.toLowerCase())
       );
-      console.log('matched title is:-',matchedTitle)
       sessionStorage.setItem("selectedIndustry", matchedTitle || "");
   
       // Scroll to the Continue section

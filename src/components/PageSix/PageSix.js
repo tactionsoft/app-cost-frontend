@@ -92,17 +92,8 @@ const onClickMultiUser = () => {
     });
   };
 
-  // const updateCost = (single, multi, third) => {
-  //   let totalMin = 0, totalMax = 0;
-  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  // };
-
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  
     const value = {
       value1: single ? singleUserCost.min : 0,
       value2: single ? singleUserCost.max : 0,
@@ -128,8 +119,6 @@ const onClickMultiUser = () => {
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
       }
     }
-  
-
     const roundedMin = (totalMin / 1000) * 1000;
     const roundedMax = (totalMax / 1000) * 1000;
     setTotalCost(
