@@ -5,11 +5,10 @@ import usersthree from "./minus-sign.png";
 import "./PageTen.css";
 
 const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
+  console.log('totalCost pageTen is :-',totalCost)
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
-  // const [totalCost, setTotalCost] = useState("$0K");
-
   const singleUserCost = { min: 5500, max: 8250 };
   const multiUserCost = { min: 16500, max: 27500 };
   const thirdUserCost = { min: 0, max: 0 };
@@ -101,13 +100,6 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
       return newValue;
     });
   };
-  // const updateCost = (single, multi, third) => {
-  //   let totalMin = 0, totalMax = 0;
-  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-  //   if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-  //   if (third) { totalMin += thirdUserCost.min; totalMax += thirdUserCost.max; }
-  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  // };
 
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
@@ -158,6 +150,10 @@ const calculateTotalCost = () => {
   if (thirdUser) {
     totalMin += thirdUserCost.min;
     totalMax += thirdUserCost.max;
+  }
+  if (multiUser) {
+    totalMin += multiUserCost.min;
+    totalMax += multiUserCost.max;
   }
 
   const formattedMin = (totalMin / 1000);
