@@ -166,10 +166,10 @@ const generateTableHTML = (costData) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
-    alert("Please enter your Name, Email, and Phone.");
-    return;
-  }
+  // if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
+  //   alert("Please enter your Name, Email, and Phone.");
+  //   return;
+  // }
 
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
