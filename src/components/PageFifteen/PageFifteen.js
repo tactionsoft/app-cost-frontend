@@ -166,10 +166,10 @@ const generateTableHTML = (costData) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
-  //   alert("Please enter your Name, Email, and Phone.");
-  //   return;
-  // }
+  if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
+    alert("Please enter your Name, Email, and Phone.");
+    return;
+  }
 
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
@@ -177,19 +177,7 @@ const handleSubmit = async (e) => {
 
   try {
 
-    const response = await fetch('http://localhost:1337/api/user-info/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        totalCost,
-        selectedIndustry,
-      }),
-    });
-
-    // const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+    // const response = await fetch('http://localhost:1337/api/user-info/submit', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify({
@@ -200,6 +188,18 @@ const handleSubmit = async (e) => {
     //     selectedIndustry,
     //   }),
     // });
+
+    const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        totalCost,
+        selectedIndustry,
+      }),
+    });
     await response.json();
 
     // if (!response.ok) {
@@ -217,7 +217,6 @@ const handleSubmit = async (e) => {
       from_name: formData.name.trim(),
       name: "Admin",
       to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
-      // to_email:"coolkohligaurav1826.gk@gmail.com,gurvinder@felicitastechnologies.com",
       total_cost: generateTableHTML(costData),
       total_costs: totalCost,
       selectedIndustry: selectedIndustry,
