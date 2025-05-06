@@ -54,13 +54,7 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
     });
   };
 
-  // const updateCost = (single) => {
-  //   let totalMin = 0, totalMax = 0;
-  //   if (single) { totalMin += singleUserCost.min; totalMax += singleUserCost.max; }
-  //   // if (multi) { totalMin += multiUserCost.min; totalMax += multiUserCost.max; }
-  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  // };
-
+  
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   
@@ -74,10 +68,8 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
       title2: third ? "Payment Process" : "",
       answer: single ? "Yes" : third ? "No" : "", // ✅ Answer
     };
-  
     costData[5] = value; // ✅ PageSeven = index 6
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-  
     // Recalculate total
     let totalMin = 0;
     let totalMax = 0;
@@ -161,7 +153,8 @@ useEffect(() => {
         title1: "Payment Process",
         title2: "",
         answer:"Yes"
-      });
+      }
+    );
     } else if (savedThird) {
       setThirdUser(true);
       setSingleUser(false);
@@ -203,7 +196,6 @@ useEffect(() => {
             alt="user-icon"
           />
             </div>
- 
           <h1 className="f4 pl2 pr2">Yes</h1>
           <div className="est-hrs">
             <div className="row">

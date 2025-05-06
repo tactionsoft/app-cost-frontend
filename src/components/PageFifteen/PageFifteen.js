@@ -166,10 +166,10 @@ const generateTableHTML = (costData) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
-    alert("Please enter your Name, Email, and Phone.");
-    return;
-  }
+  // if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
+  //   alert("Please enter your Name, Email, and Phone.");
+  //   return;
+  // }
 
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
@@ -177,19 +177,7 @@ const handleSubmit = async (e) => {
 
   try {
 
-    // const response = await fetch('http://localhost:1337/api/user-info/submit', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     name: formData.name.trim(),
-    //     email: formData.email.trim(),
-    //     phone: formData.phone.trim(),
-    //     totalCost,
-    //     selectedIndustry,
-    //   }),
-    // });
-
-    const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+    const response = await fetch('http://localhost:1337/api/user-info/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -200,23 +188,36 @@ const handleSubmit = async (e) => {
         selectedIndustry,
       }),
     });
-    const result = await response.json();
 
-    if (!response.ok) {
-      console.error("❌ API Error:", result);
+    // const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     name: formData.name.trim(),
+    //     email: formData.email.trim(),
+    //     phone: formData.phone.trim(),
+    //     totalCost,
+    //     selectedIndustry,
+    //   }),
+    // });
+    await response.json();
 
-      // ✅ Extract actual error message from `details.error` or fallback to `result.message`
-      const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
+    // if (!response.ok) {
+    //   console.error("❌ API Error:", result);
 
-      alert(`Error: ${errorMessage}`);
-      return;
-    }
+    //   // ✅ Extract actual error message from `details.error` or fallback to `result.message`
+    //   const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
+
+    //   alert(`Error: ${errorMessage}`);
+    //   return;
+    // }
     emailjs.send("service_r4mrnbp", "template_6t7euqq", {
       email: formData.email.trim(),
       phone: formData.phone.trim(),
       from_name: formData.name.trim(),
       name: "Admin",
       to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
+      // to_email:"coolkohligaurav1826.gk@gmail.com,gurvinder@felicitastechnologies.com",
       total_cost: generateTableHTML(costData),
       total_costs: totalCost,
       selectedIndustry: selectedIndustry,
@@ -259,6 +260,7 @@ const handleSubmit = async (e) => {
               className="f6 br2 ph3 pv2 mb2 dib black w-100 input-font"
               type="text"
               name="name"
+              required
               id="workspace-name"
               value={formData?.name}
               onChange={handleChange}
@@ -270,8 +272,8 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
-
-            {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+{/* 
+            {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>} */}
           </div>
           {/* Email Field */}
           <div className="mv3">
@@ -280,6 +282,7 @@ const handleSubmit = async (e) => {
               type="email"
               name="email"
               id="workspace-url"
+              required
               value={formData?.email}
               onChange={ handleChange}
               placeholder="Enter your Email Address"
@@ -290,7 +293,7 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
-            {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
+            {/* {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>} */}
           </div>
 
           {/* Phone Field */}
@@ -310,7 +313,7 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
-            {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
+            {/* {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>} */}
           </div>
         </fieldset>
         {/* Submit Button */}

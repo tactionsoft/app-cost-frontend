@@ -131,7 +131,6 @@ useEffect(() => {
   const savedSelection = JSON.parse(sessionStorage.getItem("userSelection"));
   if (savedSelection) {
     const { singleUser: savedSingle, multiUser: savedMulti } = savedSelection;
-
     if (savedSingle) {
       setSingleUser(true);
       setMultiUser(false);

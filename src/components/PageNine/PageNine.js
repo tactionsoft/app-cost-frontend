@@ -5,12 +5,12 @@ import usersthree from "./facebook.png";
 import "./PageNine.css";
 
 const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
-
+  console.log('total cost is:-',totalCost);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
   const [index8value, setIndex8value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"" });
-  // const [totalCost, setTotalCost] = useState("$0K");
+
 
   // Define the cost range for each user type (min and max)
   const singleUserCostRange = { min: 550, max: 1375 };
@@ -90,16 +90,6 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
   };
 
 
-  // const updateCost = (single, multi, third) => {
-  //   let totalMin = 0, totalMax = 0;
-  //   if (single) { totalMin += singleUserCostRange.min; totalMax += singleUserCostRange.max; }
-  //   if (multi) { totalMin += multiUserCostRange.min; totalMax += multiUserCostRange.max; }
-  //   if (third) { totalMin += thirdUserCostRange.min; totalMax += thirdUserCostRange.max; }
-  //   setTotalCost(totalMin === 0 && totalMax === 0 ? "$0K" : `$${Math.round((totalMin / 1000).toFixed(2))}K - $${Math.round((totalMax / 1000).toFixed(2))}K`);
-  // };
-
-
-
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   
@@ -165,10 +155,12 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
      const formattedMax = (totalMax / 1000);
 
      const finalCost = `$${formattedMin}K - $${formattedMax}K`;
+     console.log('finalCost',finalCost);
      setTotalCost(finalCost);
      // Store final cost in session storage under a unique index
      let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
      costData[7] = index8value; // Store at index 3 (4th position)
+     console.log('index8value is :-',index8value)
      sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      onButtonClick("pageten");
      return finalCost;
