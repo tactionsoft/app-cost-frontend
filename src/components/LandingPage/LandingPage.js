@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
   
     // ✅ Validate Form Data
-    if (!formData["ebook-form-name"] || !formData["ebook-email"] || !formData["ebook-contact"] || !formData["ebook-requirement"]) {
+    if (!formData["ebook-form-name"] || !formData["ebook-email"] || !formData["ebook-requirement"]) {
       alert("All fields are required!");
       return;
     }
@@ -219,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const serviceID = "service_r4mrnbp";
         const templateID = "template_kuwkoet"; // Using a single template
         const publicKey = "kCTmCH5S7cwmPxSVR";
-  
         const templateParams = {
           name:senderName,
           to_email: recipientEmail, // Different for user and admin
@@ -248,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // ✅ Send Different Emails with Different Subjects
       await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
+      await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
       await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
       // alert("Emails Sent Successfully!");
       // navigate("/app-cost-calculator");
@@ -369,7 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   { name: "ebook-requirement", placeholder: "Your Requirement*", icon: "bi-pencil" },
                 ].map((field, index) => (
                   <div className="input-group mb-4" key={index}>
-                    <input type={field.type || "text"}name={field.name}id={field.name} className="form-control"placeholder={field.placeholder}required   value={formData[field.name] || ""}
+                    <input type={field.type || "text"}name={field.name}id={field.name} className="form-control"placeholder={field.placeholder}required={field.name!=='ebook-contact'}  value={formData[field.name] || ""}
                     onChange={handleChange}/>
                     <span className="input-group-text">
                       <i className={`custom-form-icon ${field.icon}`}></i>
