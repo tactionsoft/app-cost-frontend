@@ -29,7 +29,8 @@ const MultiStepProgressBar = ({ page, onPageNumberClick, completedPages }) => {
                 onClick={() => {
                   if (canNavigate) {
                     if (stepKey === "pageone") {
-                      sessionStorage.clear();           // 🔹 Clear session storage
+                      sessionStorage.clear();
+                             // 🔹 Clear session storage
                     }
                     onPageNumberClick(stepKey);         // 🔹 Navigate to the selected page
                   }

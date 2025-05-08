@@ -228,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
           email_subject: subject, // Dynamic subject
           email_message: message, // Custom message for client/admin
         };
-  
         return emailjs.send(serviceID, templateID, templateParams, publicKey)
           .then((response) => console.log(`Email sent to ${recipientEmail}:`, response.status))
           .catch((error) => console.error(`Failed to send email to ${recipientEmail}:`, error));
@@ -237,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // ✅ Custom Subjects and Messages
       const clientSubject = "Thank You for Your Inquiry!";
       const adminSubject = "New Inquiry Received! - Follow Up Required";
-  
       const clientMessage = `Dear ${formData["ebook-form-name"]},\n\nThank you for reaching out to us! We have received your inquiry regarding mobile app development, and our team is already reviewing your requirements.
 
                             With 11+ years of expertise in building innovative and scalable mobile applications, we’re excited to help bring your idea to life. One of our experts will get in touch with you shortly to discuss your project in more detail.In the meantime, feel free to explore our services and past projects here: www.tactionsoft.com. If you have any urgent queries.
@@ -251,8 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
       await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
       // alert("Emails Sent Successfully!");
       // navigate("/app-cost-calculator");
-      navigate("/thank-you")
-  
+      navigate("/thank-you");
     } catch (error) {
       console.error("Error submitting user data:", error);
       alert(error.message);
