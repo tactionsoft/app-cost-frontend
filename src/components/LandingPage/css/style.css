@@ -2332,7 +2332,10 @@ input[type="number"] {
 }
 
 } */
-
+h1 {
+  font-size: 1em !important;
+  /* margin: .67em 0; */
+}
 
 
 
