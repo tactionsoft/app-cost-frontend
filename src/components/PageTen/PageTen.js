@@ -5,17 +5,14 @@ import usersthree from "./minus-sign.png";
 import "./PageTen.css";
 
 const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
-  console.log('totalCost pageTen is :-',totalCost)
+  console.log('totalCost pageTen is :-',totalCost);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
   const [thirdUser, setThirdUser] = useState(false);
   const singleUserCost = { min: 5500, max: 8250 };
   const multiUserCost = { min: 16500, max: 27500 };
   const thirdUserCost = { min: 0, max: 0 };
-
   const [index9value, setIndex9value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"",answer:"" });
-
-
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
       const newValue = !prev;
@@ -65,7 +62,6 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
         title2: newValue?"Yes to quite an extent":""
         
       });
-  
       return newValue;
     });
   };
@@ -120,17 +116,17 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
   
     costData[8] = value; // ✅ store at index 8 (PageNine)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-  
     // Recalculate total cost
     let totalMin = 0;
     let totalMax = 0;
     for (let item of costData) {
+      console.log('item is :-',item);
       if (item) {
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
       }
     }
-  
+  console.log('total cost is:----------',totalCost);
     setTotalCost(
       totalMin === 0 && totalMax === 0
         ? "$0K"
@@ -159,7 +155,6 @@ const calculateTotalCost = () => {
   const formattedMin = (totalMin / 1000);
   const formattedMax = (totalMax / 1000);
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `$${formattedMin}K - $${formattedMax}K`;
-
   setTotalCost(finalCost);
 
   // Retrieve existing data

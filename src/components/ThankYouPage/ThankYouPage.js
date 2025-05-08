@@ -11,10 +11,10 @@ const ThankYouPage = ({onButtonClick}) => {
 			<section data-qa="layout-placement-wrapper" className="layout-wrapper">
 				<div className="content-wrapper">
 					<div className="distribute-wrapper">
-						<h1 className="text-wrapper">
-							<span>Thank you for contacting us.</span>
-						</h1>
-						<p> To know your estimate cost, please go to the home page and click on <strong style={{color:"#fff", fontSize:"25px"}}>Estimate your App costs</strong> button.
+						<h2 className="text-wrapper thank-contact">
+							Thank you for contacting us.
+						</h2>
+						<p> To know your estimate cost, please go to the home page and click on <strong style={{color:"#fff"}}>Estimate your App costs</strong> button.
 						</p>
 					</div>
 					<div className="submit-button">
@@ -26,7 +26,7 @@ const ThankYouPage = ({onButtonClick}) => {
 								<span className="text-wrapper">Home Page</span>
 							</span>
 						</button>
-						<div class="press">press <strong>Enter ↵</strong></div>
+						{/* <div class="press">press <strong>Enter ↵</strong></div> */}
 					</div>
 				</div>
 			</section>
@@ -39,7 +39,7 @@ const Footer = () => {
 	return (
 		<div className="container-footer">
 			<div className="footer-copy">
-				<div className="social-footer">
+				{/* <div className="social-footer">
 					<ul className="social-list">
 						<li className="social-item-linkedin">
 							<a target="_blank" rel="noopener noreferrer" href="#">
@@ -57,7 +57,7 @@ const Footer = () => {
 							</a>
 						</li>
 					</ul>
-				</div>
+				</div> */}
 				<div className="copy-text">
 					<p>© 2025 TactionSoft LLC. All rights reserved.</p>
 				</div>

@@ -3,6 +3,7 @@ import user from "./Email-pass.png";
 import users from "./google.png";
 import usersthree from "./facebook.png";
 import "./PageNine.css";
+import { calculateOverallTotalCost } from "utils/OveralCost";
 
 const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
   console.log('total cost is:-',totalCost);
@@ -60,7 +61,6 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
         index: newValue?pageIndex:0,
         title2: newValue?"Google Auth":""
       }));
-  
       return newValue;
     });
   };
@@ -68,7 +68,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
 
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
-      const newValue = !prev;
+      const newValue = !prev;   
       const pageIndex=9;
       updateCost(singleUser, multiUser, newValue);
       const updatedState = {
@@ -92,7 +92,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
 
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  
+    console.log('costData is:-',costData);
     const value = {
       value1: single ? singleUserCostRange.min : 0,
       value2: single ? singleUserCostRange.max : 0,
@@ -107,8 +107,8 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
     };
   
     costData[7] = value; // ✅ store at index 8 (PageNine)
+    console.log('value is:-',value);
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-  
     // Recalculate total cost
     let totalMin = 0;
     let totalMax = 0;
@@ -159,25 +159,25 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
      setTotalCost(finalCost);
      // Store final cost in session storage under a unique index
      let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-     costData[7] = index8value; // Store at index 3 (4th position)
-     console.log('index8value is :-',index8value)
-     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+     costData[7] = index8value;
+     console.log('index8Value is:-',index8value);
+     const getData=sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+     console.log('getData is:-',getData);
      onButtonClick("pageten");
      return finalCost;
 };
 
 useEffect(() => {
   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageNine'));
+  console.log('selection is:-',selection);
   if (!selection) return;
-
   const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
 
   setSingleUser(saveSingle);
   setMultiUser(saveMulti);
   setThirdUser(saveThird);
-
+  console.log('saveThird is:-',saveThird);
   updateCost(saveSingle, saveMulti, saveThird);
-
   setIndex8value({
     value1: saveSingle ? singleUserCostRange.min : 0,
     value2: saveSingle ? singleUserCostRange.max : 0,
@@ -193,7 +193,6 @@ useEffect(() => {
 
   // Determine if the "Next" button should be enabled
   const isNextButtonEnabled = singleUser || multiUser || thirdUser;
-
   return (
     <>
       <main

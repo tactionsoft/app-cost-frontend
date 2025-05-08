@@ -171,7 +171,6 @@ if(selection){
     })
   }
 }
-
 },[])
 //   const calculateTotalCost = () => {
     
@@ -208,7 +207,9 @@ if(selection){
 //      onButtonClick("pagefour");
 //     return finalCost;
 // };
-  return (
+ 
+
+return (
     <>
         <main
       className="pt5 black-80"

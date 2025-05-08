@@ -2294,6 +2294,21 @@ button[type="submit"] {
     transition: border-color .15sease -in-out, box-shadow .15sease -in-out;
 }
 }
+/* For Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.bi-envelope::before {
+  color: #212529 !important;
+}
 
 /* @media(min-width:991.01px) and (max-width:991.99px){
   .banner-form {

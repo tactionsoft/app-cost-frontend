@@ -57,7 +57,6 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
   
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  
     const value = {
       value1: single ? singleUserCost.min : 0,
       value2: single ? singleUserCost.max : 0,
@@ -101,6 +100,7 @@ const calculateTotalCost = () => {
     totalMax += thirdUserCost.max;
   }
 
+
   const formattedMin = (totalMin / 1000);
   const formattedMax = (totalMax / 1000);
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `$${formattedMin}K - $${formattedMax}K`;
@@ -124,13 +124,6 @@ const calculateTotalCost = () => {
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
 
-  onButtonClick("pageeight");
-};
-
-const storeDataAndContinue = () => {
-  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  costData[6] = index6value; // Store at index 6 (7th position)
-  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   onButtonClick("pageeight");
 };
 
@@ -172,6 +165,7 @@ useEffect(() => {
     }
   }
 }, []);
+
   const isContinueButtonEnabled = singleUser || thirdUser;
 
   return (
