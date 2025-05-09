@@ -10,9 +10,6 @@ const PageThree = ({ onButtonClick,totalCost,setTotalCost }) => {
   // const [totalCost, setTotalCost] = useState("$0K");
   const singleUserCost = { min: 1375, max: 2200 };
   const multiUserCost = { min: 6600, max: 8800 };
-  const [index2value, setIndex2value] = useState({
-    value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",answer:"",
-  });
   const isNextButtonEnabled = singleUser || multiUser ;
 
   const onClickSingleUser = () => {
@@ -23,16 +20,6 @@ const PageThree = ({ onButtonClick,totalCost,setTotalCost }) => {
       }
       sessionStorage.setItem('userSelection_pageThree',JSON.stringify({singleUser:newValue,multiUser:false}))
       updateCost(newValue, false); // Ensure multiUser is false if selecting single
-      const pageIndex=3
-      setIndex2value(() => ({
-        value1: newValue ? singleUserCost.min : 0,
-        value2: newValue ? singleUserCost.max : 0,
-        value3: 0, // Reset multi-user values
-        value4: 0,
-        index:newValue?pageIndex:0,
-        title1:newValue?"UI/UX":"",
-        answer:newValue?"Yes":""
-      }));
   
       return newValue;
     });
@@ -46,16 +33,6 @@ const onClickMultiUser = () => {
     }
     sessionStorage.setItem("userSelection_pageThree",JSON.stringify({singleUser:false,multiUser:newValue}))
     updateCost(false, newValue); // Ensure singleUser is false if selecting multi
-   const pageIndex=3
-    setIndex2value(() => ({
-      value1: 0, // Reset single-user values
-      value2: 0,
-      value3: newValue ? multiUserCost.min : 0,
-      value4: newValue ? multiUserCost.max : 0,
-      index:newValue?pageIndex:0,
-      title2:newValue?"UI/UX":"",
-      answer:newValue?"No":""
-    }));
 
     return newValue;
   });
@@ -141,73 +118,17 @@ if(selection){
     setSingleUser(true)
     setMultiUser(false)
     updateCost(true,false)
-    setIndex2value({
-      value1:singleUserCost.min,
-      value2:singleUserCost.max,
-      value3:0,
-      value4:0,
-      value5:0,
-      value6:0,
-      index:3,
-      title1:"UI/UX",
-      title2:"",
-      answer:"Yes"
-    })
   }
   if(savedMulti){
     setSingleUser(false)
     setMultiUser(true)
     updateCost(false,true)
-    setIndex2value({
-      value1:0,
-      value2:0,
-      value3:multiUserCost.min,
-      value4:multiUserCost.max,
-      value5:0,
-      value6:0,
-      title1:"",
-      title2:"UI/UX",
-      answer:"No"
-    })
+
   }
 }
-},[])
-//   const calculateTotalCost = () => {
-    
-//     let totalMin = 0;
-//     let totalMax = 0;
+},[]);
 
-//     // Add cost ranges for selected options
-//     if (singleUser) {
-//       totalMin += singleUserCost.min;
-//       totalMax += singleUserCost.max;
-//     }
-//     if (multiUser) {
-//       totalMin += multiUserCost.min;
-//       totalMax += multiUserCost.max;
-//     }
 
-//     // If no user is selected, show $0K
-//     if (totalMin === 0 && totalMax === 0) {
-//       return "$0K";
-//     }
-
-//     // Format the total cost in "K" format with two decimal places
-//     const formattedMin = (totalMin / 1000);
-//     const formattedMax = (totalMax / 1000);
-
-//     const finalCost = `$${Math.round(formattedMin)}K - $${Math.round(formattedMax)}K`;
-
-//     // Store final cost in session storage under a unique index
-//     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-//     costData[1] = index2value; // Store at index 3 (4th position)
-//     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-//     const updatedCost = calculateOverallTotalCost();
-//     setTotalCost(updatedCost);
-//      onButtonClick("pagefour");
-//     return finalCost;
-// };
- 
 
 return (
     <>

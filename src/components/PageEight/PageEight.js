@@ -15,10 +15,7 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
     setSingleUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
-      sessionStorage.setItem("userSelection_pageEight", JSON.stringify({
-        singleUser: newValue,
-        multiUser: false
-      }));
+      sessionStorage.setItem("userSelection_pageEight", JSON.stringify({singleUser: newValue,thirdUser: false}));
       updateCost(newValue);
       const pageIndex=8;
       setIndex7value((prevState) => ({
@@ -41,10 +38,7 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
       if (newValue) {
         setSingleUser(false);
       }
-      sessionStorage.setItem("userSelection_pageEight", JSON.stringify({
-        singleUser: false,
-        thirdUser: true
-      }));
+      sessionStorage.setItem("userSelection_pageEight", JSON.stringify({singleUser: false,thirdUser: true}));
       updateCost(false, newValue);
       const pageIndex=8;
       setIndex7value({
@@ -65,6 +59,8 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
     const value = {
       value1: single ? singleUserCost.min : 0,
       value2: single ? singleUserCost.max : 0,
+      value3:0,
+      value4:0,
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 8 : 0, // ✅ PageSeven
@@ -110,17 +106,30 @@ const calculateTotalCost = () => {
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `$${formattedMin}K - $${formattedMax}K`;
   setTotalCost(finalCost);
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  costData[6] = index7value; // Store in session storage
+  costData=[...costData]
+  console.log('costData is:-',costData);
+  // costData[6] = index7value; // Store in session storage
+  costData[6]={
+    ...costData[6],
+    ...index7value,
+    value1:costData[6]?.value1||0,
+    value2:costData[6]?.value2||0,
+    value3:costData[6]?.value3||0,
+    value4:costData[6]?.value4||0,
+    value5:costData[6]?.value5||0,
+    value6:costData[6]?.value6||0
+  }
+  costData[6]={...index7value,...costData[6]}
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   // **Navigate to next page regardless of selection**
   onButtonClick("pagenine");  
 };
 
 useEffect(() => {
-  const savedSelection = JSON.parse(sessionStorage.getItem("userSelection_pageEight"));
-  if(!savedSelection) return;
-  if (savedSelection) {
-    const { singleUser: savedSingle, thirdUser: savedThird } = savedSelection;
+  const selection = JSON.parse(sessionStorage.getItem("userSelection_pageEight"));
+  if(!selection) return;
+  if (selection) {
+    const { singleUser: savedSingle, thirdUser: savedThird } = selection;
     if (savedSingle) {
       setSingleUser(true);
       setThirdUser(false);
@@ -130,10 +139,12 @@ useEffect(() => {
         value2: singleUserCost.max,
         value3: 0,
         value4: 0,
-        index: 2,
-        title1: "Recurring Subscription",
-        title2: "",
-        answer:"Yes"
+        value5: 0,
+        value6: 0,
+        index: 8,
+        title1: "",
+        title2: "Recurring Subscription",
+        answer: "No"
       });
     } else if (savedThird) {
       setThirdUser(true);
@@ -142,12 +153,14 @@ useEffect(() => {
       setIndex7value({
         value1: 0,
         value2: 0,
-        value3: thirdUserCost.min,
-        value4: thirdUserCost.max,
-        index: 2,
+        value3: 0,
+        value4: 0,
+        value5: thirdUserCost.min,
+        value6: thirdUserCost.max,
+        index: 8,
         title1: "",
         title2: "Recurring Subscription",
-        answer:"No"
+        answer: "No"
       });
     }
   }
@@ -207,7 +220,6 @@ const isContinueButtonEnabled = singleUser || thirdUser;
             alt="users-icon"
           />
              </div>
-     
           <h1 className="f4 pl2 pr2">No</h1>
         </div>
       </div>
