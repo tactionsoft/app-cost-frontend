@@ -98,7 +98,10 @@ const updateCost = (single, multi) => {
 
   // Always update index 3 for Page Four
   costData[2] = value;
-  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+
+  const costDatas=sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  console.log('cost datas is:-',costDatas)
+  
 
   // Recalculate total from all pages
   let totalMin = 0;
@@ -109,14 +112,6 @@ const updateCost = (single, multi) => {
       totalMax += (item.value2 || 0) + (item.value4 || 0);
     }
   }
-
-  // const roundedMin = Math.ceil(totalMin / 1000) * 1000;
-  // const roundedMax = Math.ceil(totalMax / 1000) * 1000;
-  // setTotalCost(
-  //   totalMin === 0 && totalMax === 0
-  //     ? "$0K"
-  //     : `$${roundedMin / 1000}K - $${roundedMax / 1000}K`
-  // );
 
   setTotalCost(
     totalMin === 0 && totalMax === 0

@@ -69,21 +69,20 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
   const onClickThirdUser = () => {
     setThirdUser((prev) => {
       const newValue = !prev;   
-      const pageIndex=9;
-      updateCost(singleUser, multiUser, newValue);
       const updatedState = {
         singleUser,
         multiUser,
         thirdUser:newValue
       };
       sessionStorage.setItem('userSelection_pageNine', JSON.stringify(updatedState));
+      updateCost(singleUser, multiUser, newValue);
+      const pageIndex=9;
       setIndex8value((prevState)=>({
         ...prevState,
         value5: newValue ? thirdUserCostRange.min : 0,
         value6: newValue ? thirdUserCostRange.max : 0,
         index:  newValue?pageIndex:0,
         title3: newValue?"Facebook":""
-        // value3: 0, value4: 0, value5: 0, value6: 0,
       }));
       return newValue;
     });
@@ -92,7 +91,6 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
 
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    console.log('costData is:-',costData);
     const value = {
       value1: single ? singleUserCostRange.min : 0,
       value2: single ? singleUserCostRange.max : 0,
@@ -113,6 +111,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
     let totalMin = 0;
     let totalMax = 0;
     for (let item of costData) {
+      console.log('items are:-',item)
       if (item) {
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
@@ -137,10 +136,12 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
       totalMax += singleUserCostRange.max;
     }
     if (multiUser) {
+      console.log('multiuser',multiUser);
       totalMin += multiUserCostRange.min;
       totalMax += multiUserCostRange.max;
     }
     if (thirdUser) {
+      console.log('third User is:-',thirdUser);
       totalMin += thirdUserCostRange.min;
       totalMax += thirdUserCostRange.max;
     }
@@ -160,7 +161,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
      // Store final cost in session storage under a unique index
      let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
      costData[7] = index8value;
-     console.log('index8Value is:-',index8value);
+     console.log('costData is:-',costData[7]);
      const getData=sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      console.log('getData is:-',getData);
      onButtonClick("pageten");
@@ -342,9 +343,7 @@ useEffect(() => {
         onClick={calculateTotalCostRange}
         disabled={!isNextButtonEnabled}
       />
-
       {/* Display Total Cost */}
- 
     </main>
     <div className="totals well">
         <h2 className="total-cost">

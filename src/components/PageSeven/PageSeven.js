@@ -38,9 +38,10 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
       if (newValue) {
         setSingleUser(false);
       }
-      sessionStorage.setItem('userSelection_PageSeven',JSON.stringify({singleUser:false,thirdUser:newValue}))
+      sessionStorage.setItem('userSelection_PageSeven',JSON.stringify({singleUser:false,thirdUser:newValue}));
       const pageIndex=7;
-      updateCost(false, false, newValue);
+      // updateCost(false, false, newValue);
+      updateCost(false,newValue);
       setIndex6value({
         value1: newValue ? thirdUserCost.min : 0,
         value2: newValue ? thirdUserCost.max : 0,
@@ -48,7 +49,6 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
         index:newValue?pageIndex:0,
         title2:newValue?"Payment Process":"",
         answer:newValue?"No":""
-
       });
       return newValue;
     });
@@ -60,14 +60,16 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
     const value = {
       value1: single ? singleUserCost.min : 0,
       value2: single ? singleUserCost.max : 0,
+      value3: 0,
+      value4: 0,
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
-      index: single || multi || third ? 7 : 0, // ✅ PageSeven
+      index: single || multi || third ? 7 : 0,
       title1: single ? "Payment Process" : "",
       title2: third ? "Payment Process" : "",
-      answer: single ? "Yes" : third ? "No" : "", // ✅ Answer
+      answer: single ? "Yes" : third ? "No" : "",
     };
-    costData[5] = value; // ✅ PageSeven = index 6
+    costData[5] = value; // ✅ PageSeven = index 6 
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
     // Recalculate total
     let totalMin = 0;
@@ -77,8 +79,8 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
       }
+      
     }
-  
     setTotalCost(
       totalMin === 0 && totalMax === 0
         ? "$0K"
@@ -100,7 +102,6 @@ const calculateTotalCost = () => {
     totalMax += thirdUserCost.max;
   }
 
-
   const formattedMin = (totalMin / 1000);
   const formattedMax = (totalMax / 1000);
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `$${formattedMin}K - $${formattedMax}K`;
@@ -109,21 +110,27 @@ const calculateTotalCost = () => {
 
   // Retrieve existing data
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-
+  console.log('cost data is:-',costData)
   // Ensure costData has at least 6 indices without affecting existing values
   costData = [...costData];
-
+  console.log('costData is:-',costData)
   // Only update index 5 if it hasn't been set already
   if (!costData[5]) {
     costData[5] = {}; // Initialize index 5 if it's undefined
   }
-
+  costData[5] = {
+    ...costData[5],
+    ...index6value,
+    value3: costData[5]?.value3 || 0,
+    value4: costData[5]?.value4 || 0,
+    value5: costData[5]?.value5 || 0,
+    value6: costData[5]?.value6 || 0,
+  };
   // Preserve existing values in costData[5] and update only necessary fields
-  costData[5] = { ...costData[5], ...index6value };
-
+  costData[5] = { ...costData[5], ...index6value};
+  console.log('cost data is:-',costData[5])
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-
   onButtonClick("pageeight");
 };
 
@@ -137,17 +144,17 @@ useEffect(() => {
       setSingleUser(true);
       setThirdUser(false);
       updateCost(true, false);
-      setIndex6value({
-        value1: singleUserCost.min,
-        value2: singleUserCost.max,
-        value3: 0,
-        value4: 0,
-        index: 2,
-        title1: "Payment Process",
-        title2: "",
-        answer:"Yes"
-      }
-    );
+    setIndex6value(prev => ({
+      ...prev,
+      value1: singleUserCost.min,
+      value2: singleUserCost.max,
+      value3: 0,
+      value4: 0,
+      index: 7,
+      title1: "Payment Process",
+      title2: "",
+      answer: "Yes",
+    }));
     } else if (savedThird) {
       setThirdUser(true);
       setSingleUser(false);
@@ -157,7 +164,7 @@ useEffect(() => {
         value2: 0,
         value3: thirdUserCost.min,
         value4: thirdUserCost.max,
-        index: 2,
+        index: 7,
         title1: "",
         title2: "Payment Process",
         answer:"No"
