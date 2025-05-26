@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-6 col-12 col-md-5 banner-content">
-            <h1 className="text-white mb-4 banner-title">
+            <h1 className="text-white mb-4 landing-text banner-title">
               {/* App Development Cost Calculator – Estimate Your <span>App Budget Instantly</span> */}
                <strong>App Cost Calculator | Estimate Your Mobile - <span><strong>App  Development Cost Instantly</strong></span> </strong>
             </h1>
