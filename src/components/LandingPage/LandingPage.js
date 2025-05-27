@@ -41,14 +41,6 @@ import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jp
     setOpenItem(openItem===id? null :id)
 }
 
-// const handleChange=(e)=>{
-//   const {name,value}=e.target;
-//   setFormData((prevFormData)=>({
-//   ...prevFormData,
-//   [name]:value,
-//   }));
-//   }
-
 const handleChange = (e) => {
   const { name, value } = e.target;
   
@@ -60,12 +52,6 @@ const handleChange = (e) => {
 
     return updatedFormData;
   });
-
-  // setErrors((prevErrors) => {
-  //   let newErrors = { ...prevErrors };
-  //   newErrors[name] = value.trim() ? '' : `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
-  //   return newErrors;
-  // });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -124,6 +110,75 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
   
+    try {
+      // ✅ Send Data to Strapi API
+      const apiResponse = await fetch("https://api.app-cost.com/api/login",
+         {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData["ebook-form-name"],
+          email: formData["ebook-email"],
+          phone: formData["ebook-contact"],
+          requirement: formData["ebook-requirement"],
+        }),
+      });
+  
+      const apiData = await apiResponse.json();
+  
+      if (!apiResponse.ok) {
+        throw new Error(apiData.message || "Failed to submit data");
+      }
+  
+      console.log("User data stored successfully:", apiData);
+  
+      // ✅ Function to Send Email using EmailJS
+      const sendEmail = (recipientEmail, subject, message, ccEmail = "",senderName = "Taction Software LLC") => {
+        // const serviceID = "service_r4mrnbp";
+        const serviceID='service_hwmtg7p';
+        // const templateID = "template_kuwkoet"; // Using a single template
+        const templateID='template_13nx0tq';
+        // const publicKey = "kCTmCH5S7cwmPxSVR";
+        const  publicKey= "sXCZZgYF5dxHpqxO_";
+  
+        const templateParams = {
+          name:senderName,
+          to_email: recipientEmail, // Different for user and admin
+          cc_email: ccEmail, // Optional CC email for admin
+          contact: formData["ebook-contact"],
+          requirement: formData["ebook-requirement"],
+          email_subject: subject, // Dynamic subject
+          email_message: message, // Custom message for client/admin
+        };
+  
+        return emailjs.send(serviceID, templateID, templateParams, publicKey)
+          .then((response) => console.log(`Email sent to ${recipientEmail}:`, response.status))
+          .catch((error) => console.error(`Failed to send email to ${recipientEmail}:`, error));
+      };
+  
+      // ✅ Custom Subjects and Messages
+      const clientSubject = "Thank You for Your Inquiry!";
+      const adminSubject = "New Inquiry Received! - Follow Up Required";
+  
+      const clientMessage = `Dear ${formData["ebook-form-name"]},\n\nThank you for reaching out to us! We have received your inquiry regarding mobile app development, and our team is already reviewing your requirements.
+
+                            With 11+ years of expertise in building innovative and scalable mobile applications, we’re excited to help bring your idea to life. One of our experts will get in touch with you shortly to discuss your project in more detail.In the meantime, feel free to explore our services and past projects here: www.tactionsoft.com. If you have any urgent queries.
+
+                           Looking forward to collaborating with you!\n\nBest Regards,\nTaction Software LLC `;
+      const adminMessage = `New Inquiry Received!\n\nName: ${formData["ebook-form-name"]}\nEmail: ${formData["ebook-email"]}\nContact: ${formData["ebook-contact"]}\nRequirement: ${formData["ebook-requirement"]}\n\nPlease follow up.`;
+  
+      // ✅ Send Different Emails with Different Subjects
+      await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
+      await sendEmail("alok@tactionsoft.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
+      // alert("Emails Sent Successfully!");
+      navigate("/thank-you");
+  
+    } catch (error) {
+      console.error("Error submitting user data:", error);
+      alert(error.message);
+    }
     // try {
     //   // ✅ Send Data to Strapi API
     //   const apiResponse = await fetch("http://localhost:1337/api/login",
@@ -150,9 +205,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
     //   // ✅ Function to Send Email using EmailJS
     //   const sendEmail = (recipientEmail, subject, message, ccEmail = "",senderName = "Taction Software LLC") => {
-    //     const serviceID = "service_r4mrnbp";
-    //     const templateID = "template_kuwkoet"; // Using a single template
-    //     const publicKey = "kCTmCH5S7cwmPxSVR";
+    //     // const serviceID = "service_r4mrnbp";
+    //     const serviceID='service_hwmtg7p';
+    //     // const templateID = "template_kuwkoet"; // Using a single template
+    //     const templateID='template_13nx0tq';
+    //     // const publicKey = "kCTmCH5S7cwmPxSVR";
+    //     const  publicKey= "sXCZZgYF5dxHpqxO_";
   
     //     const templateParams = {
     //       name:senderName,
@@ -182,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     //   // ✅ Send Different Emails with Different Subjects
     //   await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
-    //   await sendEmail("gurvinder@felicitastechnologies.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
+    //   await sendEmail("alok@tactionsoft.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
     //   // alert("Emails Sent Successfully!");
     //   navigate("/thank-you");
   
@@ -190,70 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //   console.error("Error submitting user data:", error);
     //   alert(error.message);
     // }
-
   
-    try {
-      // ✅ Send Data to Strapi API
-      const apiResponse = await fetch("https://api.app-cost.com/api/login",
-         {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData["ebook-form-name"],
-          email: formData["ebook-email"],
-          phone: formData["ebook-contact"],
-          requirement: formData["ebook-requirement"],
-        }),
-      });
-  
-      const apiData = await apiResponse.json();
-  
-      if (!apiResponse.ok) {
-        throw new Error(apiData.message || "Failed to submit data");
-      }
-  
-      // ✅ Function to Send Email using EmailJS
-      const sendEmail = (recipientEmail, subject, message, ccEmail = "",senderName = "Taction Software LLC") => {
-        const serviceID = "service_r4mrnbp";
-        const templateID = "template_kuwkoet"; // Using a single template
-        const publicKey = "kCTmCH5S7cwmPxSVR";
-        const templateParams = {
-          name:senderName,
-          to_email: recipientEmail, // Different for user and admin
-          cc_email: ccEmail, // Optional CC email for admin
-          contact: formData["ebook-contact"],
-          requirement: formData["ebook-requirement"],
-          email_subject: subject, // Dynamic subject
-          email_message: message, // Custom message for client/admin
-        };
-        return emailjs.send(serviceID, templateID, templateParams, publicKey)
-          .then((response) => console.log(`Email sent to ${recipientEmail}:`, response.status))
-          .catch((error) => console.error(`Failed to send email to ${recipientEmail}:`, error));
-      };
-  
-      // ✅ Custom Subjects and Messages
-      const clientSubject = "Thank You for Your Inquiry!";
-      const adminSubject = "New Inquiry Received! - Follow Up Required";
-      const clientMessage = `Dear ${formData["ebook-form-name"]},\n\nThank you for reaching out to us! We have received your inquiry regarding mobile app development, and our team is already reviewing your requirements.
-
-                            With 11+ years of expertise in building innovative and scalable mobile applications, we’re excited to help bring your idea to life. One of our experts will get in touch with you shortly to discuss your project in more detail.In the meantime, feel free to explore our services and past projects here: www.tactionsoft.com. If you have any urgent queries.
-
-                           Looking forward to collaborating with you!\n\nBest Regards,\nTaction Software LLC `;
-      const adminMessage = `New Inquiry Received!\n\nName: ${formData["ebook-form-name"]}\nEmail: ${formData["ebook-email"]}\nContact: ${formData["ebook-contact"]}\nRequirement: ${formData["ebook-requirement"]}\n\nPlease follow up.`;
-  
-      // ✅ Send Different Emails with Different Subjects
-      await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
-      await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
-      await sendEmail("info@tactionsoft.com", adminSubject, adminMessage, "marketing@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
-      // alert("Emails Sent Successfully!");
-      // navigate("/app-cost-calculator");
-      navigate("/thank-you");
-    } catch (error) {
-      console.error("Error submitting user data:", error);
-      alert(error.message);
-    }
+    
 
   };
   
