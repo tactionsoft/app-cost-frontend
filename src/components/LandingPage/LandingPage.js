@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // ✅ Send Different Emails with Different Subjects
       await sendEmail(formData["ebook-email"], clientSubject, clientMessage,"Taction Software LLC"); // Client Email
-      await sendEmail("alok@tactionsoft.com", adminSubject, adminMessage, "coolkohligaurav1826.gk@gmail.com", formData["ebook-form-name"]); // Admin Email with CC
+      await sendEmail("marketing@tactionsoft.com", adminSubject, adminMessage, "info@tactionsoft.com", formData["ebook-form-name"]); // Admin Email with CC
       // alert("Emails Sent Successfully!");
       navigate("/thank-you");
   
