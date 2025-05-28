@@ -68,7 +68,6 @@ function MainApp() {
   const location=useLocation();
   const showProgressBar = location.pathname !== "/";
   const hideProgressBar=location.pathname!=='/thank-you'
-
   const resetProgress = () => {
     setCompletedPages({ pageone: true }); // Reset progress, allowing only Page 1
   };
@@ -108,9 +107,7 @@ function MainApp() {
 
   return (
       <div className="App">
-
        {showProgressBar && <Logo/>} 
-       
         {showProgressBar && hideProgressBar && <MultiStepProgressBar completedPages={completedPages} page={page} onPageNumberClick={nextPage} />}
         <Routes>
           {/* Multi-step form routes */}

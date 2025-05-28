@@ -72,6 +72,7 @@ const PageFifteen = ({ onButtonClick }) => {
 
 useEffect(() => {
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  console.log('cost data is:-',costData);
   setTotalCost(calculateTotalCost(costData)); // ✅ Update the state properly
 
   const handleStorageChange = () => {
@@ -85,6 +86,83 @@ useEffect(() => {
       window.removeEventListener("storage", handleStorageChange);
   };
 }, []);
+
+// const generateTableHTML = (costData) => {
+//   let tableHTML = `
+//     <p>Here is the cost breakdown:</p>
+//     <table border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse; width: 100%;">
+//       <thead>
+//         <tr>
+//           <th style="border: 1px solid black; padding: 5px;">Page No</th>
+//           <th style="border: 1px solid black; padding: 5px;">Title</th>
+//           <th style="border: 1px solid black; padding: 5px;">Answer</th>
+//           <th style="border: 1px solid black; padding: 5px;">Min Cost</th>
+//           <th style="border: 1px solid black; padding: 5px;">Max Cost</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//   `;
+
+//   // Merge titles and answers for the same page
+//   const mergedData = {};
+
+//   costData.forEach((item) => {
+//     console.log('item is:----',item);
+//     if (item) {
+//       const pageIndex = item.index || "N/A";
+
+//       if (!mergedData[pageIndex]) {
+//         mergedData[pageIndex] = {
+//           index: pageIndex,
+//           titles: [],
+//           answers: new Set(), // Use Set to store unique answers
+//           minCost: 0,
+//           maxCost: 0,
+//         };
+//       }
+
+//       if (item.title1) {
+//         mergedData[pageIndex].titles.push(item.title1);
+//         mergedData[pageIndex].answers.add(item.answer || ""); // Add unique answer
+//         mergedData[pageIndex].minCost += item.value1 || 0;
+//         mergedData[pageIndex].maxCost += item.value2 || 0;
+//       }
+//       if (item.title2) {
+//         mergedData[pageIndex].titles.push(item.title2);
+//         mergedData[pageIndex].answers.add(item.answer || "");
+//         mergedData[pageIndex].minCost += item.value3 || 0;
+//         mergedData[pageIndex].maxCost += item.value4 || 0;
+//       }
+//       if (item.title3) {
+//         mergedData[pageIndex].titles.push(item.title3);
+//         mergedData[pageIndex].answers.add(item.answer || "");
+//         mergedData[pageIndex].minCost += item.value5 || 0;
+//         mergedData[pageIndex].maxCost += item.value6 || 0;
+//       }
+//     }
+//   });
+
+//   // Populate the table rows with merged data
+//   Object.values(mergedData).forEach((row) => {
+//     tableHTML += `
+//       <tr>
+//         <td style="border: 1px solid black; padding: 5px;">${row.index}</td>
+//         <td style="border: 1px solid black; padding: 5px;">${row.titles.join(", ")}</td>
+//         <td style="border: 1px solid black; padding: 5px;">${[...row.answers].join(", ")}</td>
+//         <td style="border: 1px solid black; padding: 5px;">${row.minCost}</td>
+//         <td style="border: 1px solid black; padding: 5px;">${row.maxCost}</td>
+//       </tr>
+//     `;
+//   });
+
+//   // Close the table
+//   tableHTML += `
+//       </tbody>
+//     </table>
+//   `;
+
+//   return tableHTML;
+// };
 
 const generateTableHTML = (costData) => {
   let tableHTML = `
@@ -102,64 +180,52 @@ const generateTableHTML = (costData) => {
       <tbody>
   `;
 
-  // Merge titles and answers for the same page
   const mergedData = {};
-console.log('merged data is:-',mergedData)
-  costData.forEach((item) => {
-    if (item) {
-      const pageIndex = item.index || "N/A";
 
-      if (!mergedData[pageIndex]) {
-        mergedData[pageIndex] = {
-          index: pageIndex,
-          titles: [],
-          answers: new Set(), // Use Set to store unique answers
-          minCost: 0,
-          maxCost: 0,
-        };
-      }
+  costData.forEach(item => {
+    const pageIndex = item.index ?? "N/A";
 
-      if (item.title1) {
-        mergedData[pageIndex].titles.push(item.title1);
-        mergedData[pageIndex].answers.add(item.answer || ""); // Add unique answer
-        mergedData[pageIndex].minCost += item.value1 || 0;
-        mergedData[pageIndex].maxCost += item.value2 || 0;
-      }
-      if (item.title2) {
-        mergedData[pageIndex].titles.push(item.title2);
-        mergedData[pageIndex].answers.add(item.answer || "");
-        mergedData[pageIndex].minCost += item.value3 || 0;
-        mergedData[pageIndex].maxCost += item.value4 || 0;
-      }
-      if (item.title3) {
-        mergedData[pageIndex].titles.push(item.title3);
-        mergedData[pageIndex].answers.add(item.answer || "");
-        mergedData[pageIndex].minCost += item.value5 || 0;
-        mergedData[pageIndex].maxCost += item.value6 || 0;
-      }
+    if (!mergedData[pageIndex]) {
+      mergedData[pageIndex] = {
+        titles: [],
+        answers: new Set(),
+        minCost: 0,
+        maxCost: 0,
+      };
     }
+
+    const entry = mergedData[pageIndex];
+
+    // Collect titles
+    if (item.title1) entry.titles.push(item.title1);
+    if (item.title2) entry.titles.push(item.title2);
+    if (item.title3) entry.titles.push(item.title3);
+
+    // Collect answers if any
+    if (item.answer) entry.answers.add(item.answer);
+
+    // Accumulate cost
+    entry.minCost += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+    entry.maxCost += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
   });
 
-  // Populate the table rows with merged data
-  Object.values(mergedData).forEach((row) => {
+  // Render the merged table rows
+  Object.entries(mergedData).forEach(([index, data]) => {
     tableHTML += `
       <tr>
-        <td style="border: 1px solid black; padding: 5px;">${row?.index}</td>
-        <td style="border: 1px solid black; padding: 5px;">${row?.titles.join(", ")}</td>
-        <td style="border: 1px solid black; padding: 5px;">${[...row?.answers].join(", ")}</td>
-        <td style="border: 1px solid black; padding: 5px;">${row?.minCost}</td>
-        <td style="border: 1px solid black; padding: 5px;">${row?.maxCost}</td>
+        <td style="border: 1px solid black; padding: 5px;">${index}</td>
+        <td style="border: 1px solid black; padding: 5px;">${data.titles.join(", ")}</td>
+        <td style="border: 1px solid black; padding: 5px;">${[...data.answers].join(", ") || "-"}</td>
+        <td style="border: 1px solid black; padding: 5px;">${data.minCost.toLocaleString()}</td>
+        <td style="border: 1px solid black; padding: 5px;">${data.maxCost.toLocaleString()}</td>
       </tr>
     `;
   });
-  // Close the table
-  tableHTML += `
-      </tbody>
-    </table>
-  `;
 
+  tableHTML += `</tbody></table>`;
   return tableHTML;
 };
+
 
 
 const handleSubmit = async (e) => {
@@ -239,9 +305,9 @@ const handleSubmit = async (e) => {
 
 
 
-  const response = await fetch('https://api.app-cost.com/api/user-info/submit',{
+  const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: formData.name.trim(),
       email: formData.email.trim(),
@@ -254,19 +320,20 @@ const handleSubmit = async (e) => {
 
   // if (!response.ok) {
   //   console.error("❌ API Error:", result);
+
   //   // ✅ Extract actual error message from `details.error` or fallback to `result.message`
   //   const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
 
   //   alert(`Error: ${errorMessage}`);
   //   return;
   // }
-
+  
   emailjs.send("service_hwmtg7p","template_goxhraz",{
     email: formData.email.trim(),
     phone: formData.phone.trim(),
     from_name: formData.name.trim(),
     name: "Admin",
-    to_email: "marketing@tactionsoft.com,info@tactionsoft.com",
+    to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
     total_cost: generateTableHTML(costData),
     total_costs: totalCost,
     selectedIndustry: selectedIndustry,
@@ -289,7 +356,10 @@ const handleSubmit = async (e) => {
   
 };
 
+
+
   return (
+
     <main className="pt5 black-80 center-fifteen form-content"
       style={{ maxWidth: "60%", maxHeight: "30%", margin: "auto" }}>
         <div className="total-est-cost well">
@@ -299,7 +369,6 @@ const handleSubmit = async (e) => {
           Please note, all cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
         </p>
       </div>
-
       <form className="measure" onSubmit={handleSubmit}>
         <h1 className="form-title" style={{ color: "#fff" }}>Please fill out this form to complete your details and receive your estimate.</h1>
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -321,6 +390,7 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
+
 {/* 
             {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>} */}
           </div>
