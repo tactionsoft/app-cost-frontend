@@ -189,54 +189,107 @@ const handleSubmit = async (e) => {
     //   }),
     // });
 
-    const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        totalCost,
-        selectedIndustry,
-      }),
-    });
-    await response.json();
+  //   const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       name: formData.name.trim(),
+  //       email: formData.email.trim(),
+  //       phone: formData.phone.trim(),
+  //       totalCost,
+  //       selectedIndustry,
+  //     }),
+  //   });
+  //   await response.json();
 
-    // if (!response.ok) {
-    //   console.error("❌ API Error:", result);
+  //   // if (!response.ok) {
+  //   //   console.error("❌ API Error:", result);
 
-    //   // ✅ Extract actual error message from `details.error` or fallback to `result.message`
-    //   const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
+  //   //   // ✅ Extract actual error message from `details.error` or fallback to `result.message`
+  //   //   const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
 
-    //   alert(`Error: ${errorMessage}`);
-    //   return;
-    // }
-    emailjs.send("service_r4mrnbp", "template_6t7euqq", {
+  //   //   alert(`Error: ${errorMessage}`);
+  //   //   return;
+  //   // }
+  //   emailjs.send("service_r4mrnbp", "template_6t7euqq", {
+  //     email: formData.email.trim(),
+  //     phone: formData.phone.trim(),
+  //     from_name: formData.name.trim(),
+  //     name: "Admin",
+  //     to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
+  //     total_cost: generateTableHTML(costData),
+  //     total_costs: totalCost,
+  //     selectedIndustry: selectedIndustry,
+  //   }, "kCTmCH5S7cwmPxSVR")
+  //     .then((response) => {
+  //       // alert("Thank you! Your estimate has been sent.");
+  //       sessionStorage.removeItem("userProgress");
+  //       sessionStorage.removeItem("finalCostPrice");
+  //       onButtonClick('pagesixteen'); // Redirect user
+  //     })
+  //     .catch((error) => {
+  //       console.error("❌ Email failed:", error);
+  //       alert("Failed to send email. Please try again.");
+  //     });
+
+  // } catch (error) {
+  //   console.error("❌ Error:", error);
+  //   alert("An unexpected error occurred. Please try again.");
+  // }
+
+
+
+
+  const response = await fetch('http://localhost:1337/api/user-info/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: formData.name.trim(),
       email: formData.email.trim(),
       phone: formData.phone.trim(),
-      from_name: formData.name.trim(),
-      name: "Admin",
-      to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
-      total_cost: generateTableHTML(costData),
-      total_costs: totalCost,
-      selectedIndustry: selectedIndustry,
-    }, "kCTmCH5S7cwmPxSVR")
-      .then((response) => {
-        // alert("Thank you! Your estimate has been sent.");
-        sessionStorage.removeItem("userProgress");
-        sessionStorage.removeItem("finalCostPrice");
-        onButtonClick('pagesixteen'); // Redirect user
-      })
-      .catch((error) => {
-        console.error("❌ Email failed:", error);
-        alert("Failed to send email. Please try again.");
-      });
+      totalCost,
+      selectedIndustry,
+    }),
+  });
+  await response.json();
 
-  } catch (error) {
-    console.error("❌ Error:", error);
-    alert("An unexpected error occurred. Please try again.");
-  }
+  // if (!response.ok) {
+  //   console.error("❌ API Error:", result);
+  //   // ✅ Extract actual error message from `details.error` or fallback to `result.message`
+  //   const errorMessage = result?.error?.details?.error || result?.error?.message || "An error occurred.";
+
+  //   alert(`Error: ${errorMessage}`);
+  //   return;
+  // }
+  emailjs.send("service_hwmtg7p","template_goxhraz",{
+    email: formData.email.trim(),
+    phone: formData.phone.trim(),
+    from_name: formData.name.trim(),
+    name: "Admin",
+    to_email: "marketing@tactionsoft.com,info@tactionsoft.com",
+    total_cost: generateTableHTML(costData),
+    total_costs: totalCost,
+    selectedIndustry: selectedIndustry,
+  }, "sXCZZgYF5dxHpqxO_")
+    .then((response) => {
+      // alert("Thank you! Your estimate has been sent.");
+      sessionStorage.removeItem("userProgress");
+      sessionStorage.removeItem("finalCostPrice");
+      onButtonClick('pagesixteen'); // Redirect user
+    })
+    .catch((error) => {
+      console.error("❌ Email failed:", error);
+      alert("Failed to send email. Please try again.");
+    });
+
+} catch (error) {
+  console.error("❌ Error:", error);
+  alert("An unexpected error occurred. Please try again.");
+}
+  
 };
+
+
 
   return (
 
