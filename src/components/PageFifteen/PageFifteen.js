@@ -104,7 +104,7 @@ const generateTableHTML = (costData) => {
 
   // Merge titles and answers for the same page
   const mergedData = {};
-
+console.log('merged data is:-',mergedData)
   costData.forEach((item) => {
     if (item) {
       const pageIndex = item.index || "N/A";
@@ -144,15 +144,14 @@ const generateTableHTML = (costData) => {
   Object.values(mergedData).forEach((row) => {
     tableHTML += `
       <tr>
-        <td style="border: 1px solid black; padding: 5px;">${row.index}</td>
-        <td style="border: 1px solid black; padding: 5px;">${row.titles.join(", ")}</td>
-        <td style="border: 1px solid black; padding: 5px;">${[...row.answers].join(", ")}</td>
-        <td style="border: 1px solid black; padding: 5px;">${row.minCost}</td>
-        <td style="border: 1px solid black; padding: 5px;">${row.maxCost}</td>
+        <td style="border: 1px solid black; padding: 5px;">${row?.index}</td>
+        <td style="border: 1px solid black; padding: 5px;">${row?.titles.join(", ")}</td>
+        <td style="border: 1px solid black; padding: 5px;">${[...row?.answers].join(", ")}</td>
+        <td style="border: 1px solid black; padding: 5px;">${row?.minCost}</td>
+        <td style="border: 1px solid black; padding: 5px;">${row?.maxCost}</td>
       </tr>
     `;
   });
-
   // Close the table
   tableHTML += `
       </tbody>
@@ -240,9 +239,9 @@ const handleSubmit = async (e) => {
 
 
 
-  const response = await fetch('http://localhost:1337/api/user-info/submit', {
+  const response = await fetch('https://api.app-cost.com/api/user-info/submit',{
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify({
       name: formData.name.trim(),
       email: formData.email.trim(),
@@ -261,6 +260,7 @@ const handleSubmit = async (e) => {
   //   alert(`Error: ${errorMessage}`);
   //   return;
   // }
+
   emailjs.send("service_hwmtg7p","template_goxhraz",{
     email: formData.email.trim(),
     phone: formData.phone.trim(),
@@ -289,10 +289,7 @@ const handleSubmit = async (e) => {
   
 };
 
-
-
   return (
-
     <main className="pt5 black-80 center-fifteen form-content"
       style={{ maxWidth: "60%", maxHeight: "30%", margin: "auto" }}>
         <div className="total-est-cost well">
