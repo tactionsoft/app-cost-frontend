@@ -144,7 +144,7 @@ useEffect(() => {
       setSingleUser(true);
       setThirdUser(false);
       updateCost(true, false);
-    setIndex6value(prev => ({
+      setIndex6value(prev => ({
       ...prev,
       value1: singleUserCost.min,
       value2: singleUserCost.max,
