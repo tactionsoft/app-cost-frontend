@@ -2,32 +2,20 @@ import React from "react";
 import "./PageSixteen.css";
 import { useNavigate } from "react-router-dom";
 
-const PageSixteen = ({onButtonClick,resetProgress}) => {
+const PageSixteen = ({ onButtonClick, resetProgress }) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="mw5 bg-white pa2-ns mt5 dib last-page"
-      style={{
-        maxWidth: "43%",
-        maxHeight: "30%",
-        width: "850px",
-        fontWeight: "400",
-      }}
-    >
+    <div className="thankyou-page">
+    <div className="mw5 bg-white pa2-ns mt5 dib last-page" style={{maxWidth: "43%", maxHeight: "30%", width: "850px", fontWeight: "400",}}>
       <div className="center">
         <h2 style={{ fontSize: "2rem" }}>
-          Thanks for your time. Your estimate will be emailed to you shortly.
+          Thanks for your time. <br />
+          Your estimate will be emailed to you shortly.
         </h2>
       </div>
       <p
-        style={{
-          fontSize: "1rem",
-          fontWeight: "500",
-          lineHeight: 1.5,
-          color: "#212529",
-        }}
-      >
+        style={{fontSize: "1rem", fontWeight: "500", lineHeight: 1.5, color: "#212529"}}>
         We look forward to hearing from you.
       </p>
       <input
@@ -55,6 +43,7 @@ const PageSixteen = ({onButtonClick,resetProgress}) => {
           resetProgress();
         }}
       />
+    </div>
     </div>
   );
 };

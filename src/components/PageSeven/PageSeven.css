@@ -110,10 +110,15 @@
   @media (max-width: 526px) {
     .page_one .est-hrs .three-label {
         font-size: 10px !important;
-        /* white-space: nowrap; */
     }
 }
 
   .bg-white-seven {
     padding: 45px 20px 15px !important;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+    background-color: #fff;
+}
+
+.body-background {
+  padding-bottom: 5rem;
 }
