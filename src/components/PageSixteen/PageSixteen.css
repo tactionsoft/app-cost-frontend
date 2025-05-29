@@ -59,6 +59,7 @@
 
 h2 {
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .divider {
@@ -103,4 +104,17 @@ h2 {
   .page_one .est-hrs .three-label{
     font-size: 11px !important;
   }
+}
+
+.last-page {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+  padding-bottom: 20rem;
+}
+
+.last-page:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
+}
+
+.thankyou-page {
+  padding-bottom: 27rem;
 }

@@ -113,9 +113,14 @@
       padding-left: 10px !important;
       padding-right: 10px !important;
     }
-
-    
   }
 
+  .page_one:hover,
+  .page-one:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
+  }
 
-  
+  .page_one,
+  .page-one {
+    background: #fff;
+  }

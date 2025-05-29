@@ -208,7 +208,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
   return (
     <>
         <main
-      className="pt5 black-80"
+      className="pt5 black-80 body-background"
       style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
     >
       <h2>How many other basic API integrations are you expecting?</h2>
@@ -216,7 +216,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
         {/* Single User */}
         <div
           className="mw5 bg-white-twelve br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
-          style={{ borderColor: singleUser? "#18d2e8" : "#EAEEF5",height:"350px" }}
+          style={{ borderColor: singleUser? "#18d2e8" : "#fafafa",height:"350px" }}
           onClick={onClickSingleUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>
@@ -249,7 +249,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
         {/* Multi User */}
         <div
           className="mw5 bg-white-twelve br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
-          style={{ borderColor: multiUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
+          style={{ borderColor: multiUser ? "#18d2e8" : "#fafafa",height:"350px" }}
           onClick={onClickMultiUser}
         >
               <div style={{display:"flex",justifyContent:"center"}}>
@@ -282,7 +282,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
         {/* Third User */}
         <div
           className="mw5 bg-white-twelve br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
-          style={{ borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px" }}
+          style={{ borderColor: thirdUser ? "#18d2e8" : "#fafafa",height:"350px" }}
           onClick={onClickThirdUser}
         >
           <div style={{display:"flex",justifyContent:"center"}}>
@@ -359,18 +359,17 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
       />
 
       {/* Total Cost Display */}
-
-    </main>
-    <div className="totals well">
+      <div className="totals well container p-5">
         <h2 className="total-cost">
           Total Estimated Cost: <span id="total-cost">{totalCost}</span>
         </h2>
         <p className="disclaimer">
-          Please note, all cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
+          Please note : All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
         </p>
       </div>
+    </main>
+    
     </>
-
   );
 };
 

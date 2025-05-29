@@ -87,7 +87,6 @@ h2 {
   }
 }
 
-
 .submitButton {
   margin-top: 40px;
 }
@@ -126,10 +125,6 @@ h2 {
   cursor: pointer;
 }
 
-.industry-card:hover {
-  transform: perspective(3000px) rotateY(5deg);
-}
-
 .icon-size {
   width: 2.5rem;
   height: 2.5rem;
@@ -139,6 +134,9 @@ h2 {
   padding-bottom: 40px;
 }
 
+.industry-all-content .title-select {
+  font-size: 2rem !important;
+}
 /* .industry-card::before,
 .industry-card::after {
   position: absolute;
@@ -169,7 +167,8 @@ h2 {
   margin-top: 5px;
   font-size: 18px !important;
   color: #0000;
-  background: linear-gradient(90deg, #18d2e8 50%, #000 0) var(--_p, 100%) / 200% no-repeat;
+  background: linear-gradient(90deg, #18d2e8 50%, #000 0) var(--_p, 100%) / 200%
+    no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   transition: 0.4s;
@@ -238,19 +237,60 @@ h2 {
   color: #434a54;
   font-weight: 500;
 }
-.disclaimer {
+.totals .disclaimer {
   margin-top: 40px;
-  color: #08354e;
-  font-size: 13px;
+  color: #fff;
+  font-size: 20px;
   font-weight: 500;
   line-height: 1.4;
+  font-style: italic;
+  text-shadow: .25px .25px #000;
 }
+
+.totals .total-cost #total-cost {
+  font-weight: 600;
+  text-shadow: 0.75px 0.75px #000;
+}
+
 @media screen and (max-width: 375px) and (max-height: 667px) {
   .disclaimer {
     margin-top: 16px;
-    color: #08354e;
-    font-size: 13px;
-    font-weight: 500;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
     line-height: 1.4;
   }
+}
+
+.industry-type .industry-block-one .industry-card,
+.industry-type .industry-block-two .industry-card,
+.industry-type .industry-block-three .industry-card,
+.industry-type .industry-block-four .industry-card {
+  border: 0;
+  display: block;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.industry-card:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .2) !important;
+}
+
+.industry-card {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+}
+
+.industry-card:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
+}
+
+.industry-card.selected {
+  border-color: #18d2e8;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.industry-card:not(.selected) {
+  border-color: #EAEEF5;
 }

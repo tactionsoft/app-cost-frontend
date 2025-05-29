@@ -7,7 +7,7 @@ import "./PageThirteen.css";
 const UserOption = ({ imgSrc, label, isSelected, onClick,onClickUser }) => (
   <div
     className="mw5 bg-white-thirteen br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four"
-    style={{ borderColor: isSelected ? "#18d2e8" : "#EAEEF5" }}
+    style={{ borderColor: isSelected ? "#18d2e8" : "#fafafa" }}
     onClick={onClick}
   >
        <div style={{display:"flex",justifyContent:"center"}}>
@@ -150,7 +150,7 @@ useEffect(() => {
 
   return (
     <main
-      className="pt5 black-80"
+      className="pt5 black-80 maintenance-background"
       style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
     >
       <h2>Need ongoing maintenance and support?</h2>

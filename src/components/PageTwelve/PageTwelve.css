@@ -37,6 +37,8 @@
   
   .bg-white-twelve {
     padding: 45px 20px 15px !important;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+    background-color: #fff;
 }
 
 @media (max-width: 476px) {
@@ -44,4 +46,8 @@
         font-size: 10px !important;
         /* white-space: nowrap; */
     }
+  }
+
+  .body-background {
+    padding-bottom: 5rem;
   }

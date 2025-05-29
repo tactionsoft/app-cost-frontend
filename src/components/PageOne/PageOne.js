@@ -129,33 +129,27 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
 
   return (
     <main className="pt5 black-80 industry-all-content" style={{ maxWidth: "70%", maxHeight: "25%", margin: "auto" }}>
-      <h1 className="title-select">Select Your industry</h1>
+      <h1 className="title-select">Select Your Industry</h1>
       <div class="industry-type">
         <div className="industry-block-one ph4 selectionDiv">
 
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "bankingUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("bankingUser")}
-          >
-            <img src={bankingUser} className="icon-size" title="multi user icon" alt="users-icon" />
-            <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "bankingUser" ? 'selected' : ''}`}>Banking</h1>
-          </div>
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "engineeringConstructionUser" ? "#18d2e8" : "#EAEEF5" }}
-          onClick={() => handleClick("engineeringConstructionUser")}
-        >
+        <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "bankingUser" ? "selected" : ""}`} onClick={() => handleClick("bankingUser")}>
+  <img src={bankingUser} className="icon-size" title="multi user icon" alt="users-icon" />
+  <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "bankingUser" ? 'selected' : ''}`}>Banking</h1>
+</div>
+
+
+<div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "engineeringConstructionUser" ? "selected" : ""}`} onClick={() => handleClick("engineeringConstructionUser")}>
           <img src={engineeringConstructionUser} className="icon-size" title="third user icon" alt="users-icon" />
           <h1 className={`f4 pl2 pr2 card-title  eng_const ${selectedUser === "engineeringConstructionUser" ? 'selected' : ''}`}>
             Engineering & Construction</h1>
-        </div>
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "entertainmentUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("entertainmentUser")}
-          >
+</div>
+<div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "entertainmentUser" ? "selected" : ""}`} onClick={() => handleClick("entertainmentUser")}>
             <img src={entertainmentUser} className="icon-size" title="multi user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "entertainmentUser" ? 'selected' : ''}`}>
               Entertainment</h1>
           </div>
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "healthcareUser" ? "#18d2e8" : "#EAEEF5" }}
-      onClick={() => handleClick("healthcareUser")}
->
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "healthcareUser" ? "selected" : ""}`} onClick={() => handleClick("healthcareUser")}>
   <img
     src={healthcareUser}
     className="icon-size"
@@ -167,47 +161,34 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
     Healthcare
   </h1>
         </div>
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "informationTechnologiesUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("informationTechnologiesUser")}
-          >
+        <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "informationTechnologiesUser" ? "selected" : ""}`} onClick={() => handleClick("informationTechnologiesUser")}>
             <img src={informationTechnologiesUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "informationTechnologiesUser" ? 'selected' : ''}`}>Information technology</h1>
           </div>
 
         </div>
         <div className="industry-block-two ph4 selectionDiv">
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "insuranceUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("insuranceUser")}>
+        <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "insuranceUser" ? "selected" : ""}`} onClick={() => handleClick("insuranceUser")}>
             <img src={insuranceUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "insuranceUser" ? 'selected' : ''}`}>
               Insurance</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "investmentUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("investmentUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "investmentUser" ? "selected" : ""}`} onClick={() => handleClick("investmentUser")}>
             <img src={investmentUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "investmentUser" ? 'selected' : ''}`}>
               Investment</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "lendingUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("lendingUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "lendingUser" ? "selected" : ""}`} onClick={() => handleClick("lendingUser")}>
             <img src={lendingUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "lendingUser" ? 'selected' : ''}`}>Lending</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "manufacturingUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("manufacturingUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "manufacturingUser" ? "selected" : ""}`} onClick={() => handleClick("manufacturingUser")}>
             <img src={manufacturingUser} className="icon-size" title="multi user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "manufacturingUser" ? 'selected' : ''}`}>
               Manufacturing</h1>
           </div>
 
-      <div
-     className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3"
-     style={{ borderColor: selectedUser === "Multi-industry" ? "#18d2e8" : "#EAEEF5" }}
-     onClick={() => handleClick("Multi-industry")} // Use the exact industry title
-      >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "Multi-industry" ? "selected" : ""}`} onClick={() => handleClick("Multi-industry")}>
     < img src={multiIndustryUser} className="icon-size" title="third user icon" alt="users-icon" />
      <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "Multi-industry" ? "selected" : ""}`}>
     Multi-industry
@@ -217,37 +198,27 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
 
 
         <div className="industry-block-three ph4 selectionDiv">
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "oilgasUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("oilgasUser")}
-          >
+        <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "oilgasUser" ? "selected" : ""}`} onClick={() => handleClick("oilgasUser")}>
             <img src={oilgasUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "oilgasUser" ? 'selected' : ''}`}>
               Oil and gas</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "paymentsUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("paymentsUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "paymentsUser" ? "selected" : ""}`} onClick={() => handleClick("paymentsUser")}>
             <img src={paymentsUser} className="icon-size" title="single user icon" alt="user-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "paymentsUser" ? 'selected' : ''}`}>
               Payments</h1>
           </div>
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "professionalServicesUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("professionalServicesUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "professionalServicesUser" ? "selected" : ""}`} onClick={() => handleClick("professionalServicesUser")}>
             <img src={professionalServicesUser} className="icon-size" title="single user icon" alt="user-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "professionalServicesUser" ? 'selected' : ''}`}>
               Professional services</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "publicSectorUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("publicSectorUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "publicSectorUser" ? "selected" : ""}`} onClick={() => handleClick("publicSectorUser")}>
             <img src={publicSectorUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "publicSectorUser" ? 'selected' : ''}`}>
               Public sector</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "realEstateUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("realEstateUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "realEstateUser" ? "selected" : ""}`} onClick={() => handleClick("realEstateUser")}>
             <img src={realEstateUser} className="icon-size" title="single user icon" alt="user-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "realEstateUser" ? 'selected' : ''}`}>
               Real estate</h1>
@@ -256,37 +227,27 @@ const PageOne = ({ onButtonClick,setCompletedPages,setPage }) => {
 
 
         <div className="industry-block-four ph4 selectionDiv">
-        <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "retailwholesaleUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("retailwholesaleUser")}
-          >
+        <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "retailwholesaleUser" ? "selected" : ""}`} onClick={() => handleClick("retailwholesaleUser")}>
             <img src={retailwholesaleUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "retailwholesaleUser" ? 'selected' : ''}`}>
               Retail and wholesale</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "telecommUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("telecommUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "telecommUser" ? "selected" : ""}`} onClick={() => handleClick("telecommUser")}>
             <img src={telecommUser} className="icon-size" title="multi user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "telecommUser" ? 'selected' : ''}`}>
               Telecomm</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "transportationUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("transportationUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "transportationUser" ? "selected" : ""}`} onClick={() => handleClick("transportationUser")}>
             <img src={transportationUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "transportationUser" ? 'selected' : ''}`}>
               Transportation</h1>
           </div>
-          <div className="industry-card br3 pa3-one mv3 ba dib b--black-10 ma3" style={{ borderColor: selectedUser === "utilitiesUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("utilitiesUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "utilitiesUser" ? "selected" : ""}`} onClick={() => handleClick("utilitiesUser")}>
             <img src={utilitiesUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "utilitiesUser" ? 'selected' : ''}`}>
               Utilities</h1>
           </div>
-          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "othersUser" ? 'active' : ''}`}style={{ borderColor: selectedUser === "othersUser" ? "#18d2e8" : "#EAEEF5" }}
-            onClick={() => handleClick("othersUser")}
-          >
+          <div className={`industry-card br3 pa3-one mv3 ba dib b--black-10 ma3 ${selectedUser === "othersUser" ? "selected" : ""}`} onClick={() => handleClick("othersUser")}>
             <img src={othersUser} className="icon-size" title="third user icon" alt="users-icon" />
             <h1 className={`f4 pl2 pr2 card-title ${selectedUser === "othersUser" ? 'selected' : ''}`}>
               Others</h1>
