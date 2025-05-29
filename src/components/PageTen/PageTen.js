@@ -5,6 +5,7 @@ import usersthree from "./minus-sign.png";
 import "./PageTen.css";
 
 const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
+  console.log('total cost is:----------',totalCost);
   console.log('totalCost pageTen is :-',totalCost);
   const [singleUser, setSingleUser] = useState(false);
   const [multiUser, setMultiUser] = useState(false);
@@ -13,6 +14,11 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
   const multiUserCost = { min: 16500, max: 27500 };
   const thirdUserCost = { min: 0, max: 0 };
   const [index9value, setIndex9value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"",answer:"" });
+  
+  
+
+
+
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
       const newValue = !prev;
@@ -34,7 +40,6 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
         index: newValue?pageIndex:0,
         title1: newValue?"Yes, to some extent":""
       });
-  
       return newValue;
     });
   };
@@ -175,18 +180,45 @@ const calculateTotalCost = () => {
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   onButtonClick("pageeleven");
 };
+// useEffect(() => {
+//   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageTen'));
+//   if (!selection) return;
+//   const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+
+//   setSingleUser(saveSingle);
+//   setMultiUser(saveMulti);
+//   setThirdUser(saveThird);
+//   updateCost(saveSingle, saveMulti, saveThird);
+
+//   setIndex9value({
+//     value1: saveSingle ? singleUserCost.min : 0,
+//     value2: saveSingle ? singleUserCost.max : 0,
+//     value3: saveMulti ? multiUserCost.min : 0,
+//     value4: saveMulti ? multiUserCost.max : 0,
+//     value5: saveThird ? thirdUserCost.min : 0,
+//     value6: saveThird ? thirdUserCost.max : 0,
+//     title1: saveSingle ? "Yes, to some extent" : "",
+//     title2: saveMulti ? "Yes to quite an extent" : "",
+//     title3: saveThird ? "Artificial Intelligence-Roadmap" : "",
+//     answer:saveThird?"No":"",
+//   });
+// }, []);
+
 useEffect(() => {
   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageTen'));
   if (!selection) return;
 
   const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
 
+  // Set visual states
   setSingleUser(saveSingle);
   setMultiUser(saveMulti);
   setThirdUser(saveThird);
 
+  // Use values directly instead of relying on (possibly stale) state
   updateCost(saveSingle, saveMulti, saveThird);
 
+  const pageIndex = 10;
   setIndex9value({
     value1: saveSingle ? singleUserCost.min : 0,
     value2: saveSingle ? singleUserCost.max : 0,
@@ -194,12 +226,16 @@ useEffect(() => {
     value4: saveMulti ? multiUserCost.max : 0,
     value5: saveThird ? thirdUserCost.min : 0,
     value6: saveThird ? thirdUserCost.max : 0,
+    index: saveSingle || saveMulti || saveThird ? pageIndex : 0,
     title1: saveSingle ? "Yes, to some extent" : "",
     title2: saveMulti ? "Yes to quite an extent" : "",
     title3: saveThird ? "Artificial Intelligence-Roadmap" : "",
-    answer:saveThird?"No":"",
+    answer: saveThird ? "No" : "",
   });
 }, []);
+
+
+
 const isNextButtonEnabled = singleUser || multiUser || thirdUser;
 
   return (

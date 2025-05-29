@@ -9,7 +9,8 @@ const PageThree = ({ onButtonClick,totalCost,setTotalCost }) => {
   const [multiUser, setMultiUser] = useState(false);
   // const [totalCost, setTotalCost] = useState("$0K");
   const singleUserCost = { min: 1375, max: 2200 };
-  const multiUserCost = { min: 6600, max: 8800 };
+  // const multiUserCost = { min: 6600, max: 8800 };
+  const multiUserCost = { min: 0, max: 0 };
   const isNextButtonEnabled = singleUser || multiUser ;
 
   const onClickSingleUser = () => {
@@ -189,7 +190,7 @@ return (
           </div>
    
           <h1 className="f4 pl2 pr2">No</h1>
-          <div className="est-hrs">
+          {/* <div className="est-hrs">
             <div className="row">
               <div className="col-xl-6 col-5">
                 <label className="three-label">Estimated Hours</label>
@@ -202,7 +203,7 @@ return (
               </div>
               <div className="col-xl-6 col-7">$6,600.00 - $8,800.00</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

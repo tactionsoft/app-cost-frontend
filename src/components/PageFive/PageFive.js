@@ -169,6 +169,7 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
     let totalMax = 0;
     for (let item of costData) {
       if (item) {
+        console.log('item is:-',item);
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
       }

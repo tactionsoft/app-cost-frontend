@@ -159,7 +159,8 @@ const onClickMultiUser = () => {
     if (!selection) return;
   
     const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
-  
+    console.log({singleUser,multiUser,thirdUser})
+    
     setSingleUser(saveSingle);
     setMultiUser(saveMulti);
     setThirdUser(saveThird);
