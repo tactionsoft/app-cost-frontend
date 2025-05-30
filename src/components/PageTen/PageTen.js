@@ -15,10 +15,6 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
   const thirdUserCost = { min: 0, max: 0 };
   const [index9value, setIndex9value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"",answer:"" });
   
-  
-
-
-
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
       const newValue = !prev;
@@ -94,8 +90,8 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
         value5: newValue ? thirdUserCost.min : 0,
         value6: newValue ? thirdUserCost.max : 0,
         index : newValue?  pageIndex:0,
-        title3 : newValue?"Is artificial intelligence (AI) part of your roadmap":"",
-        answer:newValue?"No":"",
+        title3 : newValue?"Is artificial intelligence (AI) part of your roadmap(No)":"",
+        // answer:newValue?"No":"",
       });
   
       return newValue;
@@ -115,8 +111,8 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
       index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
       title1: single ? "Is artificial intelligence (AI) part of your roadmap(Yes, to some extent)" : "",
       title2: multi ? "Is artificial intelligence (AI) part of your roadmap(Yes to quite an extent)" : "",
-      title3: third ? "Is artificial intelligence (AI) part of your roadmap" : "",
-      answer:third?"No":""
+      title3: third ? "Is artificial intelligence (AI) part of your roadmap(No)" : "",
+      // answer:third?"No":""
     };
   
     costData[8] = value; // ✅ store at index 8 (PageNine)
@@ -229,8 +225,8 @@ useEffect(() => {
     index: saveSingle || saveMulti || saveThird ? pageIndex : 0,
     title1: saveSingle ? "Yes, to some extent" : "",
     title2: saveMulti ? "Yes to quite an extent" : "",
-    title3: saveThird ? "Artificial Intelligence-Roadmap" : "",
-    answer: saveThird ? "No" : "",
+    title3: saveThird ? "Artificial Intelligence-Roadmap(No)" : "",
+    // answer: saveThird ? "No" : "",
   });
 }, []);
 

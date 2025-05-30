@@ -72,6 +72,7 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
 
   const updateCost = (single, multi) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+    console.log('costData is:-',costData);
   
     const value = {
       value1: single ? singleUserCost.min : 0,
@@ -106,17 +107,51 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
   };
   
 
+// const calculateTotalCost = () => {
+//   let totalMin = 0;
+//   let totalMax = 0;
+
+//   if (singleUser) {
+//       totalMin += singleUserCost.min;
+//       totalMax += singleUserCost.max;
+//   }
+//   if (thirdUser) {
+//       totalMin += thirdUserCost.min;
+//       totalMax += thirdUserCost.max;
+//   }
+
+//   const formattedMin = (totalMin / 1000);
+//   const formattedMax = (totalMax / 1000);
+
+//   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `${formattedMin}K - ${formattedMax}K`;
+
+//   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+//   costData[12] = index13value; // Ensure correct index
+//   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+
+//   // Ensure state updates before page transition
+//   setTimeout(() => {
+//       onButtonClick("pagefifteen");
+//   }, 100);
+
+//   return finalCost;
+// };
+
 const calculateTotalCost = () => {
   let totalMin = 0;
   let totalMax = 0;
 
   if (singleUser) {
-      totalMin += singleUserCost.min;
-      totalMax += singleUserCost.max;
+    totalMin += singleUserCost.min;
+    totalMax += singleUserCost.max;
+  }
+  if (multiUser) {
+    totalMin += multiUserCost.min;
+    totalMax += multiUserCost.max;
   }
   if (thirdUser) {
-      totalMin += thirdUserCost.min;
-      totalMax += thirdUserCost.max;
+    totalMin += thirdUserCost.min;
+    totalMax += thirdUserCost.max;
   }
 
   const formattedMin = (totalMin / 1000);
@@ -124,19 +159,19 @@ const calculateTotalCost = () => {
 
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `${formattedMin}K - ${formattedMax}K`;
 
-  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  costData[12] = index13value; // Ensure correct index
-  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  // ✅ Remove this line to avoid overwriting
+  // costData[10] = {...costData[10],...index11value};
 
-  // Ensure state updates before page transition
-  setTimeout(() => {
-      onButtonClick("pagefifteen");
-  }, 100);
-
+  onButtonClick("pagethirteen");
   return finalCost;
 };
+
+
+
+
 useEffect(() => {
   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageFourteen'));
+
   if (!selection) return;
 
   const { singleUser: saveSingle, thirdUser: saveThird } = selection;

@@ -89,8 +89,8 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value5: newValue ? thirdUserCost.min : 0,
         value6: newValue ? thirdUserCost.max : 0,
         index: newValue?pageIndex:0,
-        title3: newValue?"Which of the following integrations do you need":"",
-        answer:newValue?"No":""
+        title3: newValue?"Which of the following integrations do you need(No)":"",
+        // answer:newValue?"No":""
       });
       return newValue;
     });
@@ -119,8 +119,8 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
       index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
       title1: single ? "Which of the following integrations do you need(Health Data)" : "",
       title2: multi ? "Which of the following integrations do you need(Device Data)" : "",
-      title3: third ? "Which of the following integrations do you need" : "",
-      answer:third?"No":""
+      title3: third ? "Which of the following integrations do you need(No)" : "",
+      // answer:third?"No":""
     };
   
     costData[9] = value; // ✅ store at index 8 (PageNine)
@@ -201,10 +201,10 @@ useEffect(() => {
     value4: saveMulti ? multiUserCost.max : 0,
     value5: saveThird ? thirdUserCost.min : 0,
     value6: saveThird ? thirdUserCost.max : 0,
-    title1: saveSingle ? "Health Data" : "",
-    title2: saveMulti ? "Device Data" : "",
-    title3: saveThird ? "Integration Needed" : "",
-    answer:saveThird?"No":"",
+    title1: saveSingle ? "Which of the following integrations do you need(Health Data)" : "",
+    title2: saveMulti ? "Which of the following integrations do you need(Device Data)" : "",
+    title3: saveThird ? "Which of the following integrations do you need(No)" : "",
+    // answer:saveThird?"No":"",
   });
 }, []);
   const isContinueButtonEnabled = singleUser || multiUser || thirdUser;

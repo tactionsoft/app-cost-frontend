@@ -84,8 +84,8 @@ const onClickMultiUser = () => {
         value3: 0, value4: 0, value5: 0, value6: 0,
         title1: "", title2: "",
         index:newValue?pageIndex:0,
-        title3:newValue?"Which of the following web components do you need(Web Components)":"",
-        answer:newValue?"Which of the following web components do you need(None)":"",
+        title3:newValue?"Which of the following web components do you need(None)":"",
+        // answer:newValue?"Which of the following web components do you need(None)":"",
 
       });
       return newValue;
