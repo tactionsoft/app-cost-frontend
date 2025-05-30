@@ -302,7 +302,7 @@ const handleSubmit = async (e) => {
 
 
 
-  const response = await fetch('http://localhost:1337/api/user-info/submit', {
+  const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
