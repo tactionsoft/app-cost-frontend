@@ -72,7 +72,6 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
 
   const updateCost = (single, multi) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    console.log('costData is:-',costData);
   
     const value = {
       value1: single ? singleUserCost.min : 0,
@@ -107,51 +106,17 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
   };
   
 
-// const calculateTotalCost = () => {
-//   let totalMin = 0;
-//   let totalMax = 0;
-
-//   if (singleUser) {
-//       totalMin += singleUserCost.min;
-//       totalMax += singleUserCost.max;
-//   }
-//   if (thirdUser) {
-//       totalMin += thirdUserCost.min;
-//       totalMax += thirdUserCost.max;
-//   }
-
-//   const formattedMin = (totalMin / 1000);
-//   const formattedMax = (totalMax / 1000);
-
-//   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `${formattedMin}K - ${formattedMax}K`;
-
-//   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-//   costData[12] = index13value; // Ensure correct index
-//   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-
-//   // Ensure state updates before page transition
-//   setTimeout(() => {
-//       onButtonClick("pagefifteen");
-//   }, 100);
-
-//   return finalCost;
-// };
-
 const calculateTotalCost = () => {
   let totalMin = 0;
   let totalMax = 0;
 
   if (singleUser) {
-    totalMin += singleUserCost.min;
-    totalMax += singleUserCost.max;
-  }
-  if (multiUser) {
-    totalMin += multiUserCost.min;
-    totalMax += multiUserCost.max;
+      totalMin += singleUserCost.min;
+      totalMax += singleUserCost.max;
   }
   if (thirdUser) {
-    totalMin += thirdUserCost.min;
-    totalMax += thirdUserCost.max;
+      totalMin += thirdUserCost.min;
+      totalMax += thirdUserCost.max;
   }
 
   const formattedMin = (totalMin / 1000);
@@ -159,19 +124,19 @@ const calculateTotalCost = () => {
 
   const finalCost = totalMin === 0 && totalMax === 0 ? "$0K" : `${formattedMin}K - ${formattedMax}K`;
 
-  // ✅ Remove this line to avoid overwriting
-  // costData[10] = {...costData[10],...index11value};
+  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  costData[12] = index13value; // Ensure correct index
+  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
 
-  onButtonClick("pagethirteen");
+  // Ensure state updates before page transition
+  setTimeout(() => {
+      onButtonClick("pagefifteen");
+  }, 100);
+
   return finalCost;
 };
-
-
-
-
 useEffect(() => {
   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageFourteen'));
-
   if (!selection) return;
 
   const { singleUser: saveSingle, thirdUser: saveThird } = selection;
@@ -195,7 +160,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
   return (
     <>
         <main
-      className="pt5 black-80 body-background"
+      className="pt5 black-80"
       style={{ maxWidth: "100%", maxHeight: "25%", margin: "auto" }}
     >
       <h2>Do you need EHR Integration?</h2>
@@ -204,7 +169,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
         <div
           className="mw5 bg-white-fourteen br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
           style={{
-            borderColor: singleUser ? "#18d2e8" : "#fafafa",height:"350px"}}
+            borderColor: singleUser ? "#18d2e8" : "#EAEEF5",height:"350px"}}
           onClick={onClickSingleUser}
         >
            <div style={{display:"flex",justifyContent:"center"}}>
@@ -240,7 +205,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
         <div
           className="mw5 bg-white-fourteen br3 pa3 mv3 ba dib b--black-10 ma3 clicked page-four page_one"
           style={{
-            borderColor: thirdUser ? "#18d2e8" : "#fafafa",height:"350px"}}
+            borderColor: thirdUser ? "#18d2e8" : "#EAEEF5",height:"350px"}}
           onClick={onClickThirdUser}
         >
             <div style={{display:"flex",justifyContent:"center"}}>
@@ -302,16 +267,18 @@ const isContinueButtonEnabled = singleUser || thirdUser;
         disabled={!isContinueButtonEnabled}
       />
 
-<div className="totals well container p-5">
+ 
+    </main>
+    <div className="totals well">
         <h2 className="total-cost">
           Total Estimated Cost: <span id="total-cost">{totalCost}</span>
         </h2>
         <p className="disclaimer">
-          Please note : All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
+          Please note, all cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
         </p>
       </div>
-    </main>
     </>
+
   );
 };
 

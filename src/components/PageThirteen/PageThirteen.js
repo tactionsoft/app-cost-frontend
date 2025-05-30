@@ -105,7 +105,8 @@ const calculateTotalCost = () => {
 
   // Ensure we update the existing index (11) instead of pushing new entries
   costData[11] = { 
-    index: index12value.index || 0, 
+    // index: index12value.index || 0, 
+    index:13,
     title1: index12value.title1 || "", 
     title2: index12value.title2 || "", 
     title3: index12value.title3 || "",

@@ -104,6 +104,42 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
   // };
 
 
+  // const updateCost = (single, multi, third) => {
+  //   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  
+  //   const value = {
+  //     value1: single ? singleUserCost.min : 0,
+  //     value2: single ? singleUserCost.max : 0,
+  //     value3: multi ? multiUserCost.min : 0,
+  //     value4: multi ? multiUserCost.max : 0,
+  //     value5: third ? thirdUserCost.min : 0,
+  //     value6: third ? thirdUserCost.max : 0,
+  //     index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
+  //     title1: single ? "How many other basic API integrations are you expecting(Twillio SMS)" : "",
+  //     title2: multi ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly)" : "",
+  //     title3: third ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly - Google Map)" : "",
+  //   };
+  
+  //   costData[10] = value; // ✅ store at index 8 (PageNine)
+  //   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  
+  //   // Recalculate total cost
+  //   let totalMin = 0;
+  //   let totalMax = 0;
+  //   for (let item of costData) {
+  //     if (item) {
+  //       totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+  //       totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+  //     }
+  //   }
+  
+  //   setTotalCost(
+  //     totalMin === 0 && totalMax === 0
+  //       ? "$0K"
+  //       : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
+  //   );
+  // };
+
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   
@@ -114,18 +150,20 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
       value4: multi ? multiUserCost.max : 0,
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
-      index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
+      index: single || multi || third ? 12 : 0,  // PageTwelve index
       title1: single ? "How many other basic API integrations are you expecting(Twillio SMS)" : "",
       title2: multi ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly)" : "",
       title3: third ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly - Google Map)" : "",
     };
   
-    costData[10] = value; // ✅ store at index 8 (PageNine)
+    // ✅ Overwrite index 10 cleanly (not merge)
+    costData[10] = value;
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   
-    // Recalculate total cost
+    // ✅ Recalculate total from clean structure
     let totalMin = 0;
     let totalMax = 0;
+  
     for (let item of costData) {
       if (item) {
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
@@ -139,52 +177,78 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
         : `$${(totalMin / 1000)}K - $${(totalMax / 1000)}K`
     );
   };
+  
 
-  const calculateTotalCost = () => {
+//   const calculateTotalCost = () => {
     
-    let totalMin = 0;
-    let totalMax = 0;
+//     let totalMin = 0;
+//     let totalMax = 0;
 
-    // Add cost ranges for selected options
-    if (singleUser) {
-      totalMin += singleUserCost.min;
-      totalMax += singleUserCost.max;
-    }
-    if (multiUser) {
-      totalMin += multiUserCost.min;
-      totalMax += multiUserCost.max;
-    }
-    if (thirdUser) {
-      totalMin += thirdUserCost.min;
-      totalMax += thirdUserCost.max;
-    }
+//     // Add cost ranges for selected options
+//     if (singleUser) {
+//       totalMin += singleUserCost.min;
+//       totalMax += singleUserCost.max;
+//     }
+//     if (multiUser) {
+//       totalMin += multiUserCost.min;
+//       totalMax += multiUserCost.max;
+//     }
+//     if (thirdUser) {
+//       totalMin += thirdUserCost.min;
+//       totalMax += thirdUserCost.max;
+//     }
 
-    // If no user is selected, show $0K
-    if (totalMin === 0 && totalMax === 0) {
-      return "$0K";
-    }
+//     // If no user is selected, show $0K
+//     if (totalMin === 0 && totalMax === 0) {
+//       return "$0K";
+//     }
     
-    // Format the total cost in "K" format with two decimal places
-    const formattedMin = (totalMin / 1000);
-    const formattedMax = (totalMax / 1000);
+//     // Format the total cost in "K" format with two decimal places
+//     const formattedMin = (totalMin / 1000);
+//     const formattedMax = (totalMax / 1000);
 
-    const finalCost = `$${formattedMin}K - $${formattedMax}K`;
+//     const finalCost = `$${formattedMin}K - $${formattedMax}K`;
 
-    // Store final cost in session storage under a unique index
-    let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    // costData=[...costData]
-    console.log('cost data is:---',costData);
-    // costData[10] = {...costData[10],...index11value}; // Store at index 3 (4th position)
-    sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-     onButtonClick("pagethirteen");
-    return finalCost;
+//     // Store final cost in session storage under a unique index
+//     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+//     // costData=[...costData]
+//     console.log('cost data is:---',costData);
+//     costData[10] = index11value // Store at index 3 (4th position)
+//     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+//      onButtonClick("pagethirteen");
+//     return finalCost;
+// };
+
+
+const calculateTotalCost = () => {
+  let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+
+  const updatedValue = {
+    value1: singleUser ? singleUserCost.min : 0,
+    value2: singleUser ? singleUserCost.max : 0,
+    value3: multiUser ? multiUserCost.min : 0,
+    value4: multiUser ? multiUserCost.max : 0,
+    value5: thirdUser ? thirdUserCost.min : 0,
+    value6: thirdUser ? thirdUserCost.max : 0,
+    index: 12,
+    title1: singleUser ? "Twillio SMS" : "",
+    title2: multiUser ? "Twillio SMS - Calendly" : "",
+    title3: thirdUser ? "Twillio SMS - Calendly - Google Map" : "",
+  };
+
+  costData[10] = updatedValue;
+  sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
+  onButtonClick("pagethirteen");
 };
+
 
 useEffect(() => {
   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageTwelve'));
   console.log('selection is:-',selection);
   if (!selection) return;
+
   const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
+
   setSingleUser(saveSingle);
   setMultiUser(saveMulti);
   setThirdUser(saveThird);
