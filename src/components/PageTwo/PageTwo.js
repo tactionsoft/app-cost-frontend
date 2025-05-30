@@ -34,7 +34,7 @@ const PageTwo = ({ onButtonClick,totalCost,setTotalCost}) => {
         value3: 0, // Reset multi-user values
         value4: 0,
         index:newValue?pageIndex:0,
-        title1:newValue?"MVP":"",
+        title1:newValue?"How big is your app(MVP)":"",
       }));
   
       return newValue;
@@ -62,7 +62,7 @@ const onClickMultiUser = () => {
       value3: newValue ? multiUserCost.min : 0,
       value4: newValue ? multiUserCost.max : 0,
       index:newValue?pageIndex:0,
-      title2:newValue?"Feature Rich":""
+      title2:newValue?"How big is your app(Feature Rich)":""
     }));
 
     return newValue;
@@ -141,7 +141,7 @@ useEffect(() => {
         value3: 0,
         value4: 0,
         index: 2,
-        title1: "MVP",
+        title1: "How big is your app(MVP)",
         title2: ""
       });
     } else if (savedMulti) {
@@ -155,7 +155,7 @@ useEffect(() => {
         value4: multiUserCost.max,
         index: 2,
         title1: "",
-        title2: "Feature Rich"
+        title2: "How big is your app(Feature Rich)"
       });
     }
   }

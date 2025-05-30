@@ -35,7 +35,7 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue ? pageIndex : prevState.index,
-        title1: newValue ? "Twillio SMS " : prevState.title1
+        title1: newValue ? "How many other basic API integrations are you expecting(Twillio SMS) " : prevState.title1
       }));
   
       return newValue;
@@ -62,7 +62,7 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
         index: newValue ? pageIndex : prevState.index,
-        title2: newValue ? "Twillio SMS - Calendly" : prevState.title
+        title2: newValue ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly)" : prevState.title
       }));
       return newValue;
     });
@@ -88,7 +88,7 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
         value5: newValue ? thirdUserCost.min : 0,
         value6: newValue ? thirdUserCost.max : 0,
         index: newValue ? pageIndex : prevState.index,
-        title3: newValue ? "Twillio SMS - Calendly - Google Map" : prevState.title3
+        title3: newValue ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly - Google Map)" : prevState.title3
       }));
   
       return newValue;
@@ -115,9 +115,9 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
-      title1: single ? "Twillio SMS" : "",
-      title2: multi ? "Twillio SMS - Calendly" : "",
-      title3: third ? "Twillio SMS - Calendly - Google Map" : "",
+      title1: single ? "How many other basic API integrations are you expecting(Twillio SMS)" : "",
+      title2: multi ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly)" : "",
+      title3: third ? "How many other basic API integrations are you expecting(Twillio SMS - Calendly - Google Map)" : "",
     };
   
     costData[10] = value; // ✅ store at index 8 (PageNine)

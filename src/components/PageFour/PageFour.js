@@ -31,8 +31,8 @@ const PageFour = ({ onButtonClick,totalCost,setTotalCost }) => {
         value3: 0, // Reset multi-user values
         value4: 0,
         index:newValue?pageIndex:0,
-        title1:newValue?"HIPAA/Bank-level Encryption":"",
-        answer:newValue?"Yes":""
+        title1:newValue?"Do you need HIPAA Compliance or Bank-Level Encryption(Yes)":"",
+        // answer:newValue?"Yes":""
       }));
   
       return newValue;
@@ -57,8 +57,8 @@ const onClickMultiUser = () => {
       value3: newValue ? multiUserCost.min : 0,
       value4: newValue ? multiUserCost.max : 0,
       index:  newValue?pagIndex:0,
-      title2:newValue?"HIPAA/Bank-level Encryption":"",
-      answer:newValue?"No":""
+      title2:newValue?"Do you need HIPAA Compliance or Bank-Level Encryption(No)":"",
+      // answer:newValue?"No":""
     }));
 
     return newValue;
@@ -91,9 +91,9 @@ const updateCost = (single, multi) => {
     value3: multi ? multiUserCost.min : 0,
     value4: multi ? multiUserCost.max : 0,
     index: single || multi ? 4 : 0,
-    title1: single ? "HIPAA/Bank-level Encryption" : "",
-    title2: multi ? "HIPAA/Bank-level Encryption" : "",
-    answer: single ? "Yes" : multi ? "No" : "",
+    title1: single ? "Do you need HIPAA Compliance or Bank-Level Encryption(Yes)" : "",
+    title2: multi ? "Do you need HIPAA Compliance or Bank-Level Encryption(No)" : "",
+    // answer: single ? "Yes" : multi ? "No" : "",
   };
 
   // Always update index 3 for Page Four
@@ -162,9 +162,9 @@ if(savedSingle){
     value4:0,
     value5:0,
     value6:0,
-    title1:"HIPAA/Bank-level Encryption",
+    title1:"Do you need HIPAA Compliance or Bank-Level Encryption(Yes)",
     title2:"",
-    answer:"Yes"
+    // answer:"Yes"
   })
 }else if(savedMulti){
   setMultiUser(true)
@@ -178,8 +178,8 @@ if(savedSingle){
     value5:0,
     value6:0,
     title1:"",
-    title2:"HIPAA/Bank-level Encryption",
-    answer:"No"
+    title2:"Do you need HIPAA Compliance or Bank-Level Encryption(No)",
+    // answer:"No"
   })
 }
 },[])

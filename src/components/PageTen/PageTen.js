@@ -38,7 +38,7 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue?pageIndex:0,
-        title1: newValue?"Yes, to some extent":""
+        title1: newValue?"Is artificial intelligence (AI) part of your roadmap(Yes, to some extent)":""
       });
       return newValue;
     });
@@ -64,7 +64,7 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
         index: newValue?pageIndex:0,
-        title2: newValue?"Yes to quite an extent":""
+        title2: newValue?"Is artificial intelligence (AI) part of your roadmap(Yes to quite an extent)":""
         
       });
       return newValue;
@@ -94,7 +94,7 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
         value5: newValue ? thirdUserCost.min : 0,
         value6: newValue ? thirdUserCost.max : 0,
         index : newValue?  pageIndex:0,
-        title3 : newValue?"Artificial Intelligence-Roadmap":"",
+        title3 : newValue?"Is artificial intelligence (AI) part of your roadmap":"",
         answer:newValue?"No":"",
       });
   
@@ -113,9 +113,9 @@ const PageTen = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
-      title1: single ? "Yes, to some extent" : "",
-      title2: multi ? "Yes to quite an extent" : "",
-      title3: third ? "Artificial Intelligence-Roadmap" : "",
+      title1: single ? "Is artificial intelligence (AI) part of your roadmap(Yes, to some extent)" : "",
+      title2: multi ? "Is artificial intelligence (AI) part of your roadmap(Yes to quite an extent)" : "",
+      title3: third ? "Is artificial intelligence (AI) part of your roadmap" : "",
       answer:third?"No":""
     };
   

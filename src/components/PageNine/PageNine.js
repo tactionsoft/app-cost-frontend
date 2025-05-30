@@ -58,7 +58,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCostRange.min : 0,
         value2: newValue ? singleUserCostRange.max : 0,
         index: newValue || multiUser || thirdUser ? pageIndex : 0,
-        title1: newValue ? "Email/Password" : ""
+        title1: newValue ? "How will users be signing up(Email/Password)" : ""
       }));
       return newValue;
     });
@@ -127,7 +127,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? multiUserCostRange.min : 0,
         value2: newValue ? multiUserCostRange.max : 0,
         index: singleUser || newValue || thirdUser ? pageIndex : 0,
-        title2: newValue ? "Google Auth" : ""
+        title2: newValue ? "How will users be signing up(Google Auth)" : ""
       }));
       return newValue;
     });
@@ -179,7 +179,7 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? thirdUserCostRange.min : 0,
         value2: newValue ? thirdUserCostRange.max : 0,
         index: singleUser || multiUser || newValue ? pageIndex : 0,
-        title3: newValue ? "Facebook" : ""
+        title3: newValue ? "How will users be signing up(Facebook)" : ""
       }));
       return newValue;
     });
@@ -195,9 +195,9 @@ const PageNine = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCostRange.min : 0,
       value6: third ? thirdUserCostRange.max : 0,
       index: single || multi || third ? 8: 0,  // ✅ FIXED INDEX (PageNine)
-      title1: single ? "Email/Password" : "",
-      title2: multi ? "Google Auth" : "",
-      title3: third ? "Facebook" : ""
+      title1: single ? "How will users be signing up(Email/Password)" : "",
+      title2: multi ? "How will users be signing up(Google Auth)" : "",
+      title3: third ? "How will users be signing up(Facebook)" : ""
     };
     costData[7] = value; // ✅ store at index 8 (PageNine)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
@@ -308,9 +308,9 @@ const calculateTotalCostRange = () => {
     value5: thirdUser ? thirdUserCostRange.min : 0,
     value6: thirdUser ? thirdUserCostRange.max : 0,
     index: singleUser || multiUser || thirdUser ? 9 : 0,
-    title1: singleUser ? "Email/Password" : "",
-    title2: multiUser ? "Google Auth" : "",
-    title3: thirdUser ? "Facebook" : ""
+    title1: singleUser ? "How will users be signing up(Email/Password)" : "",
+    title2: multiUser ? "How will users be signing up(Google Auth)" : "",
+    title3: thirdUser ? "How will users be signing up(Facebook)" : ""
   };
 
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
@@ -345,9 +345,9 @@ useEffect(() => {
     value5: saveThird ? thirdUserCostRange.min : 0,
     value6: saveThird ? thirdUserCostRange.max : 0,
     index: saveSingle || saveMulti || saveThird ? 9 : 0,
-    title1: saveSingle ? "Email/Password" : "",
-    title2: saveMulti ? "Google Auth" : "",
-    title3: saveThird ? "Facebook" : ""
+    title1: saveSingle ? "How will users be signing up(Email/Password)" : "",
+    title2: saveMulti ? "How will users be signing up(Google Auth)" : "",
+    title3: saveThird ? "How will users be signing up(Facebook)" : ""
   });
 }, []);
   // Determine if the "Next" button should be enabled
