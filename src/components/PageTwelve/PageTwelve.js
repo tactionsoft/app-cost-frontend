@@ -163,7 +163,7 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
     if (totalMin === 0 && totalMax === 0) {
       return "$0K";
     }
-
+    
     // Format the total cost in "K" format with two decimal places
     const formattedMin = (totalMin / 1000);
     const formattedMax = (totalMax / 1000);
@@ -172,7 +172,9 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
 
     // Store final cost in session storage under a unique index
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-    costData[10] = index11value; // Store at index 3 (4th position)
+    // costData=[...costData]
+    console.log('cost data is:---',costData);
+    // costData[10] = {...costData[10],...index11value}; // Store at index 3 (4th position)
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
      onButtonClick("pagethirteen");
     return finalCost;
@@ -180,15 +182,18 @@ const PageTwelve = ({ onButtonClick,totalCost,setTotalCost }) => {
 
 useEffect(() => {
   const selection = JSON.parse(sessionStorage.getItem('userSelection_pageTwelve'));
+  console.log('selection is:-',selection);
   if (!selection) return;
-
   const { singleUser: saveSingle, multiUser: saveMulti, thirdUser: saveThird } = selection;
-
   setSingleUser(saveSingle);
   setMultiUser(saveMulti);
   setThirdUser(saveThird);
 
   updateCost(saveSingle, saveMulti, saveThird);
+
+  
+  // console.log('save is:----',saveSingle,saveMulti,saveThird);
+
 
   setIndex11value({
     value1: saveSingle ? singleUserCost.min : 0,
@@ -340,6 +345,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
         className="f6 grow br2 ph3 pv2 mb2 dib white submitButton"
         style={{
           fontSize: "12px",
+
           textTransform: "uppercase",
           border: "none",
           borderRadius: "30px",
