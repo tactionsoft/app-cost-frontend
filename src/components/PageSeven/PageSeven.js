@@ -11,6 +11,7 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
   const thirdUserCost = { min: 0, max: 0 };
   // const [totalCost, setTotalCost] = useState("$0K"); // Track the total cost
   const [index6value, setIndex6value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",answer:"" });
+  console.log('index6value is:-',index6value);
 
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
@@ -24,8 +25,8 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index:newValue?pageIndex:0,
-        title1:newValue?"Payment Process ":"",
-        answer:newValue?"Yes":"",
+        title1:newValue?"Payment processing(Yes)":"",
+        // answer:newValue?"Yes":"",
       }));
   
       return newValue;
@@ -42,14 +43,15 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
       const pageIndex=7;
       // updateCost(false, false, newValue);
       updateCost(false,newValue);
-      setIndex6value({
+      setIndex6value((prevState) =>({
+        ...prevState,
         value1: newValue ? thirdUserCost.min : 0,
         value2: newValue ? thirdUserCost.max : 0,
         value3: 0, value4: 0, value5: 0, value6: 0,
         index:newValue?pageIndex:0,
-        title2:newValue?"Payment Process":"",
-        answer:newValue?"No":""
-      });
+        title2:newValue?"Payment processing(No)":"",
+        // answer:newValue?"No":""
+      }));
       return newValue;
     });
   };
@@ -65,9 +67,9 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 7 : 0,
-      title1: single ? "Payment Process" : "",
-      title2: third ? "Payment Process" : "",
-      answer: single ? "Yes" : third ? "No" : "",
+      title1: single ? "Payment processing(Yes)" : "",
+      title2: third ? "Payment processing(No)" : "",
+      // answer: single ? "Yes" : third ? "No" : "",
     };
     costData[5] = value; // ✅ PageSeven = index 6 
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
@@ -151,24 +153,25 @@ useEffect(() => {
       value3: 0,
       value4: 0,
       index: 7,
-      title1: "Payment Process",
+      title1: "Payment processing(Yes)",
       title2: "",
-      answer: "Yes",
+      // answer: "Yes",
     }));
     } else if (savedThird) {
       setThirdUser(true);
       setSingleUser(false);
       updateCost(false, true);
-      setIndex6value({
+      setIndex6value(prev=>({
+        ...prev,
         value1: 0,
         value2: 0,
         value3: thirdUserCost.min,
         value4: thirdUserCost.max,
         index: 7,
         title1: "",
-        title2: "Payment Process",
-        answer:"No"
-      });
+        title2: "Payment processing(No)",
+        // answer:"No"
+      }));
     }
   }
 }, []);

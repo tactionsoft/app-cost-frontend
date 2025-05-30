@@ -33,7 +33,7 @@ const PageSix = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue || prevState.index ? pageIndex : 0,
-        title1:  newValue?"Web App":""
+        title1:  newValue?"Which of the following web components do you need(Web App)":""
       }));
   
       return newValue;
@@ -57,7 +57,7 @@ const onClickMultiUser = () => {
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
         index: newValue || prevState.index ? pageIndex : 0, 
-        title2:   newValue?"Backend API":""
+        title2:newValue?"Which of the following web components do you need(Backend API)":""
       }));
   
       return newValue;
@@ -84,8 +84,8 @@ const onClickMultiUser = () => {
         value3: 0, value4: 0, value5: 0, value6: 0,
         title1: "", title2: "",
         index:newValue?pageIndex:0,
-        title3:newValue?" Web Components":"",
-        answer:newValue?"None":"",
+        title3:newValue?"Which of the following web components do you need(Web Components)":"",
+        answer:newValue?"Which of the following web components do you need(None)":"",
 
       });
       return newValue;
@@ -102,9 +102,9 @@ const onClickMultiUser = () => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 6 : 0,
-      title1: single ? "Web App" : "",
-      title2: multi ? "Backend API" : "",
-      title3: third ? "None" : ""
+      title1: single ? "Which of the following web components do you need(Web App)" : "",
+      title2: multi ? "Which of the following web components do you need(Backend API)" : "",
+      title3: third ? "Which of the following web components do you need(None)" : ""
     };
   
     costData[4] = value; // ✅ Index 5 for PageSix
@@ -174,9 +174,9 @@ const onClickMultiUser = () => {
       value4: saveMulti ? multiUserCost.max : 0,
       value5: saveThird ? thirdUserCost.min : 0,
       value6: saveThird ? thirdUserCost.max : 0,
-      title1: saveSingle ? "Web App" : "",
-      title2: saveMulti ? "Backend API" : "",
-      title3: saveThird ? "None" : ""
+      title1: saveSingle ? "Which of the following web components do you need(Web App)" : "",
+      title2: saveMulti ? "Which of the following web components do you need(Backend API)" : "",
+      title3: saveThird ? "Which of the following web components do you need(None)" : ""
     });
   }, []);
 

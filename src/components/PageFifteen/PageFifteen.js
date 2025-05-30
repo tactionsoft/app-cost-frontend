@@ -19,9 +19,10 @@ const PageFifteen = ({ onButtonClick }) => {
 
   useEffect(() => {
     const savedFormData = sessionStorage.getItem("formData");
+    console.log('saved data',savedFormData)
     if (savedFormData) {
       const parsedData = JSON.parse(savedFormData);
-  
+      console.log('parsed data is:-',parsedData);
       // Map stored keys to Page 15 form keys
       setFormData({
         name: parsedData["ebook-form-name"] || "",
@@ -38,7 +39,7 @@ const PageFifteen = ({ onButtonClick }) => {
     }))
     setErrors((prevErrors) => {
       let newErrors = { ...prevErrors };
-  
+  console.log('new errors is:-',newErrors)
       if (!value.trim()) {
         // If field is empty, show the error again
         newErrors[name] = `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
@@ -46,7 +47,6 @@ const PageFifteen = ({ onButtonClick }) => {
         // Clear the error if user enters a value
         newErrors[name] = '';
       }
-  
       return newErrors;
     });
 
@@ -56,7 +56,7 @@ const PageFifteen = ({ onButtonClick }) => {
 
   const calculateTotalCost = (costData) => {
     let totalMin = 0, totalMax = 0;
-  
+
     if (!costData || costData.length === 0) {
       return "$0K - $0K"; // ✅ Default value to avoid `null`
     }
@@ -172,7 +172,6 @@ const generateTableHTML = (costData) => {
         <tr>
           <th style="border: 1px solid black; padding: 5px;">Page No</th>
           <th style="border: 1px solid black; padding: 5px;">Title</th>
-          <th style="border: 1px solid black; padding: 5px;">Answer</th>
           <th style="border: 1px solid black; padding: 5px;">Min Cost</th>
           <th style="border: 1px solid black; padding: 5px;">Max Cost</th>
         </tr>
@@ -200,9 +199,8 @@ const generateTableHTML = (costData) => {
     if (item.title1) entry.titles.push(item.title1);
     if (item.title2) entry.titles.push(item.title2);
     if (item.title3) entry.titles.push(item.title3);
-
     // Collect answers if any
-    if (item.answer) entry.answers.add(item.answer);
+    // if (item.answer) entry.answers.add(item.answer);
 
     // Accumulate cost
     entry.minCost += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
@@ -215,7 +213,6 @@ const generateTableHTML = (costData) => {
       <tr>
         <td style="border: 1px solid black; padding: 5px;">${index}</td>
         <td style="border: 1px solid black; padding: 5px;">${data.titles.join(", ")}</td>
-        <td style="border: 1px solid black; padding: 5px;">${[...data.answers].join(", ") || "-"}</td>
         <td style="border: 1px solid black; padding: 5px;">${data.minCost.toLocaleString()}</td>
         <td style="border: 1px solid black; padding: 5px;">${data.maxCost.toLocaleString()}</td>
       </tr>
@@ -305,7 +302,7 @@ const handleSubmit = async (e) => {
 
 
 
-  const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+  const response = await fetch('http://localhost:1337/api/user-info/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -333,6 +330,7 @@ const handleSubmit = async (e) => {
     phone: formData.phone.trim(),
     from_name: formData.name.trim(),
     name: "Admin",
+    // to_email: "gurvinder@felicitastechnologies.com,coolkohligaurav1826.gk@gmail.com",
     to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
     total_cost: generateTableHTML(costData),
     total_costs: totalCost,
@@ -353,7 +351,7 @@ const handleSubmit = async (e) => {
   console.error("❌ Error:", error);
   alert("An unexpected error occurred. Please try again.");
 }
-  
+
 };
 
 
@@ -390,7 +388,6 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
-
 {/* 
             {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>} */}
           </div>

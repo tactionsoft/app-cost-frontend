@@ -87,6 +87,7 @@ const calculateTotalCost = () => {
   const formattedMax = totalMax / 1000;
 
   const finalCost = (totalMin === 0 && totalMax === 0)
+  
     ? "$0K"
     : `$${(formattedMin)}K - $${(formattedMax)}K`;
 
@@ -98,8 +99,8 @@ const calculateTotalCost = () => {
     value3: totalMin,
     value4: totalMax,
     index: 3,
-    title2: "UI/UX",
-    answer: singleUser ? "Yes" : multiUser ? "No" : ""
+    title2: singleUser?"Do you have a finished UX/UI design(Yes)":multiUser?"Do you have a finished UX/UI design(No)":"",
+    // answer: singleUser ? "Yes" : multiUser ? "No" : ""
   };
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   // --- Call combined cost updater ---
@@ -134,7 +135,7 @@ if(selection){
 return (
     <>
         <main
-      className="pt5 black-80"
+      className="pt5 black-80 body-background"
       style={{ margin: "auto" }}
     >
       <h2 className="title-header">Do you have a finished UX/UI design?</h2>

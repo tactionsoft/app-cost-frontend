@@ -29,8 +29,8 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue? pageIndex:0,
-        title1: newValue?"EHR Integration ":"",
-        answer:newValue?'Yes':"",
+        title1: newValue?"Do you need EHR Integration(Yes) ":"",
+        // answer:newValue?'Yes':"",
       }));
   
       return newValue;
@@ -55,8 +55,8 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
             value2: newValue ? thirdUserCost.max : 0,
             value3: 0, value4: 0, value5: 0, value6: 0,
             index: newValue? pageIndex:0,
-            title2: newValue? "EHR Integration":"",
-            answer:newValue?"No":""
+            title2: newValue? "Do you need EHR Integration(No)":"",
+            // answer:newValue?"No":""
         });
 
         return newValue;
@@ -79,9 +79,9 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
       value3: multi ? thirdUserCost.min : 0,
       value4: multi ? thirdUserCost.max : 0,
       index: single || multi ? 14 : 0,
-      title1: single ? "EHR Integration" : "",
-      title2: multi ? "EHR Integration" : "",
-      answer: single ? "Yes" : multi ? "No" : "",
+      title1: single ? "Do you need EHR Integration(Yes)" : "",
+      title2: multi ? "Do you need EHR Integration(No)" : "",
+      // answer: single ? "Yes" : multi ? "No" : "",
     };
   
     // Always update index 3 for Page Four
@@ -145,15 +145,14 @@ useEffect(() => {
   setThirdUser(saveThird);
 
   updateCost(saveSingle, saveThird);
-
   setIndex13value({
     value1: saveSingle ? singleUserCost.min : 0,
     value2: saveSingle ? singleUserCost.max : 0,
     value3: saveThird ? thirdUserCost.min : 0,
     value4: saveThird ? thirdUserCost.max : 0,
-    title1: saveSingle ? "EHR Integration" : "",
-    title2: saveThird ? "EHR Integration" : "",
-    answer:saveThird?"No":saveSingle?"Yes":"",
+    title1: saveSingle ? "Do you need EHR Integration(Yes)" : "",
+    title2: saveThird ? "Do you need EHR Integration(No)" : "",
+    // answer:saveThird?"No":saveSingle?"Yes":"",
   });
 }, []);
 const isContinueButtonEnabled = singleUser || thirdUser;

@@ -43,7 +43,7 @@ const PageThirteen = ({ onButtonClick }) => {
          // Keep previous values
         index: newValue ? pageIndex : 0,
         title1: newValue ? label : "",
-        answer:newValue?"40 hours per month":"",
+        // answer:newValue?"40 hours per month":"",
       });
   
       return newValue;
@@ -68,7 +68,7 @@ const PageThirteen = ({ onButtonClick }) => {
        
         index: newValue ? pageIndex : 0,
         title2: newValue ? label : "",
-        answer:newValue?"80 hours per month":"",
+        // answer:newValue?"80 hours per month":"",
       });
   
       return newValue;
@@ -93,7 +93,7 @@ const PageThirteen = ({ onButtonClick }) => {
       setIndex12value({
         index: newValue ? pageIndex : 0,
         title3: newValue ? label : "",
-        answer:newValue?"No":""
+        // answer:newValue?"No":""
       });
   
       return newValue;
@@ -109,7 +109,7 @@ const calculateTotalCost = () => {
     title1: index12value.title1 || "", 
     title2: index12value.title2 || "", 
     title3: index12value.title3 || "",
-    answer:index12value.answer||"", 
+    // answer:index12value.answer||"", 
   };
 
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
@@ -136,10 +136,10 @@ useEffect(() => {
     value4: saveMulti ? multiUser.max : 0,
     value5: saveThird ? thirdUser.min : 0,
     value6: saveThird ? thirdUser.max : 0,
-    title1: saveSingle ? "Maintainance and Support" : "",
-    title2: saveMulti ? "Maintainance and Support" : "",
-    title3: saveThird ? "Maintainance and Support" : "",
-    answer:saveSingle?"40 hours per month":saveMulti?"80 hours per month":saveThird?"No":"",
+    title1: saveSingle ? "Need ongoing maintenance and support(40 hours per month)" : "",
+    title2: saveMulti ? "Need ongoing maintenance and support(80 hours per month)" : "",
+    title3: saveThird ? "Need ongoing maintenance and support(No)" : "",
+    // answer:saveSingle?"40 hours per month":saveMulti?"80 hours per month":saveThird?"No":"",
   });
 }, []);
 
@@ -157,21 +157,21 @@ useEffect(() => {
       <div className="center ph4 selectionDiv">
         <UserOption
           imgSrc={user}
-          onClick={()=>onClickSingleUser('Maintainance and Support')}
+          onClick={()=>onClickSingleUser('Need ongoing maintenance and support(40 hours per month)')}
           label="40 hours per month"
           isSelected={singleUser}
           // onClick={() => handleSelectUser(1)}
         />
         <UserOption
           imgSrc={users}
-          onClick={()=>onClickMultiUser('Maintainance and Support')}
+          onClick={()=>onClickMultiUser('Need ongoing maintenance and support(80 hours per month)')}
           label="80 hours per month"
           isSelected={multiUser}
           // onClick={() => handleSelectUser(2)}
         />
         <UserOption
           imgSrc={usersthree}
-          onClick={()=>onClickThirdUser('Maintainance and Support')}
+          onClick={()=>onClickThirdUser('Need ongoing maintenance and support(No)')}
           label="No"
           isSelected={thirdUser}
           // onClick={() => handleSelectUser(3)}

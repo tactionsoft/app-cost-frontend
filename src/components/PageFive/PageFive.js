@@ -60,7 +60,8 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
         ...prevState,
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
-        title1: newValue ? "ios" : "",
+        title1: newValue ? "Which of the following mobile app platforms do you need(ios) " : "",
+        index: newValue || multiUser ? 5 : 0
       }));
   
       return newValue;
@@ -109,7 +110,8 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
         ...prevState,
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
-        title2: newValue ? "Android" : "",
+        title2: newValue ? "Which of the following mobile app platforms do you need(Android)" : "",
+        index: singleUser || newValue ? 5 : 0
       }));
   
       return newValue;
@@ -137,7 +139,7 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
         value2: newValue ? thirdUserCost.max : 0,
         value3: 0, value4: 0, value5: 0, value6: 0,
         index:newValue?pageIndex:0,
-        title3:newValue?"Cross-Platform iOS and Android":""
+        title3:newValue?"Which of the following mobile app platforms do you need(Cross-Platform iOS and Android)":""
       });
       return newValue;
     });
@@ -155,9 +157,9 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 5 : 0,
-      title1: single ? "iOS" : "",
-      title2: multi ? "Android" : "",
-      title3: third ? "Cross-Platform iOS and Android" : ""
+      title1: single ? "Which of the following mobile app platforms do you need(iOS)" : "",
+      title2: multi ? "Which of the following mobile app platforms do you need(Android)" : "",
+      title3: third ? "Which of the following mobile app platforms do you need(Cross-Platform iOS and Android)" : ""
     };
   
     // Update PageFive index (index 4)
@@ -243,9 +245,10 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
       value4: saveMulti ? multiUserCost.max : 0,
       value5: saveThird ? thirdUserCost.min : 0,
       value6: saveThird ? thirdUserCost.max : 0,
-      title1: saveSingle ? "ios" : "",
-      title2: saveMulti ? "Android" : "",
-      title3: saveThird ? "Cross-Platform iOS and Android" : ""
+      title1: saveSingle ? "Which of the following mobile app platforms do you need(ios)" : "",
+      title2: saveMulti ? "Which of the following mobile app platforms do you need(Android)" : "",
+      title3: saveThird ? "Which of the following mobile app platforms do you need(Cross-Platform iOS and Android)" : "",
+      index: saveSingle || saveMulti || saveThird ? 5 : 0
     });
   }, []);
   

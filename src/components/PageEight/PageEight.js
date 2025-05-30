@@ -23,8 +23,8 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue?pageIndex:0,
-        title1: newValue?"Recurring Subscription ":"",
-        answer:newValue?"Yes":""  
+        title1: newValue?"Will there be recurring subscriptions(Yes) ":"",
+        // answer:newValue?"Yes":""  
       }));
   
       return newValue;
@@ -47,14 +47,14 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
         value2: newValue ? thirdUserCost.max : 0,
         value3: 0, value4: 0, value5: 0, value6: 0,
         index: newValue?pageIndex:0,
-        title2: newValue?"Recurring Subscription":"",
-        answer:newValue?"No":""
+        title2: newValue?"Will there be recurring subscriptions(No)":"",
+        // answer:newValue?"No":""
       });
   
       return newValue;
     });
   };
-  
+
   const updateCost = (single, multi, third) => {
     let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
     const value = {
@@ -65,9 +65,9 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 8 : 0, // ✅ PageSeven
-      title1: single ? "Recurring Subscription" : "",
-      title2: multi ? "Recurring Subscription" : "",
-      answer: single ? "Yes" : multi ? "No" : "", // ✅ Answer
+      title1: single ? "Will there be recurring subscriptions(Yes)" : "",
+      title2: multi ? "Will there be recurring subscriptions(No)" : "",
+      // answer: single ? "Yes" : multi ? "No" : "", // ✅ Answer
     };
   
     costData[6] = value; // ✅ PageSeven = index 6
@@ -145,8 +145,8 @@ useEffect(() => {
         value6: 0,
         index: 8,
         title1: "",
-        title2: "Recurring Subscription",
-        answer: "No"
+        title2: "Will there be recurring subscriptions(No)",
+        // answer: "No"
       });
     } else if (savedThird) {
       setThirdUser(true);
@@ -161,8 +161,8 @@ useEffect(() => {
         value6: thirdUserCost.max,
         index: 8,
         title1: "",
-        title2: "Recurring Subscription",
-        answer: "No"
+        title2: "Will there be recurring subscriptions(No)",
+        // answer: "No"
       });
     }
   }

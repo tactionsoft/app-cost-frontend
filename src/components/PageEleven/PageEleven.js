@@ -33,7 +33,7 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index:  newValue? pageIndex:0,
-        title1: newValue?"Health Data":""
+        title1: newValue?"Which of the following integrations do you need(Health Data)":""
       }));
   
       return newValue;
@@ -58,7 +58,7 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
         index: newValue? pageIndex:0,
-        title2: newValue?"Device Data":"",
+        title2: newValue?"Which of the following integrations do you need":"",
       }));
   
       return newValue;
@@ -89,7 +89,7 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value5: newValue ? thirdUserCost.min : 0,
         value6: newValue ? thirdUserCost.max : 0,
         index: newValue?pageIndex:0,
-        title3: newValue?" Integration Needed ":"",
+        title3: newValue?"Which of the following integrations do you need":"",
         answer:newValue?"No":""
       });
       return newValue;
@@ -117,9 +117,9 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
       value5: third ? thirdUserCost.min : 0,
       value6: third ? thirdUserCost.max : 0,
       index: single || multi || third ? 8 : 0,  // ✅ FIXED INDEX (PageNine)
-      title1: single ? "Health Data" : "",
-      title2: multi ? "Device Data" : "",
-      title3: third ? "Integration Needed" : "",
+      title1: single ? "Which of the following integrations do you need(Health Data)" : "",
+      title2: multi ? "Which of the following integrations do you need(Device Data)" : "",
+      title3: third ? "Which of the following integrations do you need" : "",
       answer:third?"No":""
     };
   
