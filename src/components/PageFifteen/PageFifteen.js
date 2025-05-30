@@ -235,6 +235,7 @@ const handleSubmit = async (e) => {
 
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
+  console.log('selected industry',selectedIndustry);
   const totalCost = calculateTotalCost(costData);
 
   try {
@@ -302,7 +303,7 @@ const handleSubmit = async (e) => {
 
 
 
-  const response = await fetch('http://localhost:1337/api/user-info/submit', {
+  const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -330,8 +331,8 @@ const handleSubmit = async (e) => {
     phone: formData.phone.trim(),
     from_name: formData.name.trim(),
     name: "Admin",
-    to_email: "gurvinder@felicitastechnologies.com,coolkohligaurav1826.gk@gmail.com",
-    // to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
+    // to_email: "gurvinder@felicitastechnologies.com,coolkohligaurav1826.gk@gmail.com",
+    to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
     total_cost: generateTableHTML(costData),
     total_costs: totalCost,
     selectedIndustry: selectedIndustry,
