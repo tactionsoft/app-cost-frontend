@@ -2306,9 +2306,9 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.bi-envelope::before {
+/* .bi-envelope::before {
   color: #212529 !important;
-}
+} */
 
 /* @media(min-width:991.01px) and (max-width:991.99px){
   .banner-form {
