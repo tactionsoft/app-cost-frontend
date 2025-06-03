@@ -359,8 +359,7 @@ const handleSubmit = async (e) => {
 
   return (
 
-    <main className="pt5 black-80 center-fifteen form-content"
-      style={{ maxWidth: "60%", maxHeight: "30%", margin: "auto" }}>
+    <main className="pt5 black-80 center-fifteen form-content fifteen-content container">
         <div className="total-est-cost well">
         <h2 className="total-cost-title">Estimated Cost based on your total selection: <span id="total-selection-cost"><br/>{totalCost}</span>
         </h2>
