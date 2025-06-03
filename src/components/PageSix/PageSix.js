@@ -16,7 +16,7 @@ const PageSix = ({ onButtonClick,totalCost,setTotalCost }) => {
   const [index5value, setIndex5value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",title3:"",answer:"" });
   // const [totalCost, setTotalCost] = useState("$0K");
 
-  const onClickSingleUser = () => {
+  const onClickSingleUser = (prevState) => {
     setSingleUser((prev) => {
       const newValue = !prev;
       if (newValue) setThirdUser(false); // Deselect ThirdUser if selected
@@ -33,7 +33,8 @@ const PageSix = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index: newValue || prevState.index ? pageIndex : 0,
-        title1:  newValue?"Which of the following web components do you need(Web App)":""
+        title1:  newValue?"Which of the following web components do you need(Web App)":"",
+        title3:""
       }));
   
       return newValue;
@@ -57,7 +58,8 @@ const onClickMultiUser = () => {
         value3: newValue ? multiUserCost.min : 0,
         value4: newValue ? multiUserCost.max : 0,
         index: newValue || prevState.index ? pageIndex : 0, 
-        title2:newValue?"Which of the following web components do you need(Backend API)":""
+        title2:newValue?"Which of the following web components do you need(Backend API)":"",
+        title3:""
       }));
   
       return newValue;

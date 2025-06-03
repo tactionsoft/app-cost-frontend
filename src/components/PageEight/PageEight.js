@@ -24,6 +24,7 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
         value2: newValue ? singleUserCost.max : 0,
         index: newValue?pageIndex:0,
         title1: newValue?"Will there be recurring subscriptions(Yes) ":"",
+        title2:"",
         // answer:newValue?"Yes":""  
       }));
   
@@ -48,6 +49,7 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
         value3: 0, value4: 0, value5: 0, value6: 0,
         index: newValue?pageIndex:0,
         title2: newValue?"Will there be recurring subscriptions(No)":"",
+        title1:"",
         // answer:newValue?"No":""
       });
   

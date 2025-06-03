@@ -30,6 +30,7 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
         value2: newValue ? singleUserCost.max : 0,
         index: newValue? pageIndex:0,
         title1: newValue?"Do you need EHR Integration(Yes) ":"",
+        title2:"",
         // answer:newValue?'Yes':"",
       }));
   
@@ -56,6 +57,7 @@ const PageFourteen = ({ onButtonClick,totalCost,setTotalCost }) => {
             value3: 0, value4: 0, value5: 0, value6: 0,
             index: newValue? pageIndex:0,
             title2: newValue? "Do you need EHR Integration(No)":"",
+            title1:"",
             // answer:newValue?"No":""
         });
 
