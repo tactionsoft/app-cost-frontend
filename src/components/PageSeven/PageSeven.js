@@ -26,6 +26,7 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value2: newValue ? singleUserCost.max : 0,
         index:newValue?pageIndex:0,
         title1:newValue?"Payment processing(Yes)":"",
+        title2:"",
         // answer:newValue?"Yes":"",
       }));
   
@@ -50,6 +51,7 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value3: 0, value4: 0, value5: 0, value6: 0,
         index:newValue?pageIndex:0,
         title2:newValue?"Payment processing(No)":"",
+        title1:""
         // answer:newValue?"No":""
       }));
       return newValue;

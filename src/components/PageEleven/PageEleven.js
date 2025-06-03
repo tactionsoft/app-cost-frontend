@@ -33,7 +33,8 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value1: newValue ? singleUserCost.min : 0,
         value2: newValue ? singleUserCost.max : 0,
         index:  newValue? pageIndex:0,
-        title1: newValue?"Which of the following integrations do you need(Health Data)":""
+        title1: newValue?"Which of the following integrations do you need(Health Data)":"",
+        title3:""
       }));
   
       return newValue;
@@ -59,6 +60,7 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value4: newValue ? multiUserCost.max : 0,
         index: newValue? pageIndex:0,
         title2: newValue?"Which of the following integrations do you need":"",
+        title3:""
       }));
   
       return newValue;
@@ -90,6 +92,8 @@ const PageEleven = ({ onButtonClick,totalCost,setTotalCost }) => {
         value6: newValue ? thirdUserCost.max : 0,
         index: newValue?pageIndex:0,
         title3: newValue?"Which of the following integrations do you need(No)":"",
+        title1:"",
+        title2:"",
         // answer:newValue?"No":""
       });
       return newValue;
