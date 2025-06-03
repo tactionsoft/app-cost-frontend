@@ -215,9 +215,8 @@ h2 {
 @media screen and (max-width: 767px) {
   .measure {
     width: 100%;
-    max-width: 350px; /* Ensures it fits inside 375px width */
-    padding: 10px;
-    /* margin: auto; */
+    max-width: 350px; 
+    padding: 2rem;
   }
 }
 
@@ -244,9 +243,7 @@ h2 {
 
 @media(max-width:767px){
   .center-fifteen{
-    display: block;
-    justify-content: center;
-    max-width: 85% !important;
+    flex-direction: column-reverse;
   }
   .total-est-cost{
     border-radius: 0px 0px 0px 0px;
@@ -256,9 +253,16 @@ h2 {
   }
   .total-cost-title{
     font-size: 26px ;
+    margin-bottom: 8rem;
   }
   .total-est-cost-well{
     max-width: 640px;
+  }
+}
+
+@media (max-width: 500px) {
+  .total-cost-title {
+    margin-bottom: 13rem;
   }
 }
 
@@ -284,3 +288,24 @@ h2 {
   text-shadow: .25px .25px #000;
 }
 
+.fifteen-content {
+  
+  max-height: 30%;
+  margin: auto;
+}
+
+@media (max-width: 1023px) {
+  .fifteen-content {
+    max-width: 82%;
+  }
+  .total-est-cost {
+    padding: 26px;
+  }
+  .total-est-cost .total-cost-title #total-selection-cost {
+    font-size: 37px;
+  }
+}
+
+@media (max-width: 767px) {
+
+}

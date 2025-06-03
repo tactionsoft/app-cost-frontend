@@ -269,7 +269,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
 
  
     </main>
-    <div className="totals well">
+    <div className="totals well container p-5">
         <h2 className="total-cost">
           Total Estimated Cost: <span id="total-cost">{totalCost}</span>
         </h2>
