@@ -277,7 +277,7 @@ useEffect(() => {
         disabled={!isNextButtonEnabled}
       />
 
-      <div className="totals well container p-5">
+      <div className="totals well container p-4">
         <h2 className="total-cost">
           Total Estimated Cost: <span id="total-cost">{totalCost}</span>
           
