@@ -184,7 +184,7 @@ useEffect(() => {
     <>
         <main
       className="pt5 black-80 body-background"
-      style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
+      style={{ margin: "auto" }}
     >
       <h2>Payment processing?</h2>
       <div className="center ph4 selectionDiv">

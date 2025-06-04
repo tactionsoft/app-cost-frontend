@@ -215,7 +215,7 @@ useEffect(() => {
 
   return (
     <>
-     <main className="pt5 black-80 body-background" style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}>
+     <main className="pt5 black-80 body-background" style={{ margin: "auto" }}>
       <h2>Which of the following integrations do you need?</h2>
       <div className="center ph4 selectionDiv">
         {/* Single User Option */}
