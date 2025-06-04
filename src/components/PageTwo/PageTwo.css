@@ -139,3 +139,9 @@ h2 {
 .totals .total-cost {
   text-transform: uppercase;
 }
+
+@media (max-width: 767px) {
+  .totals {
+    padding: 1rem;
+  }
+}

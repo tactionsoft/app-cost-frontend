@@ -258,7 +258,7 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
     <>
         <main
       className="pt5 black-80 body-background"
-      style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
+      style={{ margin: "auto" }}
     >
       <h2>Which of the following mobile app platforms do you need?</h2>
       <div className="center ph4 selectionDiv">

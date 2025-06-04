@@ -278,7 +278,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
     <>
         <main
       className="pt5 black-80 body-background"
-      style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
+      style={{ margin: "auto" }}
     >
       <h2>How many other basic API integrations are you expecting?</h2>
       <div className="center ph4 selectionDiv">

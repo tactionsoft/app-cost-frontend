@@ -70,3 +70,13 @@ h1 {
 .body-background {
   padding-bottom: 5rem;
 }
+
+@media (max-width: 767px) {
+  .body-background {
+    padding-bottom: 0;
+  }
+  /* .totals {
+    padding: 1rem;
+  } */
+}
+
