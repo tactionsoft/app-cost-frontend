@@ -171,7 +171,6 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
     let totalMax = 0;
     for (let item of costData) {
       if (item) {
-        console.log('item is:-',item);
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
         totalMax += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
       }
@@ -418,7 +417,6 @@ const PageFive = ({ onButtonClick,totalCost,setTotalCost }) => {
         
           // Store index4value at index 3 (4th position)
           costData[3] = index4value;
-          console.log('index 4 value is:-',index4value)
         
           // Save the updated data back to session storage
           sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));

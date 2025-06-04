@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(apiData.message || "Failed to submit data");
       }
   
-      console.log("User data stored successfully:", apiData);
+     
   
       // ✅ Function to Send Email using EmailJS
       const sendEmail = (recipientEmail, subject, message, ccEmail = "",senderName = "Taction Software LLC") => {

@@ -2339,7 +2339,29 @@ h1 {
 .landing-text{
   font-size: 42px !important;
 }
+@media(max-width:1070px){
+  .total-cost-title {
+    color: #fff;
+    font-size: 30px;
+    margin: 0;
+}
 
+}
+@media(max-width:877px){
+  .total-est-cost .total-cost-title #total-selection-cost {
+    font-weight: 600;
+    text-shadow: 0.75px 0.75px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}
+.total-cost-title {
+  color: #fff;
+  font-size: 23px;
+  margin: 0;
+}
+}
 
 
 

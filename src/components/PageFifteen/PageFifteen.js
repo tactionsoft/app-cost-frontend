@@ -19,10 +19,9 @@ const PageFifteen = ({ onButtonClick }) => {
 
   useEffect(() => {
     const savedFormData = sessionStorage.getItem("formData");
-    console.log('saved data',savedFormData)
+
     if (savedFormData) {
       const parsedData = JSON.parse(savedFormData);
-      console.log('parsed data is:-',parsedData);
       // Map stored keys to Page 15 form keys
       setFormData({
         name: parsedData["ebook-form-name"] || "",
@@ -39,7 +38,6 @@ const PageFifteen = ({ onButtonClick }) => {
     }))
     setErrors((prevErrors) => {
       let newErrors = { ...prevErrors };
-  console.log('new errors is:-',newErrors)
       if (!value.trim()) {
         // If field is empty, show the error again
         newErrors[name] = `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
@@ -72,7 +70,6 @@ const PageFifteen = ({ onButtonClick }) => {
 
 useEffect(() => {
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  console.log('cost data is:-',costData);
   setTotalCost(calculateTotalCost(costData)); // ✅ Update the state properly
 
   const handleStorageChange = () => {
@@ -226,6 +223,7 @@ const generateTableHTML = (costData) => {
 
 
 const handleSubmit = async (e) => {
+
   e.preventDefault();
 
   // if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim()) {
@@ -235,11 +233,8 @@ const handleSubmit = async (e) => {
 
   const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
-  console.log('selected industry',selectedIndustry);
   const totalCost = calculateTotalCost(costData);
-
   try {
-
     // const response = await fetch('http://localhost:1337/api/user-info/submit', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
@@ -301,8 +296,6 @@ const handleSubmit = async (e) => {
   // }
 
 
-
-
   const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -352,10 +345,7 @@ const handleSubmit = async (e) => {
   console.error("❌ Error:", error);
   alert("An unexpected error occurred. Please try again.");
 }
-
 };
-
-
 
   return (
 
@@ -389,7 +379,7 @@ const handleSubmit = async (e) => {
                 height: "40px",
               }}
             />
-{/* 
+    {/* 
             {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>} */}
           </div>
           {/* Email Field */}
