@@ -118,3 +118,9 @@ h2 {
 .thankyou-page {
   padding-bottom: 27rem;
 }
+
+@media (max-width: 767px) {
+  .thankyou-page {
+    padding-bottom: 0;
+  }
+}
