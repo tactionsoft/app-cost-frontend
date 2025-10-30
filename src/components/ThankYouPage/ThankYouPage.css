@@ -170,10 +170,18 @@ h1 {
   font-family: "Inter", sans-serif;
   font-size: 36px !important;
 }
+
 .thank-contact {
   color: #fff;
-  font-size: 28px;
+  font-size: 35px;
   font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.thankyou-page-title {
+  font-size: 40px !important;
+  margin-bottom: 10px;
+  font-weight: 800;
 }
 
 .distribute-wrapper p,

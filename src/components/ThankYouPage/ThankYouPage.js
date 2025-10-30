@@ -6,7 +6,7 @@ const ThankYouPage = ({onButtonClick}) => {
 	const navigate=useNavigate();
 	return (
 		<div className="thank-you-page">
-			<h1>Build the Next Big Thing</h1>
+			<h1 className="thankyou-page-title">Build the Next Big Thing</h1>
 			{/* Your new section goes here */}
 			<section data-qa="layout-placement-wrapper" className="layout-wrapper">
 				<div className="content-wrapper">
@@ -14,8 +14,8 @@ const ThankYouPage = ({onButtonClick}) => {
 						<h2 className="text-wrapper thank-contact">
 							Thank you for contacting us.
 						</h2>
-						<p> To know your estimate cost, please go to the home page and click on <strong style={{color:"#fff"}}>Estimate your App costs</strong> button.
-						</p>
+						{/* <p> To know your estimate cost, please go to the home page and click on <strong style={{color:"#fff"}}>Estimate your App costs</strong> button.
+						</p> */}
 					</div>
 					<div className="submit-button">
 						<button onClick={

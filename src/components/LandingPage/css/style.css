@@ -914,7 +914,7 @@ strong {
 
 .contact-section p {
   color: var(--white-color);
-  font-size: var(--h6-font-size);
+  font-size: 14px;
 }
 
 .contact-link {
@@ -1550,6 +1550,8 @@ strong {
 .accordion-item {
   border: 0 !important;
   border-bottom: 1px solid #eee !important;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .accordion button {
@@ -1581,6 +1583,7 @@ strong {
 
 .accordion button .accordion-title {
   padding: 1em 1.5em 1em 0;
+  font-size: 16px;
 }
 
 .accordion button .icon {
@@ -2184,6 +2187,15 @@ button[type="submit"] {
   justify-content: space-between;
 }
 
+.footer_content-address .footer_one p,
+.footer_content-address .footer_one p a
+ {
+  text-align: center;
+  text-shadow: 1px 2px 3px #888888;
+  color: #000;
+  font-weight: 500;
+}
+
 @media (max-width: 821px) {
   .footer_content-address {
     display: block;
@@ -2340,8 +2352,17 @@ h1 {
   font-size: 42px !important;
 }
 
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
+.footer-california {
+  width: 200px;
+  height: 82px;
+}
 
-
-
-
+.footer-austin {
+  margin-top: 18px;
+}

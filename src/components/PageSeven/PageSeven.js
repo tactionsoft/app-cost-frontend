@@ -77,7 +77,7 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
     // Recalculate total
     let totalMin = 0;
-    let totalMax = 0;
+    let totalMax = 0; 
     for (let item of costData) {
       if (item) {
         totalMin += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);

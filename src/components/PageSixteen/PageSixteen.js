@@ -39,7 +39,8 @@ const PageSixteen = ({ onButtonClick, resetProgress }) => {
         value="Get Free Consultation"
         onClick={() => {
           sessionStorage.clear();
-          onButtonClick("pageone");
+            navigate("/thank-you");
+          // onButtonClick("pageone");
           resetProgress();
         }}
       />

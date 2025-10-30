@@ -13,15 +13,21 @@ import avatar3 from "./images/avatar/dummy-profile2.jpg";
 import avatar4 from "./images/avatar/dummy-profile3.jpg";
 import calculation from "./images/calculation.jpg";
 import aboutUs from "./images/contact image.jpg";
+import australia from "./images/hq-australia.svg";
+import cheyenne from "./images/cheyenne.svg";
+import austin from "./images/austin.svg";
+import california from "./images/california.svg";
+
 import costCalculator from "./images/cost-calculator.jpg";
 import estimate from "./images/Estimate.jpg";
 import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-import about_us from './images/about-us.jpg'
-import dmca from './images/dmca.jpg'
-import cmmi3 from './images/cmmi.png'
-import iso1 from './images/iso1.png'
-import iso2 from './images/iso2.png'
+import about_us from './images/about-us.jpg';
+import dmca from './images/dmca.jpg';
+import cmmi3 from './images/cmmi.png';
+import iso1 from './images/iso1.png';
+import iso2 from './images/iso2.png';
+
 import admin from '../LandingPage/images/9c7e8aea-2a33-4d54-a175-683b8ca9b375.jpg'
 // import axios from axios;
 
@@ -480,28 +486,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                     <div class="app-cost-card">
-                        <div class="card-icon">💡</div>
+                        <div class="card-icon">💡</div> 
                         <div class="card-content">   
                             <p>
                               <strong>Estimate Development Timeline</strong> – Get insights on how long it takes to build your app and how it impacts the cost.</p>
                         </div>
-                      
                     </div>
-
                 </div>
                 <div id="item-3"></div>
-
               </div>
-
               <div class="scrollspy-example-item right-side-content" >
                 <h2>What Factors Influence App Development Costs?</h2>
-
                 <p>Several factors determine how much it costs to build an app. Our app cost estimator considers:</p>
                 <div class="row cost-calculator">
                   <div class="col-lg-6 col-12">
                     <img src={costCalculator} className="img-fluid" alt="" />
                   </div>
-
                   <div class="col-lg-6 col-12">
                     <p><strong>App Type & Functionality</strong> – Basic apps cost less, while AI-driven or enterprise applications require more investment.</p>
                     <p><strong>Technology Stack</strong> – Using <strong>native, hybrid, or progressive web app (PWA) technologies</strong> impacts pricing.</p>
@@ -511,15 +511,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                   <div id="item-4"></div>
                 </div>
-            
               </div>
-            
-
               <div class="scrollspy-example-item right-side-content" >
                 <h2>Frequently Asked Questions (FAQs) About App Cost Calculator</h2>
-
                 <p>We hope the information below provides you with a clear understanding of how our App Cost Calculator works, helping you estimate your app development budget with transparency and ease.</p>
-
                 <div class="container-faq">
                   <div class="accordion">
                     <div class="accordion-item">
@@ -585,7 +580,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>• <strong>Mid-level apps</strong> (e.g., eCommerce, on-demand services) – $30,000 to $100,000</p>
                         <p>• <strong>Enterprise or AI-powered apps</strong> – $100,000+</p>
                         <p>The cost of app development varies widely based on complexity:</p>
-                        
                       </div>
                     </div>
                     <div class="accordion-item">
@@ -645,7 +639,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>• <strong>Mid-level apps</strong> – 3 to 6 months</p>
                         <p>• <strong>Enterprise apps</strong> – 6+ months</p>
                         <p>Our <strong>App Cost Calculator</strong> also provides a rough estimate of the development timeline based on your selected features.</p>
-                        
                       </div>
                     </div>
                     <div class="accordion-item">
@@ -681,14 +674,12 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                 </div>
               </div>
-
               <div class="scrollspy-example-item right-side-content" id="item-5">
                   <div class="container">
                     <div class="row">
                       <div class="col-lg-12 col-12 book-sectionInfo">
                         <div class="book-section-info">
                           <h2 class="mb-4">Why Choose Taction Software for App Development?</h2>
-            
                           <p><strong>Proven Expertis</strong>e – 10+ years of experience in <strong>custom app development</strong> across industries like <strong>healthcare, fintech, eCommerce, and logistics.</strong>
                           </p>
                           <div class="row choose-us">
@@ -712,15 +703,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     </section>
-
     <section class="reviews-section section-padding" id="section_4">
       <div class="container">
         <div class="row">
-
           <div class="col-lg-12 col-12 text-center mb-5">
             <h3>What Our Clients Say About Us</h3>
           </div>
-
           <div class="col-lg-4 col-12">
             <div class="custom-block d-flex flex-wrap">
               <div class="custom-block-image-wrap d-flex flex-column">
@@ -729,11 +717,9 @@ document.addEventListener("DOMContentLoaded", () => {
                   <strong class="d-block text-white">HealthTech Solutions</strong>
                 </div>
               </div>
-
               <div class="custom-block-info review-card">
                 <div class="reviews-group mb-3">
                   <strong>4.5</strong>
-
                   <i class="bi-star-fill"></i>
                   <i class="bi-star-fill"></i>
                   <i class="bi-star-fill"></i>
@@ -746,7 +732,6 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-12 my-5 my-lg-0">
             <div class="custom-block d-flex flex-wrap">
               <div class="custom-block-image-wrap d-flex flex-column">
@@ -755,18 +740,15 @@ document.addEventListener("DOMContentLoaded", () => {
                   <strong class="d-block text-white">eCommerce Startup</strong>
                 </div>
               </div>
-
               <div class="custom-block-info review-card">
                 <div class="reviews-group mb-3">
                   <strong>4.0</strong>
-
                   <i class="bi-star-fill"></i>
                   <i class="bi-star-fill"></i>
                   <i class="bi-star-fill"></i>
                   <i class="bi-star-fill"></i>
                   <i class="bi-star"></i>
                 </div>
-
                 <p class="mb-0 client-review">"Their cost estimator helped us budget properly before development. The final product exceeded our expectations – intuitive design, seamless performance, and great post-launch support."
                 </p>
               </div>
@@ -806,11 +788,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <section class="cost-estimate section-padding" id="section_3">
       <div class="container">
         <div class="row cost-estimate-cta">
-
           <div class="col-lg-6 col-12">
             <img src={estimate} className="img-fluid esitmate-image" alt="" />
           </div>
-
           <div class="col-lg-6 col-12 mt-5 mt-lg-0">
             <h2 class="mb-4">Get Your Custom App Cost Estimate Now!</h2>
             <p>Ready to turn your app idea into reality? <strong>Use our App Cost Calculator</strong> to get a detailed estimate tailored to your requirements.</p>
@@ -822,7 +802,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     </section>
-
     <section className="contact-section section-padding" id="section_5">
         <div className="container">
           <div className="row">
@@ -831,7 +810,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div className="text-center mb-4">
                   <h2 className="mb-1">Add your details</h2>
                 </div>
-
+                
                 <div className="ebook-download-form-body">
                   <div className="input-group mb-4">
                     <input type="text" name="ebook-form-name" id="ebook-form-name" className="form-control"
@@ -867,17 +846,18 @@ document.addEventListener("DOMContentLoaded", () => {
               <h2 className="mb-4">Contact</h2>
               <div className="footer_content-address">
               <div className="footer_one">
+              <div className="footer-logo"><img src={australia} className="" alt="Australia Address" /></div>
               <p className="mb-3">
-              1603 Capitol Ave<br/>
-              Suite 310 A124<br/>
-              Cheyenne, WY 82001
+              1016 W<br/>
+              Jackson Boulevard Chicago<br/>
+              IL 60607
                 {/* <i className="bi-geo-alt me-2"></i>
                 London, United Kingdom */}
               </p>
 
               <p className="mb-2">
                 <a href="tel: +1 3074590850" className="contact-link">
-                  +1 307 459 0850
+                +1 307 459 0850
                 </a>
               </p>
 
@@ -889,6 +869,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             
             <div className="footer_one">
+            <div className="footer-logo"><img src={cheyenne} className="" alt="Australia Address" /></div>
               <p className="mb-3">
               1603 Capitol Ave<br/>
               Suite 310 A124<br/>
@@ -909,18 +890,43 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
               </p>
             </div>
+
             <div className="footer_one">
+            <div className="footer-logo footer-austin"><img src={austin} className="" alt="Austin" /></div>
               <p className="mb-3">
-              1603 Capitol Ave<br/>
-              Suite 310 A124<br/>
-              Cheyenne, WY 82001
+              5301 Southwest Pkwy.<br/>
+              Suite 400 TX102<br/>
+              Austin, Texas (TX) 78735
                 {/* <i className="bi-geo-alt me-2"></i>
                 London, United Kingdom */}
               </p>
 
               <p className="mb-2">
-                <a href="tel: +1 3074590850" className="contact-link">
-                  +1 307 459 0850
+                <a href="tel: +1 5122990926" className="contact-link">
+                +1 (512) 299 0926
+                </a>
+              </p>
+
+              <p>
+                <a href="mailto:info@tactionsoft.com" className="contact-link mail-info">
+                  info@tactionsoft.com
+                </a>
+              </p>
+            </div>
+
+            <div className="footer_one">
+            <div className="footer-logo footer-california"><img src={california} className="" alt="California" /></div>
+              <p className="mb-3">
+              720 14th Street<br/>
+              CA114<br/>
+              Sacramento, California (CA) 95814
+                {/* <i className="bi-geo-alt me-2"></i>
+                London, United Kingdom */}
+              </p>
+
+              <p className="mb-2">
+                <a href="tel: +1 5122990926" className="contact-link">
+                +1 (512) 299 0926
                 </a>
               </p>
 
