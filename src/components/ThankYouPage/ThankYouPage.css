@@ -144,6 +144,13 @@ form .form-group .checkbox-group label input {
 
 .thank-you-page {
   margin-top: 60px;
+  height: max-content;
+}
+
+@media (max-width: 767px) {
+  .thank-you-page {
+    height: 70vh;
+  }
 }
 
 .layout-placement-wrapper {
@@ -158,6 +165,12 @@ form .form-group .checkbox-group label input {
   margin: 0 auto;
   width: 100%;
   border-radius: 8px;
+}
+
+@media (max-width: 767px) {
+  .layout-wrapper {
+    padding: 50px;
+  }
 }
 
 h1 span {
