@@ -1537,6 +1537,8 @@ strong {
   margin: 0 auto;
   /* padding: 4rem; */
   width: 48rem;
+  background: #fff;
+  margin-bottom: 20px;
 }
 
 /* .accordion .accordion-item {
@@ -2359,8 +2361,9 @@ h1 {
 }
 
 .footer-california {
-  width: 200px;
+  width: 100%;
   height: 82px;
+
 }
 
 .footer-austin {
