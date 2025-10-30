@@ -152,7 +152,7 @@ useEffect(() => {
   return (
     <main
       className="pt5 black-80 maintenance-background"
-      style={{ maxWidth: "90%", maxHeight: "25%", margin: "auto" }}
+      style={{ margin: "auto" }}
     >
       <h2>Need ongoing maintenance and support?</h2>
       <div className="center ph4 selectionDiv">
