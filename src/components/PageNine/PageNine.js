@@ -504,7 +504,7 @@ useEffect(() => {
       {/* Display Total Cost */}
       <div className="totals well container p-4">
         <h2 className="total-cost">
-          Total Estimated Cost:{" "}
+        <span className="footer-total-cost_title">Total Estimated Cost</span>:{" "}
           {/* <span id="total-cost">{formatCostRange(totalMin, totalMax)}</span> */}
           <span id="total-cost">{totalCost}</span>
         </h2>

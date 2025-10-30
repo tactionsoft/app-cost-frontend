@@ -294,10 +294,10 @@ if(savedSingle){
       />
 <div className="totals well container p-4">
         <h2 className="total-cost">
-          Total Estimated Cost: <span id="total-cost">{totalCost}</span>
+        <span className="footer-total-cost_title">Total Estimated Cost</span>: <span id="total-cost">{totalCost}</span>
         </h2>
         <p className="disclaimer">
-          Please note : All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
+        <b>Please note </b>: All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
         </p>
       </div>
 
