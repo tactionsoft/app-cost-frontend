@@ -2369,3 +2369,8 @@ h1 {
 .footer-austin {
   margin-top: 18px;
 }
+
+.footer-total-cost_title {
+  text-shadow: 0.75px 0.75px #000;
+  font-weight: 600;
+}
