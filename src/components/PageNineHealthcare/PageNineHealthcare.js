@@ -299,7 +299,7 @@ const isNextButtonEnabled = singleUser || multiUser || thirdUser;
         }}
         type="submit"
         value="Back"
-        onClick={() => onButtonClick("pagenine")}
+        onClick={() => onButtonClick("pageeight")}
       />
 
       <input
