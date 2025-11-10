@@ -317,7 +317,7 @@ useEffect(() => {
         }}
         type="submit"
         value="Back"
-        onClick={() => onButtonClick("pageeight")}
+        onClick={() => onButtonClick("pageseven")}
       />
 
       {/* Next Button */}
