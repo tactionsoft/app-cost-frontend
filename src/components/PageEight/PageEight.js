@@ -40,7 +40,7 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
         setSingleUser(false);
       }
      const costData= sessionStorage.setItem("userSelection_pageEight", JSON.stringify({singleUser: false,thirdUser: true}));
-     console.log('costData is :----------------',costData);
+    
       updateCost(false, newValue);
       const pageIndex=8;
       setIndex7value({
@@ -73,7 +73,6 @@ const PageEight = ({ onButtonClick,totalCost,setTotalCost }) => {
     };
   
     costData[6] = value; // ✅ PageSeven = index 6
-    console.log('value is:-',value);
     sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
     // Recalculate total
     let totalMin = 0;
@@ -111,7 +110,6 @@ const calculateTotalCost = () => {
   setTotalCost(finalCost);
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
   costData=[...costData]
-  console.log('costData is:-',costData);
   // costData[6] = index7value; // Store in session storage
   costData[6]={
     ...costData[6],

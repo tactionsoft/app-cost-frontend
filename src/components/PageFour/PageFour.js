@@ -100,7 +100,6 @@ const updateCost = (single, multi) => {
   costData[2] = value;
 
   const costDatas=sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
-  console.log('cost datas is:-',costDatas)
   
 
   // Recalculate total from all pages

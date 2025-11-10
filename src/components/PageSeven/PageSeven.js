@@ -11,7 +11,6 @@ const PageSeven = ({ onButtonClick,totalCost,setTotalCost }) => {
   const thirdUserCost = { min: 0, max: 0 };
   // const [totalCost, setTotalCost] = useState("$0K"); // Track the total cost
   const [index6value, setIndex6value] = useState({ value1: 0, value2: 0, value3: 0, value4: 0, value5: 0, value6: 0,index:0,title1:"",title2:"",answer:"" });
-  console.log('index6value is:-',index6value);
 
   const onClickSingleUser = () => {
     setSingleUser((prev) => {
@@ -114,10 +113,8 @@ const calculateTotalCost = () => {
 
   // Retrieve existing data
   let costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
-  console.log('cost data is:-',costData)
   // Ensure costData has at least 6 indices without affecting existing values
   costData = [...costData];
-  console.log('costData is:-',costData)
   // Only update index 5 if it hasn't been set already
   if (!costData[5]) {
     costData[5] = {}; // Initialize index 5 if it's undefined
@@ -132,7 +129,6 @@ const calculateTotalCost = () => {
   };
   // Preserve existing values in costData[5] and update only necessary fields
   costData[5] = { ...costData[5], ...index6value};
-  console.log('cost data is:-',costData[5])
   // Save updated data
   sessionStorage.setItem("finalCostPrice", JSON.stringify(costData));
   onButtonClick("pageeight");
