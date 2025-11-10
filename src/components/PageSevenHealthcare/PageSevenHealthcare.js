@@ -246,7 +246,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
         }}
         type="submit"
         value="Back"
-        onClick={() => onButtonClick("pageseven")}
+        onClick={() => onButtonClick("pagesix")}
       />
       
       {/* Next Button */}
