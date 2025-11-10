@@ -11,16 +11,16 @@ const ThankYouPage = ({ onButtonClick }) => {
       <section data-qa="layout-placement-wrapper" className="layout-wrapper">
         <div className="content-wrapper">
           <div className="distribute-wrapper">
-            <h2 className="text-wrapper thank-contact">
+            <h2 className="text-wrapper thank-contact-healtcare">
               Thank you for contacting us.
             </h2>
             {/* <p> To know your estimate cost, please go to the home page and click on <strong style={{color:"#fff"}}>Estimate your App costs</strong> button.
 						</p> */}
           </div>
-          <div className="submit-button">
+          {/* <div className="submit-button">
             <button
               onClick={
-                () => navigate("/healthcare-app-development-cost.com/")
+                () => navigate("")
                 // ()=>onButtonClick('pageone')
               }
               data-qa="thank-you-button"
@@ -31,8 +31,7 @@ const ThankYouPage = ({ onButtonClick }) => {
                 <span className="text-wrapper">Home Page</span>
               </span>
             </button>
-            {/* <div class="press">press <strong>Enter ↵</strong></div> */}
-          </div>
+          </div> */}
         </div>
       </section>
       {/* Footer Component */}
