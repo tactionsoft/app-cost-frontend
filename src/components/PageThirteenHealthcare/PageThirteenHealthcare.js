@@ -243,7 +243,7 @@ const isContinueButtonEnabled = singleUser || thirdUser;
         }}
         type="submit"
         value="Back"
-        onClick={() => onButtonClick("pagethirteen")}
+        onClick={() => onButtonClick("pagetwelve")}
       />
 
       {/* Next Button (disabled if no option is selected) */}
