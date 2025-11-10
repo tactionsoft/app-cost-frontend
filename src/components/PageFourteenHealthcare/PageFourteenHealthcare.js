@@ -1,0 +1,299 @@
+import React, { useEffect, useState } from "react";
+import "./PageFourteen.css";
+import emailjs from '@emailjs/browser';
+import { useNavigate } from "react-router-dom";
+
+const PageFourteenHealthCare = ({ onButtonClick }) => {
+  const navigate =useNavigate();
+  const [formData,setFormData]=useState({
+    name:"",
+    email:"",
+    phone:"",
+  });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+
+  useEffect(() => {
+    const savedFormData = sessionStorage.getItem("formData");
+
+    if (savedFormData) {
+      const parsedData = JSON.parse(savedFormData);
+      // Map stored keys to Page 15 form keys
+      setFormData({
+        name: parsedData["ebook-form-name"] || "",
+        email: parsedData["ebook-email"] || "",
+        phone: parsedData["ebook-contact"] || "",
+      });
+    }
+  }, []);
+  const handleChange=(e)=>{
+    const {name,value}=e.target;
+    setFormData((prevValue)=>({
+          ...prevValue,
+          [name]:value,
+    }))
+    setErrors((prevErrors) => {
+      let newErrors = { ...prevErrors };
+      if (!value.trim()) {
+        // If field is empty, show the error again
+        newErrors[name] = `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
+      } else {
+        // Clear the error if user enters a value
+        newErrors[name] = '';
+      }
+      return newErrors;
+    });
+
+  }
+  const [totalCost, setTotalCost] = useState("$0K");
+  
+
+  const calculateTotalCost = (costData) => {
+    let totalMin = 0, totalMax = 0;
+
+    if (!costData || costData.length === 0) {
+      return "$0K - $0K";
+    }
+  
+    costData.forEach(item => {
+      totalMin += (item?.value1 || 0) + (item?.value3 || 0) + (item?.value5 || 0);
+      totalMax += (item?.value2 || 0) + (item?.value4 || 0) + (item?.value6 || 0);
+    });
+  
+    return `$${Math.round(totalMin / 1000)}K - $${Math.round(totalMax / 1000)}K`;
+  };
+
+
+useEffect(() => {
+  const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  setTotalCost(calculateTotalCost(costData)); // ✅ Update the state properly
+
+  const handleStorageChange = () => {
+      const updatedCostData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+      setTotalCost(calculateTotalCost(updatedCostData));
+  };
+
+  window.addEventListener("storage", handleStorageChange);
+
+  return () => {
+      window.removeEventListener("storage", handleStorageChange);
+  };
+}, []);
+
+const generateTableHTML = (costData) => {
+  let tableHTML = `
+    <p>Here is the cost breakdown:</p>
+    <table border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse; width: 100%;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid black; padding: 5px;">Page No</th>
+          <th style="border: 1px solid black; padding: 5px;">Title</th>
+          <th style="border: 1px solid black; padding: 5px;">Min Cost</th>
+          <th style="border: 1px solid black; padding: 5px;">Max Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  const mergedData = {};
+
+  costData.forEach(item => {
+    const pageIndex = item.index ?? "N/A";
+
+    if (!mergedData[pageIndex]) {
+      mergedData[pageIndex] = {
+        titles: [],
+        answers: new Set(),
+        minCost: 0,
+        maxCost: 0,
+      };
+    }
+
+    const entry = mergedData[pageIndex];
+
+    // Collect titles
+    if (item.title1) entry.titles.push(item.title1);
+    if (item.title2) entry.titles.push(item.title2);
+    if (item.title3) entry.titles.push(item.title3);
+    // Collect answers if any
+    // if (item.answer) entry.answers.add(item.answer);
+
+    // Accumulate cost
+    entry.minCost += (item.value1 || 0) + (item.value3 || 0) + (item.value5 || 0);
+    entry.maxCost += (item.value2 || 0) + (item.value4 || 0) + (item.value6 || 0);
+  });
+
+  // Render the merged table rows
+  Object.entries(mergedData).forEach(([index, data]) => {
+    tableHTML += `
+      <tr>
+        <td style="border: 1px solid black; padding: 5px;">${index}</td>
+        <td style="border: 1px solid black; padding: 5px;">${data.titles.join(", ")}</td>
+        <td style="border: 1px solid black; padding: 5px;">${data.minCost.toLocaleString()}</td>
+        <td style="border: 1px solid black; padding: 5px;">${data.maxCost.toLocaleString()}</td>
+      </tr>
+    `;
+  });
+
+  tableHTML += `</tbody></table>`;
+  return tableHTML;
+};
+
+
+
+const handleSubmit = async (e) => {
+
+  e.preventDefault();
+
+  const costData = JSON.parse(sessionStorage.getItem("finalCostPrice")) || [];
+  const selectedIndustry = sessionStorage.getItem("selectedIndustry") || "Not Provided";
+  const totalCost = calculateTotalCost(costData);
+  try {
+
+  const response = await fetch('https://api.app-cost.com/api/user-info/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      totalCost,
+      selectedIndustry,
+    }),
+  });
+  await response.json();
+  emailjs.send("service_hwmtg7p","template_goxhraz",{
+    email: formData.email.trim(),
+    phone: formData.phone.trim(),
+    from_name: formData.name.trim(),
+    name: "Admin",
+    // to_email: "gurvinder@felicitastechnologies.com,coolkohligaurav1826.gk@gmail.com",
+    to_email: "info@tactionsoft.com,marketing@tactionsoft.com",
+    total_cost: generateTableHTML(costData),
+    total_costs: totalCost,
+    selectedIndustry: selectedIndustry,
+  }, "sXCZZgYF5dxHpqxO_")
+    .then((response) => {
+      // alert("Thank you! Your estimate has been sent.");
+      sessionStorage.removeItem("userProgress");
+      sessionStorage.removeItem("finalCostPrice");
+      onButtonClick('pagefifteen'); // Redirect user
+    })
+    .catch((error) => {
+      console.error("❌ Email failed:", error);
+      alert("Failed to send email. Please try again.");
+    });
+
+} catch (error) {
+  console.error("❌ Error:", error);
+  alert("An unexpected error occurred. Please try again.");
+}
+};
+
+  return (
+    <main className="pt5 black-80 center-fifteen form-content fifteen-content container">
+        <div className="total-est-cost well">
+        <h2 className="total-cost-title footer-total-cost_title">Estimated Cost based on your total selection: <span id="total-selection-cost"><br/>{totalCost}</span>
+        </h2>
+        <p className="disclaimer-form">
+        <b>Please note </b>: All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
+        </p>
+      </div>
+      <form className="measure" onSubmit={handleSubmit}>
+        <h1 className="form-title" style={{ color: "#fff" }}>Please fill out this form to complete your details and receive your estimate.</h1>
+        <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+          {/* Name Field */}
+          <div className="mt3">
+            <input
+              className="f6 br2 ph3 pv2 mb2 dib black w-100 input-font"
+              type="text"
+              name="name"
+              required
+              id="workspace-name"
+              value={formData?.name}
+              onChange={handleChange}
+              placeholder="Enter your Name"
+              style={{
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: "#EAEEF5",
+                height: "40px",
+              }}
+            />
+    {/* 
+            {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>} */}
+          </div>
+          {/* Email Field */}
+          <div className="mv3">
+            <input
+              className="f6 ph3 pv2 dib br2 black w-100 input-font"
+              type="email"
+              name="email"
+              id="workspace-url"
+              required
+              value={formData?.email}
+              onChange={ handleChange}
+              placeholder="Enter your Email Address"
+              style={{
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: "#EAEEF5",
+                height: "40px",
+              }}
+            />
+            {/* {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>} */}
+          </div>
+
+          {/* Phone Field */}
+          <div className="mz3">
+            <input
+              className="f6 ph3 pv2 dib br2 black w-100 input-font"
+              type="text"
+              name="phone"
+              id="workspace-phone"
+              value={formData?.phone}
+              onChange={ handleChange}
+              placeholder="Enter your Phone Number"
+              style={{
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: "#EAEEF5",
+                height: "40px",
+              }}
+            />
+            {/* {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>} */}
+          </div>
+        </fieldset>
+        {/* Submit Button */}
+        <div className="">
+          <input
+            className="f6 grow br2 ph3 pv2 mb2 dib white submitButton"
+            style={{
+              fontSize: "12px",
+              textTransform: "uppercase",
+              border: "none",
+              borderRadius: "30px",
+              padding: "10px 20px",
+              textAlign: "center",
+              minWidth: "150px",
+              outline: "none",
+              textDecoration: "none",
+              color: "black",
+              cursor: "pointer",
+            }}
+            type="submit"
+            value="Submit"
+            // disabled={!isdisabled}
+          />
+        </div>
+      </form>
+    </main>
+  );
+};
+
+export default PageFourteenHealthCare;
+

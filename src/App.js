@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {calculateOverallTotalCost} from '../src/utils/OveralCost'
+import { calculateOverallTotalCost } from "../src/utils/OveralCost";
 import Logo from "./components/Logo/Logo";
 import MultiStepProgressBar from "./components/MultiStepProgressBar/MultiStepProgressBar";
 import PageOne from "./components/PageOne/PageOne";
@@ -21,15 +21,45 @@ import PageFifteen from "./components/PageFifteen/PageFifteen";
 import PageSixteen from "./components/PageSixteen/PageSixteen";
 import ConsultationForm from "./components/ConsultationForm/ConsultationForm";
 import ThankYouPage from "./components/ThankYouPage/ThankYouPage";
-import LandingPage   from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 import "./App.css";
 import tachyons from "tachyons";
-import { useLocation,useNavigate,useParams } from "react-router-dom";
-import HealthCarePageOne from "components/PageOneHealthcare/HealthCarePageOne";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import PageOneHealthCare from "components/PageOneHealthcare/PageOneHealthCare";
+import PageTwoHealthCare from "components/PageTwoHealthcare/PageTwoHealthcare";
+import PageThreeHealthCare from "components/PageThreeHealthcare/PageThreeHealthcare";
+import PageFourHealthCare from "components/PageFourHealthcare/PageFourHealthcare";
+import PageFiveHealthCare from "components/PageFiveHealthcare/PageFiveHealthcare";
+import PageSixHealthCare from "components/PageSixHealthcare/PageSixHealthcare";
+import PageSevenHealthCare from "components/PageSevenHealthcare/PageSevenHealthcare";
+import PageEightHealthCare from "components/PageEightHealthcare/PageEightHealthcare";
+import PageNineHealthCare from "components/PageNineHealthcare/PageNineHealthcare";
+import PageTenHealthCare from "components/PageTenHealthcare/PageTenHealthcare";
+import PageElevenHealthCare from "components/PageElevenHealthcare/PageElevenHealthcare";
+import PageTwelveHealthCare from "components/PageTwelveHealthcare/PageTwelveHealthcare";
+import PageThirteenHealthCare from "components/PageThirteenHealthcare/PageThirteenHealthcare";
+import PageFourteenHealthCare from "components/PageFourteenHealthcare/PageFourteenHealthcare";
+import PageFifteenHealthCare from "components/PageFifteenHealthcare/PageFifteenHealthcare";
+// import PageSixteenHealthCare from "components/PageSixteenHealthcare/PageSixteenHealthcare";
+import ThankYouPageHealthcare from "./components/ThankYouPageHealthcare/ThankYouPageHealthcare";
 
-function AppCostCalculatorPage({ page, setPage, nextPage, totalCost, setTotalCost, resetProgress, setCompletedPages }) {
-  const sharedProps = { onButtonClick: nextPage, totalCost, setTotalCost, setPage, setCompletedPages };
-  
+function AppCostCalculatorPage({
+  page,
+  setPage,
+  nextPage,
+  totalCost,
+  setTotalCost,
+  resetProgress,
+  setCompletedPages,
+}) {
+  const sharedProps = {
+    onButtonClick: nextPage,
+    totalCost,
+    setTotalCost,
+    setPage,
+    setCompletedPages,
+  };
+
   const pages = {
     pageone: <PageOne {...sharedProps} />,
     pagetwo: <PageTwo {...sharedProps} />,
@@ -46,53 +76,70 @@ function AppCostCalculatorPage({ page, setPage, nextPage, totalCost, setTotalCos
     pagethirteen: <PageThirteen {...sharedProps} />,
     pagefourteen: <PageFourteen {...sharedProps} />,
     pagefifteen: <PageFifteen {...sharedProps} />,
-    pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress} />,
+    pagesixteen: (
+      <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress} />
+    ),
   };
 
   return pages[page] || <PageOne {...sharedProps} />;
 }
-function AppCostCalculatorMedicalPage({ page, setPage, nextPage, totalCost, setTotalCost, resetProgress, setCompletedPages }) {
-  const sharedProps = { onButtonClick: nextPage, totalCost, setTotalCost, setPage, setCompletedPages };
-  
-  const pages = {
-    pageone: <HealthCarePageOne {...sharedProps} />,
-    pagetwo: <PageTwo {...sharedProps} />,
-    pagethree: <PageThree {...sharedProps} />,
-    pagefour: <PageFour {...sharedProps} />,
-    pagefive: <PageFive {...sharedProps} />,
-    pagesix: <PageSix {...sharedProps} />,
-    pageseven: <PageSeven {...sharedProps} />,
-    pageeight: <PageEight {...sharedProps} />,
-    pagenine: <PageNine {...sharedProps} />,
-    pageten: <PageTen {...sharedProps} />,
-    pageeleven: <PageEleven {...sharedProps} />,
-    pagetwelve: <PageTwelve {...sharedProps} />,
-    pagethirteen: <PageThirteen {...sharedProps} />,
-    pagefourteen: <PageFourteen {...sharedProps} />,
-    pagefifteen: <PageFifteen {...sharedProps} />,
-    pagesixteen: <PageSixteen onButtonClick={nextPage} resetProgress={resetProgress} />,
+function AppCostCalculatorMedicalPage({
+  page,
+  setPage,
+  nextPage,
+  totalCost,
+  setTotalCost,
+  resetProgress,
+  setCompletedPages,
+}) {
+  const sharedProps = {
+    onButtonClick: nextPage,
+    totalCost,
+    setTotalCost,
+    setPage,
+    setCompletedPages,
   };
 
-  return pages[page] || <MedicalPageOne {...sharedProps} />;
+  const pages = {
+    pageone: <PageOneHealthCare {...sharedProps} />,
+    pagetwo: <PageTwoHealthCare {...sharedProps} />,
+    pagethree: <PageThreeHealthCare {...sharedProps} />,
+    pagefour: <PageFourHealthCare {...sharedProps} />,
+    pagefive: <PageFiveHealthCare {...sharedProps} />,
+    pagesix: <PageSixHealthCare {...sharedProps} />,
+    pageseven: <PageSevenHealthCare {...sharedProps} />,
+    pageeight: <PageEightHealthCare {...sharedProps} />,
+    pagenine: <PageNineHealthCare {...sharedProps} />,
+    pageten: <PageTenHealthCare {...sharedProps} />,
+    pageeleven: <PageElevenHealthCare {...sharedProps} />,
+    pagetwelve: <PageTwelveHealthCare {...sharedProps} />,
+    pagethirteen: <PageThirteenHealthCare {...sharedProps} />,
+    pagefourteen: <PageFourteenHealthCare {...sharedProps} />,
+    pagefifteen: (
+      <PageFifteenHealthCare onButtonClick={nextPage} resetProgress={resetProgress} />
+    ),
+    // pagesixteen: <PageSixteenHealthCare onButtonClick={nextPage} resetProgress={resetProgress} />,
+  };
+
+  return pages[page] || <PageOneHealthCare {...sharedProps} />;
 }
 
-
-function App(){
- return(
-  <Router>
-    <MainApp/>
-  </Router>
- ); 
+function App() {
+  return (
+    <Router>
+      <MainApp />
+    </Router>
+  );
 }
-
 
 function MainApp() {
   const [page, setPage] = useState("pageone");
-  const [totalCost,setTotalCost]=useState("$0K");
+  const [totalCost, setTotalCost] = useState("$0K");
   const [completedPages, setCompletedPages] = useState({ pageone: true });
-  const location=useLocation();
+  const location = useLocation();
   const showProgressBar = location.pathname !== "/";
-  const hideProgressBar=location.pathname!=='/thank-you'
+  const hideProgressBar = location.pathname !== "/thank-you";
+  const hideProgressBars = location.pathname !== "/thankyou";
   const resetProgress = () => {
     setCompletedPages({ pageone: true }); // Reset progress, allowing only Page 1
   };
@@ -112,11 +159,11 @@ function MainApp() {
     window.addEventListener("beforeunload", () => {
       sessionStorage.clear();
     });
-  
+
     // Set totalCost on first mount
     const cost = calculateOverallTotalCost();
     setTotalCost(cost);
-  
+
     // Cleanup listener on unmount
     return () => {
       window.removeEventListener("beforeunload", () => {
@@ -124,55 +171,69 @@ function MainApp() {
       });
     };
   }, []);
-  
 
   return (
-      <div className="App">
-       {showProgressBar && <Logo/>} 
-        {showProgressBar && hideProgressBar && <MultiStepProgressBar completedPages={completedPages} page={page} onPageNumberClick={nextPage} />}
-        <Routes>
-          {/* Multi-step form routes */}
-          <Route path="/consultation-form" element={<ConsultationForm/>} />
-          <Route onButtonClick={nextPage} path="/thank-you" element={<ThankYouPage/>} />
-          <Route path="/" element={<LandingPage setCompletedPages={setCompletedPages} setPage={setPage}/>}/>
-          <Route
-    path="/app-cost-calculator"
-    element={
-      <AppCostCalculatorPage
-        page={page}
-        setPage={setPage}
-        nextPage={nextPage}
-        totalCost={totalCost}
-        setTotalCost={setTotalCost}
-        resetProgress={resetProgress}
-        setCompletedPages={setCompletedPages}
-      />
-      
-    }
-    
-    
-  /> 
-            <Route
-    path="/healthcare-cost-calculator"
-    element={
-      <AppCostCalculatorMedicalPage
-        page={page}
-        setPage={setPage}
-        nextPage={nextPage}
-        totalCost={totalCost}
-        setTotalCost={setTotalCost}
-        resetProgress={resetProgress}
-        setCompletedPages={setCompletedPages}
-      />
-      
-    }
-    
-  /> 
-
-          
-        </Routes>
-      </div>
- 
+    <div className="App">
+      {showProgressBar && <Logo />}
+      {showProgressBar && hideProgressBar && hideProgressBars && (
+        <MultiStepProgressBar
+          completedPages={completedPages}
+          page={page}
+          onPageNumberClick={nextPage}
+        />
+      )}
+      <Routes>
+        {/* Multi-step form routes */}
+        <Route path="/consultation-form" element={<ConsultationForm />} />
+        <Route
+          onButtonClick={nextPage}
+          path="/thank-you"
+          element={<ThankYouPage />}
+        />
+        <Route
+          onButtonClick={nextPage}
+          path="/thankyou"
+          element={<ThankYouPageHealthcare />}
+        />
+        <Route
+          path="/"
+          element={
+            <LandingPage
+              setCompletedPages={setCompletedPages}
+              setPage={setPage}
+            />
+          }
+        />
+        <Route
+          path="/app-cost-calculator"
+          element={
+            <AppCostCalculatorPage
+              page={page}
+              setPage={setPage}
+              nextPage={nextPage}
+              totalCost={totalCost}
+              setTotalCost={setTotalCost}
+              resetProgress={resetProgress}
+              setCompletedPages={setCompletedPages}
+            />
+          }
+        />
+        <Route
+          path="/health-app-cost-calculator"
+          element={
+            <AppCostCalculatorMedicalPage
+              page={page}
+              setPage={setPage}
+              nextPage={nextPage}
+              totalCost={totalCost}
+              setTotalCost={setTotalCost}
+              resetProgress={resetProgress}
+              setCompletedPages={setCompletedPages}
+            />
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 export default App;
