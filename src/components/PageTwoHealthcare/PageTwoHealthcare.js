@@ -227,7 +227,7 @@ return (
         }}
         type="submit"
         value="Back"
-        onClick={() => onButtonClick("pagetwo")}
+        onClick={() => onButtonClick("pageone")}
       />
 
       {/* Next Button - Condition for Enabling */}
