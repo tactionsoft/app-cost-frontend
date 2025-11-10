@@ -128,6 +128,7 @@ h2 {
 .icon-size {
   width: 2.5rem;
   height: 2.5rem;
+  margin-bottom: 7px;
 }
 
 .industry-all-content {
@@ -165,7 +166,7 @@ h2 {
 
 .card-title {
   margin-top: 5px;
-  font-size: 18px !important;
+  font-size: 16px !important;
   color: #0000;
   background: linear-gradient(90deg, #18d2e8 50%, #000 0) var(--_p, 100%) / 200%
     no-repeat;
@@ -229,7 +230,7 @@ h2 {
 
 .total-cost {
   color: #fff;
-  font-size: 35px;
+  font-size: 32px;
   margin: 0;
 }
 
@@ -238,9 +239,9 @@ h2 {
   font-weight: 500;
 }
 .totals .disclaimer {
-  margin-top: 40px;
+  margin-top: 14px;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
   font-style: italic;

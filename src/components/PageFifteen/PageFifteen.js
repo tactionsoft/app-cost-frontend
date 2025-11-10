@@ -348,13 +348,12 @@ const handleSubmit = async (e) => {
 };
 
   return (
-
     <main className="pt5 black-80 center-fifteen form-content fifteen-content container">
         <div className="total-est-cost well">
-        <h2 className="total-cost-title">Estimated Cost based on your total selection: <span id="total-selection-cost"><br/>{totalCost}</span>
+        <h2 className="total-cost-title footer-total-cost_title">Estimated Cost based on your total selection: <span id="total-selection-cost"><br/>{totalCost}</span>
         </h2>
         <p className="disclaimer-form">
-          Please note : All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
+        <b>Please note </b>: All cost estimates are intended to be indicative of development costs and timescales only and are exclusive of all hosting costs, paid services or purchased assets of any kind. All prices are in USD and inclusive of sales tax.
         </p>
       </div>
       <form className="measure" onSubmit={handleSubmit}>
